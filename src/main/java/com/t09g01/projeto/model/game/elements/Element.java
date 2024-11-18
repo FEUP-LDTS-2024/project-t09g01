@@ -1,5 +1,6 @@
-package com.t09g01.projeto;
+package com.t09g01.projeto.model.game.elements;
 import com.googlecode.lanterna.graphics.TextGraphics;
+import com.t09g01.projeto.model.Position;
 
 abstract class Element {
     private Position position;

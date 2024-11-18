@@ -1,4 +1,4 @@
-package com.t09g01.projeto;
+package com.t09g01.projeto.model;
 
 public class Position {
     private int x;
