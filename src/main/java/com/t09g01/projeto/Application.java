@@ -1,0 +1,10 @@
+package com.t09g01.projeto;
+
+import java.io.IOException;
+
+public class Application {
+    public static void main(String[] args) throws IOException {
+        Game game = new Game();
+        game.run();
+    }
+}
