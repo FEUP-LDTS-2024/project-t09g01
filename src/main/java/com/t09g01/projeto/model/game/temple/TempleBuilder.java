@@ -1,5 +1,7 @@
 package com.t09g01.projeto.model.game.temple;
 
+import com.t09g01.projeto.model.game.elements.*;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -13,6 +15,8 @@ public class TempleBuilder {
 
     public Temple createTemple(){
         Temple temple = new Temple(getWidth(), getHeight());
+        temple.setFireboy(createFireboy());
+        temple.setWatergirl(createWatergirl());
 
         return temple;
     }
@@ -40,4 +44,30 @@ public class TempleBuilder {
     private int getHeight(){
         return lines.size();
     }
+
+    private Fireboy createFireboy(){
+        for(int y = 0; y < lines.size(); y++){
+            String line = lines.get(y);
+            for (int x = 0; x < line.length(); x++){
+                if (line.charAt(x) == 'F') {
+                    return new Fireboy(x, y);
+                }
+            }
+        }
+        return null;
+    }
+
+    private Watergirl createWatergirl(){
+        for(int y = 0; y < lines.size(); y++){
+            String line = lines.get(y);
+            for (int x = 0; x < line.length(); x++){
+                if (line.charAt(x) == 'W') {
+                    return new Watergirl(x, y);
+                }
+            }
+        }
+        return null;
+    }
+
+
 }
