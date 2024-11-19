@@ -11,8 +11,7 @@ public class Temple {
     private Watergirl watergirl;
     private Fireboy fireboy;
 
-    private List<Wall> walls;
-    private List<Floor> floors;
+    private List<Block> blocks;
 
     private Water water;
     private Lava lava;
@@ -37,10 +36,8 @@ public class Temple {
     public void setFireboy(Fireboy fireboy) {this.fireboy = fireboy;}
 
     // Walls and Floors
-    public void setWalls(List<Wall> walls) {this.walls = walls;}
-    public List<Wall> getWalls() {return walls;}
-    public void setFloors(List<Floor> floors) {this.floors = floors;}
-    public List<Floor> getFloors() {return floors;}
+    public void setBlocks(List<Block> blocks) {this.blocks = blocks;}
+    public List<Block> getBlocks() {return blocks;}
 
     // Fluids
     public Water getWater() { return water; }
