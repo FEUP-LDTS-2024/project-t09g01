@@ -17,6 +17,7 @@ public class TempleBuilder {
         Temple temple = new Temple(getWidth(), getHeight());
         temple.setFireboy(createFireboy());
         temple.setWatergirl(createWatergirl());
+        temple.setBlocks(createBlocks());
 
         return temple;
     }
@@ -67,6 +68,19 @@ public class TempleBuilder {
             }
         }
         return null;
+    }
+
+    private List<Block> createBlocks(){
+        List<Block> blocks = new ArrayList<>();
+        for (int y = 0; y < lines.size(); y++){
+            String line = lines.get(y);
+            for (int x = 0; x < line.length(); y++){
+                if (line.charAt(x) == '#'){
+                    blocks.add(new Block(x,y));
+                }
+            }
+        }
+        return blocks;
     }
 
 
