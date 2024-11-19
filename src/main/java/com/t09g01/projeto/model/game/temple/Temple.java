@@ -1,10 +1,10 @@
-package com.t09g01.projeto.model.game.arena;
+package com.t09g01.projeto.model.game.temple;
 
 import com.t09g01.projeto.model.game.elements.*;
 
 import java.util.List;
 
-public class Arena {
+public class Temple {
     private int width;
     private int height;
 
@@ -19,7 +19,7 @@ public class Arena {
     private Goo goo;
 
 
-    public Arena(int width, int height){
+    public Temple(int width, int height){
         this.width = width;
         this.height = height;
     }
