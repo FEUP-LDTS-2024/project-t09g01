@@ -16,7 +16,7 @@ public interface GUI {
 
     void clear();
 
-    void refresh();
+    void refresh() throws IOException;
 
-    void close();
+    void close() throws IOException;
 }
