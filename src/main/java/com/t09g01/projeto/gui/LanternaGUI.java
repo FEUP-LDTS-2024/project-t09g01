@@ -7,6 +7,7 @@ import com.googlecode.lanterna.screen.Screen;
 import com.googlecode.lanterna.screen.TerminalScreen;
 import com.googlecode.lanterna.terminal.Terminal;
 import com.t09g01.projeto.model.Position;
+import org.w3c.dom.Text;
 
 import java.io.IOException;
 
@@ -41,25 +42,11 @@ public class LanternaGUI implements GUI {
         };
     }
 
-    private void drawCharacter(Position position, char c , String color) {
-        TextGraphics tg = screen.newTextGraphics();
-        tg.setForegroundColor(TextColor.Factory.fromString(color));
-        tg.putString(position.getX(), position.getY(), " ");
-    }
-
     @Override
-    public void drawFireboy(Position position) {
-        drawCharacter(position, 'F', "#e02110");
-    }
-
-    @Override
-    public void drawWatergirl(Position position) {
-        drawCharacter(position, 'W', "#2486bf");
-    }
-
-    @Override
-    public void drawBlock(Position position) {
-        drawCharacter(position, '#', "#303b04");
+    public void drawPixel(int x, int y, TextColor.RGB color){
+        TextGraphics graphics = screen.newTextGraphics();
+        graphics.setBackgroundColor(color);
+        graphics.putString(x, y, " ");
     }
 
     @Override
