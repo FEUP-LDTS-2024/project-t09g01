@@ -6,7 +6,7 @@ import java.io.IOException;
 
 public interface GUI {
 
-    ACTION getNextAction() throws IOException
+    ACTION getNextAction() throws IOException;
 
     void drawFireboy(Position position);
 
