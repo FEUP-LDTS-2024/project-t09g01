@@ -28,10 +28,10 @@ public class WatergirlController extends Controller<Temple> {
     @Override
     public void step(Game game, ACTION action, long time) {
         switch (action) {
-            case UP -> moveWatergirlUp();
-            case DOWN -> moveWatergirlDown();
-            case LEFT -> moveWatergirlLeft();
-            case RIGHT -> moveWatergirlRight();
+            case WATERGIRL_UP -> moveWatergirlUp();
+            case WATERGIRL_DOWN -> moveWatergirlDown();
+            case WATERGIRL_LEFT -> moveWatergirlLeft();
+            case WATERGIRL_RIGHT -> moveWatergirlRight();
         }
     }
 }
