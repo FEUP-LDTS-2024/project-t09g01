@@ -31,15 +31,34 @@ public class LanternaGUI implements GUI {
     @Override
     public ACTION getNextAction() throws IOException {
         KeyStroke keyStroke = screen.pollInput();
-        return switch(keyStroke.getKeyType()) {
-            case ArrowUp -> ACTION.UP;
-            case ArrowDown -> ACTION.DOWN;
-            case ArrowLeft -> ACTION.LEFT;
-            case ArrowRight -> ACTION.RIGHT;
+        switch(keyStroke.getKeyType()) {
+            case ArrowUp:
+                return ACTION.FIREBOY_UP;
+            case ArrowDown:
+                return ACTION.FIREBOY_DOWN;
+            case ArrowLeft:
+                return ACTION.FIREBOY_LEFT;
+            case ArrowRight:
+                return ACTION.FIREBOY_RIGHT;
+            case Character:
+                char ch = keyStroke.getCharacter();
+                if (ch == 'w' || ch == 'W') {
+                    return ACTION.FIREBOY_UP;
+                } else if (ch == 's' || ch == 'S') {
+                    return ACTION.FIREBOY_DOWN;
+                } else if (ch == 'a' || ch == 'A') {
+                    return ACTION.FIREBOY_LEFT;
+                } else if (ch == 'd' || ch == 'D') {
+                    return ACTION.FIREBOY_RIGHT;
+                } else {
+                    return ACTION.NONE;
+                }
 
-            case EOF -> ACTION.QUIT;
-            default -> ACTION.NONE;
-        };
+            case EOF:
+                return ACTION.QUIT;
+            default:
+                return ACTION.NONE;
+        }
     }
 
     @Override
