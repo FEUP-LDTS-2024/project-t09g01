@@ -27,6 +27,11 @@ public class FireboyController extends Controller<Temple> {
 
     @Override
     public void step(Game game, ACTION action, long time) {
-
+        switch (action){
+            case UP -> moveFireboyUp();
+            case DOWN -> moveFireboyDown();
+            case LEFT -> moveFireboyLeft();
+            case RIGHT -> moveFireboyRight();
+        }
     }
 }
