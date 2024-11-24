@@ -15,6 +15,8 @@ public class FireboyViewer implements ElementViewer <Fireboy>{
     }
 
     @Override
-    public void draw(Fireboy fireboy, GUI gui) { viewer.draw(gui, fireboy.getPosition().getX(), fireboy.getPosition().getY()); }
+    public void draw(Fireboy fireboy, GUI gui) {
+        viewer.draw(gui, fireboy.getPosition().getX(), fireboy.getPosition().getY());
+    }
 
 }
