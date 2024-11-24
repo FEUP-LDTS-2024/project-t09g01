@@ -13,6 +13,7 @@ import com.t09g01.projeto.model.Position;
 import org.w3c.dom.Text;
 
 import java.awt.*;
+import java.io.File;
 import java.io.IOException;
 import java.net.URISyntaxException;
 
@@ -23,14 +24,20 @@ public class LanternaGUI implements GUI {
         this.screen = screen;
     }
 
-    public LanternaGUI(int width, int height) throws IOException {
+    public LanternaGUI(int width, int height) throws IOException, FontFormatException, URISyntaxException {
         Terminal terminal = createTerminal(width, height);
         this.screen = createScreen(terminal);
     }
 
-    private Terminal createTerminal(int width, int height) throws IOException {
+    private Terminal createTerminal(int width, int height) throws IOException, FontFormatException, URISyntaxException {
         TerminalSize terminalSize = new TerminalSize(width, height);
         DefaultTerminalFactory terminalFactory = new DefaultTerminalFactory().setInitialTerminalSize(terminalSize);
+
+        File fontFile = new File(getClass().getResource("/fonts/square.ttf").toURI());
+        Font font = Font.createFont(Font.TRUETYPE_FONT, fontFile).deriveFont(32f);
+        AWTTerminalFontConfiguration fontConfig = AWTTerminalFontConfiguration.newInstance(font);
+        terminalFactory.setTerminalEmulatorFontConfiguration(fontConfig);
+
         terminalFactory.setForceAWTOverSwing(true);
         Terminal terminal = terminalFactory.createTerminal();
         return terminal;

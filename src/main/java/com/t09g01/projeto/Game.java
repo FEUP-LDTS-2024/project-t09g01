@@ -2,21 +2,24 @@ package com.t09g01.projeto;
 
 import com.t09g01.projeto.gui.LanternaGUI;
 import com.t09g01.projeto.model.game.temple.Temple;
+import com.t09g01.projeto.model.game.temple.TempleBuilder;
 import com.t09g01.projeto.states.GameState;
 import com.t09g01.projeto.states.State;
 
+import java.awt.*;
 import java.io.IOException;
+import java.net.URISyntaxException;
 
 public class Game {
     private final LanternaGUI gui;
     private State state;
 
-    public Game() throws IOException {
-        this.gui = new LanternaGUI(640, 360);
-        this.state = new GameState(new Temple(20, 12));
+    public Game() throws IOException, FontFormatException, URISyntaxException {
+        this.gui = new LanternaGUI(20, 12);
+        this.state = new GameState(new TempleBuilder().createTemple());
     }
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, FontFormatException, URISyntaxException {
         new Game().start();
     }
 
