@@ -9,10 +9,10 @@ public class TempleController extends Controller<Temple> {
     private final FireboyController fireboyController;
     private final WatergirlController watergirlController;
 
-    public TempleController(Temple temple){
+    public TempleController(Temple temple, FireboyController fireboyController, WatergirlController watergirlController){
         super(temple);
-        this.fireboyController = new FireboyController(temple);
-        this.watergirlController = new WatergirlController(temple);
+        this.fireboyController = fireboyController;
+        this.watergirlController = watergirlController;
     }
 
     @Override
