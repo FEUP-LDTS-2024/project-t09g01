@@ -4,6 +4,7 @@ import com.googlecode.lanterna.TextColor;
 import com.t09g01.projeto.gui.GUI;
 import com.t09g01.projeto.model.game.elements.Element;
 import com.t09g01.projeto.model.game.temple.Temple;
+import com.t09g01.projeto.view.elements.BlockViewer;
 import com.t09g01.projeto.view.elements.ElementViewer;
 import com.t09g01.projeto.view.elements.FireboyViewer;
 import com.t09g01.projeto.view.elements.WatergirlViewer;
@@ -22,15 +23,16 @@ public class GameViewer extends ScreenViewer<Temple> {
 
         gui.clear();
 
-        TextColor.RGB windowColor = new TextColor.RGB(0, 0, 0);
+        TextColor.RGB windowColor = new TextColor.RGB(125, 110, 95);
 
-        for (int i = 0; i < 160; i++) {
-            for (int j = 0; j< 90; j++) {
+        for (int i = 0; i < 40; i++) {
+            for (int j = 0; j< 24; j++) {
                 gui.drawPixel(i, j, windowColor);
             }
         }
         drawElement(gui, getModel().getWatergirl(), new WatergirlViewer());
         drawElement(gui, getModel().getFireboy(), new FireboyViewer());
+        drawElements(gui, getModel().getBlocks(), new BlockViewer());
 
         gui.refresh();
     }

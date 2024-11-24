@@ -1,52 +1,51 @@
 package com.t09g01.projeto;
 
-import com.googlecode.lanterna.TerminalSize;
-import com.googlecode.lanterna.TextCharacter;
-import com.googlecode.lanterna.input.KeyStroke;
-import com.googlecode.lanterna.input.KeyType;
-import com.googlecode.lanterna.screen.Screen;
-import com.googlecode.lanterna.screen.TerminalScreen;
-import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
-import com.googlecode.lanterna.terminal.Terminal;
+import com.t09g01.projeto.gui.LanternaGUI;
+import com.t09g01.projeto.model.game.temple.Temple;
+import com.t09g01.projeto.model.game.temple.TempleBuilder;
+import com.t09g01.projeto.model.menu.Menu;
+import com.t09g01.projeto.states.GameState;
+import com.t09g01.projeto.states.MenuState;
+import com.t09g01.projeto.states.State;
 
+import java.awt.*;
 import java.io.IOException;
+import java.net.URISyntaxException;
 
 public class Game {
-    private Screen screen;
+    private final LanternaGUI gui;
+    private State state;
 
-    public Game() throws IOException {
-        TerminalSize terminalSize = new TerminalSize(20, 12);
-        DefaultTerminalFactory terminalFactory = new DefaultTerminalFactory().setInitialTerminalSize(terminalSize);
-        Terminal terminal = terminalFactory.createTerminal();
-
-        screen = new TerminalScreen(terminal);
-        screen.setCursorPosition(null);         // we don't need a cursor
-        screen.startScreen();                   // screens must be started
-        screen.doResizeIfNecessary();           // resize screen if necessary
-
-        // arena = new Arena(40,20);
-
+    public Game() throws IOException, FontFormatException, URISyntaxException {
+        this.gui = new LanternaGUI(40, 24);
+        this.state = new MenuState(new Menu());
     }
 
-    private void draw() throws IOException {
-        screen.clear();
-        screen.setCharacter(10, 10, TextCharacter.fromCharacter('X')[0]);
-        screen.refresh();
+    public static void main(String[] args) throws IOException, FontFormatException, URISyntaxException {
+        new Game().start();
     }
 
-    public void run() throws IOException {
-        while(true) {
-            draw();  // Draw the character at the current position
-            KeyStroke key = screen.readInput();  // Wait for a key press
-            if(key.getKeyType() == KeyType.EOF ) {
-                screen.close();
-                break;
+    public void setState(State state) {this.state = state;}
+
+    private void start() throws IOException {
+        int FPS = 30;
+        int frameTime = 1000 / FPS;
+
+        while(this.state != null){
+            long startTime = System.currentTimeMillis();
+            state.step(this, gui, startTime);
+
+            long elapsedTime = System.currentTimeMillis() - startTime;
+            long sleepTime = frameTime - elapsedTime;
+
+            try {
+                if (sleepTime > 0){
+                    Thread.sleep(sleepTime);
+                }
+            } catch (InterruptedException e) {
             }
-            processKey(key);  // Process the key to update position
-        }
-    }
 
-    private void processKey(KeyStroke key) throws IOException {
-        System.out.println(key);
+        }
+        gui.close();
     }
 }
