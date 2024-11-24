@@ -3,7 +3,9 @@ package com.t09g01.projeto;
 import com.t09g01.projeto.gui.LanternaGUI;
 import com.t09g01.projeto.model.game.temple.Temple;
 import com.t09g01.projeto.model.game.temple.TempleBuilder;
+import com.t09g01.projeto.model.menu.Menu;
 import com.t09g01.projeto.states.GameState;
+import com.t09g01.projeto.states.MenuState;
 import com.t09g01.projeto.states.State;
 
 import java.awt.*;
@@ -16,7 +18,7 @@ public class Game {
 
     public Game() throws IOException, FontFormatException, URISyntaxException {
         this.gui = new LanternaGUI(40, 24);
-        this.state = new GameState(new TempleBuilder().createTemple());
+        this.state = new MenuState(new Menu());
     }
 
     public static void main(String[] args) throws IOException, FontFormatException, URISyntaxException {
