@@ -16,7 +16,7 @@ public class Position {
         return new Position(x, y - 1);
     }
     public Position getDown() {
-        return new Position(x, y + 1);
+        return new Position(x, y +1);
     }
     public Position getRight() {
         return new Position(x + 1, y);
