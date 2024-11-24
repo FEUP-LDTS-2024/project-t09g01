@@ -1,21 +1,39 @@
 package com.t09g01.projeto.gui;
 
+import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.input.KeyStroke;
 import com.googlecode.lanterna.screen.Screen;
 import com.googlecode.lanterna.screen.TerminalScreen;
+import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
 import com.googlecode.lanterna.terminal.Terminal;
+import com.googlecode.lanterna.terminal.swing.AWTTerminalFontConfiguration;
 import com.t09g01.projeto.model.Position;
 import org.w3c.dom.Text;
 
+import java.awt.*;
 import java.io.IOException;
+import java.net.URISyntaxException;
 
 public class LanternaGUI implements GUI {
     private final Screen screen;
 
     public LanternaGUI(Screen screen){
         this.screen = screen;
+    }
+
+    public LanternaGUI(int width, int height) throws IOException {
+        Terminal terminal = createTerminal(width, height);
+        this.screen = createScreen(terminal);
+    }
+
+    private Terminal createTerminal(int width, int height) throws IOException {
+        TerminalSize terminalSize = new TerminalSize(width, height);
+        DefaultTerminalFactory terminalFactory = new DefaultTerminalFactory().setInitialTerminalSize(terminalSize);
+        terminalFactory.setForceAWTOverSwing(true);
+        Terminal terminal = terminalFactory.createTerminal();
+        return terminal;
     }
 
     private Screen createScreen(Terminal terminal) throws IOException {

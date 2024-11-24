@@ -8,45 +8,20 @@ import com.googlecode.lanterna.screen.Screen;
 import com.googlecode.lanterna.screen.TerminalScreen;
 import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
 import com.googlecode.lanterna.terminal.Terminal;
+import com.t09g01.projeto.gui.LanternaGUI;
+import com.t09g01.projeto.model.game.temple.Temple;
+import com.t09g01.projeto.states.GameState;
+import com.t09g01.projeto.states.State;
 
 import java.io.IOException;
 
 public class Game {
-    private Screen screen;
+    //private final LanternaGUI gui;
+    //private final State state;
 
-    public Game() throws IOException {
-        TerminalSize terminalSize = new TerminalSize(20, 12);
-        DefaultTerminalFactory terminalFactory = new DefaultTerminalFactory().setInitialTerminalSize(terminalSize);
-        Terminal terminal = terminalFactory.createTerminal();
-
-        screen = new TerminalScreen(terminal);
-        screen.setCursorPosition(null);         // we don't need a cursor
-        screen.startScreen();                   // screens must be started
-        screen.doResizeIfNecessary();           // resize screen if necessary
-
-        // arena = new Arena(40,20);
-
+    public Game() {
+        //this.gui = new LanternaGUI(150, 200);
+        //this.state = new GameState(new Game());
     }
 
-    private void draw() throws IOException {
-        screen.clear();
-        screen.setCharacter(10, 10, TextCharacter.fromCharacter('X')[0]);
-        screen.refresh();
-    }
-
-    public void run() throws IOException {
-        while(true) {
-            draw();  // Draw the character at the current position
-            KeyStroke key = screen.readInput();  // Wait for a key press
-            if(key.getKeyType() == KeyType.EOF ) {
-                screen.close();
-                break;
-            }
-            processKey(key);  // Process the key to update position
-        }
-    }
-
-    private void processKey(KeyStroke key) throws IOException {
-        System.out.println(key);
-    }
 }
