@@ -11,6 +11,8 @@ public interface GUI {
 
     void drawPixel(int x, int y, TextColor.RGB color);
 
+    void drawText(Position position, String text, String color);
+
     void clear();
 
     void refresh() throws IOException;

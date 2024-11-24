@@ -15,7 +15,7 @@ public class Game {
     private State state;
 
     public Game() throws IOException, FontFormatException, URISyntaxException {
-        this.gui = new LanternaGUI(20, 12);
+        this.gui = new LanternaGUI(40, 24);
         this.state = new GameState(new TempleBuilder().createTemple());
     }
 
