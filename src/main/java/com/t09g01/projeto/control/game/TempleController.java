@@ -5,6 +5,8 @@ import com.t09g01.projeto.control.Controller;
 import com.t09g01.projeto.gui.ACTION;
 import com.t09g01.projeto.model.game.temple.Temple;
 
+import static com.t09g01.projeto.gui.ACTION.QUIT;
+
 public class TempleController extends Controller<Temple> {
     private final FireboyController fireboyController;
     private final WatergirlController watergirlController;
@@ -17,8 +19,13 @@ public class TempleController extends Controller<Temple> {
 
     @Override
     public void step(Game game, ACTION action, long time) {
-        fireboyController.step(game, action, time);
-        watergirlController.step(game, action, time);
+        if (action == QUIT){
+            game.setState(null);
+        }
+        else{
+            fireboyController.step(game, action, time);
+            watergirlController.step(game, action, time);
+        }
     }
 
 }

@@ -1,6 +1,8 @@
 package com.t09g01.projeto;
 
 import com.t09g01.projeto.gui.LanternaGUI;
+import com.t09g01.projeto.model.game.temple.Temple;
+import com.t09g01.projeto.states.GameState;
 import com.t09g01.projeto.states.State;
 
 import java.io.IOException;
@@ -11,7 +13,7 @@ public class Game {
 
     public Game() throws IOException {
         this.gui = new LanternaGUI(640, 360);
-        //this.state = new GameState(new Temple(20, 12));
+        this.state = new GameState(new Temple(20, 12));
     }
 
     public static void main(String[] args) throws IOException {
