@@ -15,6 +15,5 @@ public abstract class ScreenViewer <T> {
         return model;
     }
 
-    public void draw(GUI gui) throws IOException {
-    }
+    public abstract void draw(GUI gui) throws IOException;
 }

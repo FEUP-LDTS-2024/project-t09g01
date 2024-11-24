@@ -2,7 +2,9 @@ package com.t09g01.projeto.states;
 
 import com.t09g01.projeto.Game;
 import com.t09g01.projeto.control.Controller;
+import com.t09g01.projeto.control.game.FireboyController;
 import com.t09g01.projeto.control.game.TempleController;
+import com.t09g01.projeto.control.game.WatergirlController;
 import com.t09g01.projeto.gui.ACTION;
 import com.t09g01.projeto.gui.GUI;
 import com.t09g01.projeto.model.game.temple.Temple;
@@ -17,7 +19,7 @@ public class GameState extends State<Temple>{
 
     @Override
     protected Controller<Temple> getController() {
-        return new TempleController(getModel());
+        return new TempleController(getModel(), new FireboyController(getModel()), new WatergirlController(getModel()));
     }
 
     @Override
