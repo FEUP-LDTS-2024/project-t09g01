@@ -73,13 +73,13 @@ public class LanternaGUI implements GUI {
             case Character:
                 char ch = keyStroke.getCharacter();
                 if (ch == 'w' || ch == 'W') {
-                    return ACTION.FIREBOY_UP;
+                    return ACTION.WATERGIRL_UP;
                 } else if (ch == 's' || ch == 'S') {
-                    return ACTION.FIREBOY_DOWN;
+                    return ACTION.WATERGIRL_DOWN;
                 } else if (ch == 'a' || ch == 'A') {
-                    return ACTION.FIREBOY_LEFT;
+                    return ACTION.WATERGIRL_LEFT;
                 } else if (ch == 'd' || ch == 'D') {
-                    return ACTION.FIREBOY_RIGHT;
+                    return ACTION.WATERGIRL_RIGHT;
                 } else {
                     return ACTION.NONE;
                 }
