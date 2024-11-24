@@ -56,6 +56,11 @@ public class LanternaGUI implements GUI {
     @Override
     public ACTION getNextAction() throws IOException {
         KeyStroke keyStroke = screen.pollInput();
+
+        if (keyStroke == null) {
+            return ACTION.NONE;
+        }
+
         switch(keyStroke.getKeyType()) {
             case ArrowUp:
                 return ACTION.FIREBOY_UP;
