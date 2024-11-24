@@ -12,23 +12,25 @@ public class PositionTest {
     public  void setUp() {
         position = new Position(3,5);
     }
-    
+
+    // Initializing
     @Test
-    public void testConstructorInitializesCorrectly() {
+    public void testConstructor() {
         assertEquals(3, position.getX());
         assertEquals(5, position.getY());
     }
 
+    // Movements
     @Test
     public void testGetUp() {
         Position up = position.getUp();
-        assertEquals(new Position(3, 4), up);
+        assertEquals(new Position(3, 6), up);
     }
 
     @Test
     public void testGetDown() {
         Position down = position.getDown();
-        assertEquals(new Position(3, 6), down);
+        assertEquals(new Position(3, 4), down);
     }
 
     @Test
@@ -43,6 +45,7 @@ public class PositionTest {
         assertEquals(new Position(2, 5), left);
     }
 
+    // Equal method
     @Test
     public void testEquals() {
         Position samePosition = position;
