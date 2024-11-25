@@ -20,3 +20,7 @@ Fireboy is controlled using the arrow keys, while Watergirl uses "W, A, D." The 
 The game starts with a menu where players can choose to play, view instructions, or exit. If a character touches an obstacle they can't survive, it’s Game Over, and players can choose to retry or quit.
 
 Teamwork is essential to press buttons, pull levers, and solve puzzles to advance through the levels. The game focuses on collaboration, problem-solving, and having fun!
+
+# UML MODEL
+
+[UML.pdf](../../../../../Downloads/UML.pdf)
