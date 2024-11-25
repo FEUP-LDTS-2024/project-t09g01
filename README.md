@@ -21,6 +21,13 @@ The game starts with a menu where players can choose to play, view instructions,
 
 Teamwork is essential to press buttons, pull levers, and solve puzzles to advance through the levels. The game focuses on collaboration, problem-solving, and having fun!
 
+# Mockups
+![Image Preview (images/mockups/menu.png)](images/mockups/menu.png)
+![Image Preview (images/mockups/play.jpeg)](images/mockups/play.jpeg)
+![Image Preview (images/mockups/gameOver.png)](images/mockups/gameOver.png)
+
 # UML MODEL
 
-[UML.pdf](../../../../../Downloads/UML.pdf)
+![Image Preview (images/uml/UML.drawio.png)](images/uml/UML.drawio.png)
+
+
