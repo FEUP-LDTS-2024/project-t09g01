@@ -85,7 +85,7 @@ public class LanternaGUI implements GUI {
                 }
             case Enter:
                 return ACTION.SELECT;
-            case EOF:
+            case EOF, Escape:
                 return ACTION.QUIT;
             default:
                 return ACTION.NONE;
