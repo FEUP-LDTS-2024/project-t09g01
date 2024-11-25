@@ -1,7 +1,7 @@
 [![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/rUa5vdmg)
 # FEATURES
 
-- Menu - When lauching the game, the menu screen allows the user to start the game (”PLAY”), see game’s instructions (”HOW TO PLAY”) or exit the game (”EXIT”)
+- Menu - When lauching the game, the menu screen allows the user to start the game (”start”), see game’s instructions (”tutorial”) or exit the game (”exit”)
 - Co-op Gameplay - Two characters (Fireboy and Watergirl) are controlled by two players at the same time.
 - Levels - The game has three different levels to play.
 - Player Movement - The characters are able to move left, right and jump. Fireboy’s movement is done pressing the arrow keys, while Watergirl’s uses “W”, “A”, “D”. Both character are animated to simulate their movement.
