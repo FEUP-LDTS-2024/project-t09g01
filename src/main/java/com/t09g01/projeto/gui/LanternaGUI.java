@@ -34,7 +34,7 @@ public class LanternaGUI implements GUI {
         DefaultTerminalFactory terminalFactory = new DefaultTerminalFactory().setInitialTerminalSize(terminalSize);
 
         File fontFile = new File(getClass().getResource("/fonts/square.ttf").toURI());
-        Font font = Font.createFont(Font.TRUETYPE_FONT, fontFile).deriveFont(32f);
+        Font font = Font.createFont(Font.TRUETYPE_FONT, fontFile).deriveFont(2f);
         AWTTerminalFontConfiguration fontConfig = AWTTerminalFontConfiguration.newInstance(font);
         terminalFactory.setTerminalEmulatorFontConfiguration(fontConfig);
 

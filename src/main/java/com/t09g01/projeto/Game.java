@@ -17,7 +17,7 @@ public class Game {
     private State state;
 
     public Game() throws IOException, FontFormatException, URISyntaxException {
-        this.gui = new LanternaGUI(40, 24);
+        this.gui = new LanternaGUI(320, 200);
         this.state = new MenuState(new Menu());
     }
 
@@ -28,7 +28,7 @@ public class Game {
     public void setState(State state) {this.state = state;}
 
     private void start() throws IOException {
-        int FPS = 30;
+        int FPS = 10;
         int frameTime = 1000 / FPS;
 
         while(this.state != null){

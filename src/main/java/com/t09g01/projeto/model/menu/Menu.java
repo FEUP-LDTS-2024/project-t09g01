@@ -17,6 +17,7 @@ public class Menu {
     }
 
     public void previousEntry(){
+
         currentEntry--;
         if(currentEntry < 0){
             currentEntry = this.entries.size() - 1;

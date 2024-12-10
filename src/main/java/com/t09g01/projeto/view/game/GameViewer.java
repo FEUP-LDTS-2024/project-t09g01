@@ -25,11 +25,7 @@ public class GameViewer extends ScreenViewer<Temple> {
 
         TextColor.RGB windowColor = new TextColor.RGB(125, 110, 95);
 
-        for (int i = 0; i < 40; i++) {
-            for (int j = 0; j< 24; j++) {
-                gui.drawPixel(i, j, windowColor);
-            }
-        }
+        
         drawElement(gui, getModel().getWatergirl(), new WatergirlViewer());
         drawElement(gui, getModel().getFireboy(), new FireboyViewer());
         drawElements(gui, getModel().getBlocks(), new BlockViewer());
