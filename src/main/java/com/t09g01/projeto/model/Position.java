@@ -1,16 +1,16 @@
 package com.t09g01.projeto.model;
 
 public class Position {
-    private int x;
-    private int y;
+    private double x;
+    private double y;
 
-    public Position(int x, int y){
+    public Position(double x, double y){
         this.x = x;
         this.y = y;
     }
 
-    public int getX() {return x;}
-    public int getY() {return y;}
+    public double getX() {return x;}
+    public double getY() {return y;}
 
     public Position getUp() {
         return new Position(x, y - 1);
