@@ -11,7 +11,7 @@ public class FireboyViewer implements ElementViewer <Fireboy>{
     private Viewer viewer;
 
     public FireboyViewer() throws IOException {
-        viewer = new Viewer("fireboy/fireboy.png");
+        viewer = new Viewer("fireboy/fire.png");
     }
 
     @Override
