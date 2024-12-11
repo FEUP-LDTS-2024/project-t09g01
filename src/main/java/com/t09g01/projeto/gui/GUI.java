@@ -13,6 +13,8 @@ public interface GUI {
 
     void drawText(Position position, String text, String color);
 
+    void drawRectangle(double x, double y, int width, int height, TextColor color);
+
     void clear();
 
     void refresh() throws IOException;

@@ -1,5 +1,6 @@
 package com.t09g01.projeto.gui;
 
+import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
@@ -40,12 +41,15 @@ public class LanternaGUI implements GUI {
 
         terminalFactory.setForceAWTOverSwing(true);
         Terminal terminal = terminalFactory.createTerminal();
+
         return terminal;
     }
 
     private Screen createScreen(Terminal terminal) throws IOException {
         final Screen screen;
         screen = new TerminalScreen(terminal);
+
+
 
         screen.setCursorPosition(null);
         screen.startScreen();
@@ -104,6 +108,16 @@ public class LanternaGUI implements GUI {
         TextGraphics graphics = screen.newTextGraphics();
         graphics.setForegroundColor(TextColor.Factory.fromString(color));
         graphics.putString(position.getX(), position.getY(), text);
+    }
+
+    @Override
+    public void drawRectangle(double x, double y, int width, int height, TextColor color) {
+        if (width > 0 && height > 0) {
+            TextGraphics graphics = screen.newTextGraphics();
+            graphics.setBackgroundColor(color);
+            graphics.fillRectangle(new TerminalPosition((int)x, (int)y), new TerminalSize(width, height), ' ');
+        }
+
     }
 
     @Override
