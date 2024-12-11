@@ -1,6 +1,8 @@
 package com.t09g01.projeto.view.game;
 
 import com.googlecode.lanterna.TextColor;
+import com.googlecode.lanterna.graphics.BasicTextImage;
+import com.googlecode.lanterna.graphics.TextImage;
 import com.t09g01.projeto.gui.GUI;
 import com.t09g01.projeto.model.game.elements.Element;
 import com.t09g01.projeto.model.game.temple.Temple;
@@ -19,6 +21,8 @@ public class GameViewer extends ScreenViewer<Temple> {
     }
 
     public final static TextColor.RGB windowColor = new TextColor.RGB(24, 56, 24);
+//    private final TextImage textImage;
+//    textImage = new BasicTextImage(width, height)
 
     @Override
     public void draw(GUI gui) throws IOException {
@@ -41,5 +45,7 @@ public class GameViewer extends ScreenViewer<Temple> {
         for (T element : elements)
             drawElement(gui, element, viewer);
     }
+
+
 
 }

@@ -19,11 +19,8 @@ public class BlockViewer implements ElementViewer<Block> {
     }
 
     @Override
-    public void draw(Block block, GUI gui) { viewer.draw(gui, block.getPosition().getX() * 8, block.getPosition().getY() * 8); }
-//
-//    @Override
-//    public void draw(Block block, GUI gui) {
-//        gui.drawPixel(block.getPosition().getX() * 8 , block.getPosition().getY() * 8, new TextColor.RGB(28, 46, 22));
-//
-//    }
+    public void draw(Block block, GUI gui) {
+        viewer.draw(gui, block.getPosition().getX() * 8, block.getPosition().getY() * 8);
+    }
+
 }
