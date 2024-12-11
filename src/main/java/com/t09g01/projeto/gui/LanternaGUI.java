@@ -11,19 +11,29 @@ import com.googlecode.lanterna.screen.TerminalScreen;
 import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
 import com.googlecode.lanterna.terminal.Terminal;
 import com.googlecode.lanterna.terminal.swing.AWTTerminalFontConfiguration;
+import com.googlecode.lanterna.terminal.swing.AWTTerminalFrame;
 import com.t09g01.projeto.model.Position;
 import org.w3c.dom.Text;
 
 import java.awt.*;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyAdapter;
 import java.io.File;
 import java.io.IOException;
 import java.net.URISyntaxException;
+import static java.awt.event.KeyEvent.*;
+
+
 
 public class LanternaGUI implements GUI {
     private final Screen screen;
+    private KeyEvent arrowKeyPressed;
+    private KeyEvent specialKeyPressed;
 
     public LanternaGUI(Screen screen){
         this.screen = screen;
+        this.arrowKeyPressed = null;
+        this.specialKeyPressed = null;
     }
 
     public LanternaGUI(int width, int height) throws IOException, FontFormatException, URISyntaxException {
@@ -42,6 +52,23 @@ public class LanternaGUI implements GUI {
 
         terminalFactory.setForceAWTOverSwing(true);
         Terminal terminal = terminalFactory.createTerminal();
+
+        ((AWTTerminalFrame)terminal).getComponent(0).addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                switch (e.getKeyCode()) {
+                    case VK_LEFT, VK_RIGHT -> arrowKeyPressed = e;
+                    default -> specialKeyPressed = e;
+                }
+            }
+            @Override
+            public void keyReleased(KeyEvent e) {
+                switch (e.getKeyCode()) {
+                    case VK_LEFT, VK_RIGHT -> arrowKeyPressed = null;
+                    default -> specialKeyPressed = null;
+                }
+            }
+        });
 
         return terminal;
     }
