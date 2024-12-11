@@ -25,6 +25,9 @@ public class Viewer {
         for (int y = 0; y < image.getHeight(); y++) {                  // x e y são as coordenadas dos pixels dentro da imagem
             for (int x = 0; x < image.getWidth(); x++) {
                 int rgb = image.getRGB(x, y);                         // valor do RGB do pixel
+                if (rgb >> 24 == 0){                                   // checar transparência
+                    continue;
+                }
                 TextColor.RGB color = getLanternaColor(rgb);          // mapear para cor no Lanterna
                 gui.drawPixel(a + x,b + y, color);              // desenhar o pixel
             }
@@ -37,4 +40,6 @@ public class Viewer {
         int blue = rgb & 0xFF;
         return new TextColor.RGB(red, green, blue);
     }
+
+
 }
