@@ -21,6 +21,8 @@ public class Viewer {
         image = ImageIO.read(new File(resource.getFile()));
     }
 
+
+
     public void draw(GUI gui, int a, int b){                           // a e b representam as coordenadas de início onde a imagem deve ser desenhada na tela
         for (int y = 0; y < image.getHeight(); y++) {                  // x e y são as coordenadas dos pixels dentro da imagem
             for (int x = 0; x < image.getWidth(); x++) {

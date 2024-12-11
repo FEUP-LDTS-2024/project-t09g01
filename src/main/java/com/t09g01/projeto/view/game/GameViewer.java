@@ -18,14 +18,14 @@ public class GameViewer extends ScreenViewer<Temple> {
         super(temple);
     }
 
-    public final static TextColor.RGB windowColor = new TextColor.RGB(125, 110, 95);
+    public final static TextColor.RGB windowColor = new TextColor.RGB(24, 56, 24);
 
     @Override
     public void draw(GUI gui) throws IOException {
 
         gui.clear();
 
-        gui.drawRectangle(0, 0, 320, 200, windowColor);
+        gui.drawRectangle(0, 0, 320, 192, windowColor);
         drawElement(gui, getModel().getWatergirl(), new WatergirlViewer());
         drawElement(gui, getModel().getFireboy(), new FireboyViewer());
         drawElements(gui, getModel().getBlocks(), new BlockViewer());

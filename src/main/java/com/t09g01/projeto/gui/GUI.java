@@ -1,6 +1,9 @@
 package com.t09g01.projeto.gui;
 
+import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TextColor;
+import com.googlecode.lanterna.graphics.TextGraphics;
+import com.googlecode.lanterna.graphics.TextImage;
 import com.t09g01.projeto.model.Position;
 
 import java.io.IOException;

@@ -4,6 +4,7 @@ import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
+import com.googlecode.lanterna.graphics.TextImage;
 import com.googlecode.lanterna.input.KeyStroke;
 import com.googlecode.lanterna.screen.Screen;
 import com.googlecode.lanterna.screen.TerminalScreen;
@@ -35,7 +36,7 @@ public class LanternaGUI implements GUI {
         DefaultTerminalFactory terminalFactory = new DefaultTerminalFactory().setInitialTerminalSize(terminalSize);
 
         File fontFile = new File(getClass().getResource("/fonts/square.ttf").toURI());
-        Font font = Font.createFont(Font.TRUETYPE_FONT, fontFile).deriveFont(2f);
+        Font font = Font.createFont(Font.TRUETYPE_FONT, fontFile).deriveFont(4f);
         AWTTerminalFontConfiguration fontConfig = AWTTerminalFontConfiguration.newInstance(font);
         terminalFactory.setTerminalEmulatorFontConfiguration(fontConfig);
 
@@ -102,6 +103,8 @@ public class LanternaGUI implements GUI {
         graphics.setBackgroundColor(color);
         graphics.putString(x, y, " ");
     }
+
+
 
     @Override
     public void drawText(Position position, String text, String color) {
