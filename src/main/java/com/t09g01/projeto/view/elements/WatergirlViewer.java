@@ -11,7 +11,7 @@ public class WatergirlViewer implements ElementViewer <Watergirl>{
     private Viewer viewer;
 
     public WatergirlViewer() throws IOException {
-        viewer = new Viewer("watergirl/watergirl.png");
+        viewer = new Viewer("watergirl/water.png");
     }
 
     @Override
