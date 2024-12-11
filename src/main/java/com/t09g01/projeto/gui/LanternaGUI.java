@@ -28,12 +28,15 @@ import static java.awt.event.KeyEvent.*;
 public class LanternaGUI implements GUI {
     private final Screen screen;
     private KeyEvent arrowKeyPressed;
-    private KeyEvent specialKeyPressed;
+    private KeyEvent WADKeyPressed;
+    private KeyEvent primaryKeyPressed;
+
 
     public LanternaGUI(Screen screen){
         this.screen = screen;
         this.arrowKeyPressed = null;
-        this.specialKeyPressed = null;
+        this.WADKeyPressed = null;
+        this.primaryKeyPressed = null;
     }
 
     public LanternaGUI(int width, int height) throws IOException, FontFormatException, URISyntaxException {
@@ -55,17 +58,19 @@ public class LanternaGUI implements GUI {
 
         ((AWTTerminalFrame)terminal).getComponent(0).addKeyListener(new KeyAdapter() {
             @Override
-            public void keyPressed(KeyEvent e) {
-                switch (e.getKeyCode()) {
-                    case VK_LEFT, VK_RIGHT -> arrowKeyPressed = e;
-                    default -> specialKeyPressed = e;
+            public void keyPressed(KeyEvent event) {
+                switch (event.getKeyCode()) {
+                    case VK_LEFT, VK_RIGHT -> arrowKeyPressed = event;
+                    case VK_D, VK_A -> WADKeyPressed = event;
+                    default -> primaryKeyPressed = event;
                 }
             }
             @Override
-            public void keyReleased(KeyEvent e) {
-                switch (e.getKeyCode()) {
+            public void keyReleased(KeyEvent event) {
+                switch (event.getKeyCode()) {
                     case VK_LEFT, VK_RIGHT -> arrowKeyPressed = null;
-                    default -> specialKeyPressed = null;
+                    case VK_D, VK_A -> WADKeyPressed = null;
+                    default -> primaryKeyPressed = null;
                 }
             }
         });
@@ -87,41 +92,38 @@ public class LanternaGUI implements GUI {
 
     @Override
     public ACTION getNextAction() throws IOException {
-        KeyStroke keyStroke = screen.pollInput();
+        if (primaryKeyPressed != null){
+            int primaryKeyCode = primaryKeyPressed.getKeyCode();
+            primaryKeyPressed = null;
+            return switch (primaryKeyCode){
+                case VK_UP -> ACTION.FIREBOY_UP;
+                case VK_W -> ACTION.WATERGIRL_UP;
+                case VK_DOWN -> ACTION.FIREBOY_DOWN;
+                case VK_S -> ACTION.WATERGIRL_DOWN;
+                case VK_ESCAPE -> ACTION.QUIT;
+                case VK_ENTER -> ACTION.SELECT;
+                default -> ACTION.NONE;
+            };
 
-        if (keyStroke == null) {
-            return ACTION.NONE;
         }
 
-        switch(keyStroke.getKeyType()) {
-            case ArrowUp:
-                return ACTION.FIREBOY_UP;
-            case ArrowDown:
-                return ACTION.FIREBOY_DOWN;
-            case ArrowLeft:
-                return ACTION.FIREBOY_LEFT;
-            case ArrowRight:
-                return ACTION.FIREBOY_RIGHT;
-            case Character:
-                char ch = keyStroke.getCharacter();
-                if (ch == 'w' || ch == 'W') {
-                    return ACTION.WATERGIRL_UP;
-                } else if (ch == 's' || ch == 'S') {
-                    return ACTION.WATERGIRL_DOWN;
-                } else if (ch == 'a' || ch == 'A') {
-                    return ACTION.WATERGIRL_LEFT;
-                } else if (ch == 'd' || ch == 'D') {
-                    return ACTION.WATERGIRL_RIGHT;
-                } else {
-                    return ACTION.NONE;
-                }
-            case Enter:
-                return ACTION.SELECT;
-            case EOF, Escape:
-                return ACTION.QUIT;
-            default:
-                return ACTION.NONE;
+        if (arrowKeyPressed != null) {
+            return switch (arrowKeyPressed.getKeyCode()) {
+                case VK_LEFT -> ACTION.FIREBOY_LEFT;
+                case VK_RIGHT -> ACTION.FIREBOY_RIGHT;
+                default -> ACTION.NONE;
+            };
+        };
+
+        if (WADKeyPressed != null) {
+            return switch (WADKeyPressed.getKeyCode()) {
+                case VK_A -> ACTION.WATERGIRL_LEFT;
+                case VK_D -> ACTION.WATERGIRL_RIGHT;
+                default -> ACTION.NONE;
+            };
         }
+
+        return ACTION.NONE;
     }
 
     @Override
