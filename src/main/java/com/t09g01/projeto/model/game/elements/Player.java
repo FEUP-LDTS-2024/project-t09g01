@@ -8,7 +8,7 @@ public class Player extends Element {
 
     private final Position maxVelocity;
     private final double acceleration;
-    private final double gravity;
+    private final double jumpboost;
 
     private boolean isJumping;
     private boolean hasLanded;
@@ -20,7 +20,7 @@ public class Player extends Element {
         this.velocity = new Position(0,0);
         this.maxVelocity = new Position(1.5,2.5);
         this.acceleration = 0.4;
-        this.gravity = 3;
+        this.jumpboost = 3;
     }
 
     public Position getVelocity() {
@@ -39,8 +39,8 @@ public class Player extends Element {
         return acceleration;
     }
 
-    public double getGravity() {
-        return gravity;
+    public double getJumpboost() {
+        return jumpboost;
     }
 
     public boolean isJumping() {

@@ -65,7 +65,7 @@ public class TempleBuilder {
             String line = lines.get(y);
             for (int x = 0; x < line.length(); x++) {
                 if (line.charAt(x) == 'F') {
-                    return new Fireboy(x, y);
+                    return new Fireboy(x * 8, y * 8);
                 }
             }
         }
@@ -77,7 +77,7 @@ public class TempleBuilder {
             String line = lines.get(y);
             for (int x = 0; x < line.length(); x++) {
                 if (line.charAt(x) == 'W') {
-                    return new Watergirl(x, y);
+                    return new Watergirl(x * 8, y * 8);
                 }
             }
         }
@@ -90,7 +90,7 @@ public class TempleBuilder {
             String line = lines.get(y);
             for (int x = 0; x < line.length(); x++) { // Fixed inner loop increment
                 if (line.charAt(x) == '#') {
-                    blocks.add(new Block(x, y));
+                    blocks.add(new Block(x*8, y*8));
                 }
             }
         }

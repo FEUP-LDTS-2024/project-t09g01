@@ -10,7 +10,12 @@ public class FireboyController extends Controller<Temple> {
     public FireboyController(Temple temple){
         super(temple);
     }
-    public void moveFireboy(Position position) {this.getModel().getFireboy().setPosition(position);}
+
+    public void moveFireboy(Position position) {
+        if (!getModel().checkCollisions(position)){
+            getModel().getFireboy().setPosition(position);
+        }
+    }
 
     public void moveFireboyRight(){
         moveFireboy(getModel().getFireboy().getPosition().getRight());

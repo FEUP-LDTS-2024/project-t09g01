@@ -10,7 +10,11 @@ public class WatergirlController extends Controller<Temple> {
     public WatergirlController(Temple temple){
         super(temple);
     }
-    public void moveWatergirl(Position position) {this.getModel().getWatergirl().setPosition(position);}
+    public void moveWatergirl(Position position) {
+        if (!getModel().checkCollisions(position)) {
+            this.getModel().getWatergirl().setPosition(position);}
+        }
+
 
     public void moveWatergirlRight(){
         moveWatergirl(getModel().getWatergirl().getPosition().getRight());

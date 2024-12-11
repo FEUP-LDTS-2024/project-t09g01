@@ -1,5 +1,6 @@
 package com.t09g01.projeto.model.game.temple;
 
+import com.t09g01.projeto.model.Position;
 import com.t09g01.projeto.model.game.elements.*;
 
 import java.util.List;
@@ -17,10 +18,13 @@ public class Temple {
     private Lava lava;
     private Goo goo;
 
+    private final double gravity;
+
 
     public Temple(int width, int height){
         this.width = width;
         this.height = height;
+        this.gravity = 0.3;
     }
 
     // Width and Height
@@ -46,4 +50,13 @@ public class Temple {
     public void setLava(Lava lava) { this.lava = lava; }
     public Goo getGoo() { return goo; }
     public void setGoo(Goo goo) { this.goo = goo; }
+
+    public boolean checkCollisions(Position position) {
+        for (Block block : blocks) {
+            if (block.getPosition().equals(position)) {
+                return true;
+            }
+        }
+        return false;
+    }
 }

@@ -20,7 +20,7 @@ public class BlockViewer implements ElementViewer<Block> {
 
     @Override
     public void draw(Block block, GUI gui) {
-        viewer.draw(gui, block.getPosition().getX() * 8, block.getPosition().getY() * 8);
+        viewer.draw(gui, block.getPosition().getX(), block.getPosition().getY());
     }
 
 }
