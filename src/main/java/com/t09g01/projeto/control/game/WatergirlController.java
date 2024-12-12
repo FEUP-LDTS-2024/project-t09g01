@@ -6,6 +6,8 @@ import com.t09g01.projeto.gui.ACTION;
 import com.t09g01.projeto.model.Position;
 import com.t09g01.projeto.model.game.temple.Temple;
 
+import java.util.Set;
+
 public class WatergirlController extends Controller<Temple> {
     public WatergirlController(Temple temple){
         super(temple);
@@ -30,12 +32,14 @@ public class WatergirlController extends Controller<Temple> {
     }
 
     @Override
-    public void step(Game game, ACTION action, long time) {
-        switch (action) {
-            case WATERGIRL_UP -> moveWatergirlUp();
-            case WATERGIRL_DOWN -> moveWatergirlDown();
-            case WATERGIRL_LEFT -> moveWatergirlLeft();
-            case WATERGIRL_RIGHT -> moveWatergirlRight();
+    public void step(Game game, Set<ACTION> currentActions, long time) {
+        for (ACTION action : currentActions){
+            switch (action) {
+                case WATERGIRL_UP -> moveWatergirlUp();
+                case WATERGIRL_DOWN -> moveWatergirlDown();
+                case WATERGIRL_LEFT -> moveWatergirlLeft();
+                case WATERGIRL_RIGHT -> moveWatergirlRight();
+            }
         }
     }
 }

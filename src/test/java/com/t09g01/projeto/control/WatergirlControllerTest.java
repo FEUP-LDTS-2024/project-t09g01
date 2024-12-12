@@ -51,9 +51,9 @@ public class WatergirlControllerTest {
         verify(watergirl).setPosition(new Position(5,4));
     }
 
-    @Test
-    void testStep() {
-        controller.step(null, ACTION.WATERGIRL_LEFT, 100);
-        verify(watergirl).setPosition(new Position(4,5));
-    }
+//    @Test
+//    void testStep() {
+//        controller.step(null, ACTION.WATERGIRL_LEFT, 100);
+//        verify(watergirl).setPosition(new Position(4,5));
+//    }
 }

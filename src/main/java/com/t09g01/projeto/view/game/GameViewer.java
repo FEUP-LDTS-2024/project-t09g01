@@ -15,14 +15,18 @@ import javax.lang.model.util.Elements;
 import java.io.IOException;
 import java.util.List;
 
+
+
 public class GameViewer extends ScreenViewer<Temple> {
+    private BasicTextImage background;
+
     public GameViewer(Temple temple) {
         super(temple);
+        this.background =  new BasicTextImage(temple.getHeight(), temple.getWidth());
     }
 
-    public final static TextColor.RGB windowColor = new TextColor.RGB(24, 56, 24);
-//    private final TextImage textImage;
-//    textImage = new BasicTextImage(width, height)
+    public final static TextColor.RGB windowColor = new TextColor.RGB(76, 68, 87);
+
 
     @Override
     public void draw(GUI gui) throws IOException {

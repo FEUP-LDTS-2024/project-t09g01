@@ -9,6 +9,7 @@ import com.t09g01.projeto.model.game.temple.TempleBuilder;
 import com.t09g01.projeto.view.game.ScreenViewer;
 
 import java.io.IOException;
+import java.util.Set;
 
 public abstract class State<T> {
     private final T model;
@@ -29,8 +30,8 @@ public abstract class State<T> {
     }
 
     public void step(Game game, GUI gui, long time) throws IOException {
-        ACTION action = gui.getNextAction();
-        controller.step(game, action, time);
+        Set<ACTION> currentActions = gui.getCurrentActions();
+        controller.step(game, currentActions, time);
         screenViewer.draw(gui);
     }
 

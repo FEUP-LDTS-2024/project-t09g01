@@ -24,12 +24,16 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.net.URISyntaxException;
+import java.util.HashSet;
+import java.util.Set;
+
 import static java.awt.event.KeyEvent.*;
 
 
 
 public class LanternaGUI implements GUI {
     private final Screen screen;
+    private final Set<ACTION> currentActions = new HashSet<>();
     private KeyEvent arrowKeyPressed;
     private KeyEvent WADKeyPressed;
     private KeyEvent primaryKeyPressed;
@@ -62,19 +66,31 @@ public class LanternaGUI implements GUI {
         ((AWTTerminalFrame)terminal).getComponent(0).addKeyListener(new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent event) {
-                switch (event.getKeyCode()) {
-                    case VK_LEFT, VK_RIGHT -> arrowKeyPressed = event;
-                    case VK_D, VK_A -> WADKeyPressed = event;
-                    default -> primaryKeyPressed = event;
+                System.out.println(event);
+                ACTION action = getActionFromKeyCode(event.getKeyCode());
+                System.out.println(action);
+                if (action != ACTION.NONE) {
+                    currentActions.add(action);
+
                 }
+                System.out.println(currentActions.size());
+//                switch (event.getKeyCode()) {
+//                    case VK_LEFT, VK_RIGHT -> arrowKeyPressed = event;
+//                    case VK_D, VK_A -> WADKeyPressed = event;
+//                    default -> primaryKeyPressed = event;
+//                }
+//                System.out.println(arrowKeyPressed);
+//                System.out.println(WADKeyPressed);
             }
             @Override
             public void keyReleased(KeyEvent event) {
-                switch (event.getKeyCode()) {
-                    case VK_LEFT, VK_RIGHT -> arrowKeyPressed = null;
-                    case VK_D, VK_A -> WADKeyPressed = null;
-                    default -> primaryKeyPressed = null;
-                }
+                ACTION action = getActionFromKeyCode(event.getKeyCode());
+                currentActions.remove(action);
+//                switch (event.getKeyCode()) {
+//                    case VK_LEFT, VK_RIGHT -> arrowKeyPressed = null;
+//                    case VK_D, VK_A -> WADKeyPressed = null;
+//                    default -> primaryKeyPressed = null;
+//                }
             }
         });
 
@@ -85,49 +101,84 @@ public class LanternaGUI implements GUI {
         final Screen screen;
         screen = new TerminalScreen(terminal);
 
-
-
         screen.setCursorPosition(null);
         screen.startScreen();
         screen.doResizeIfNecessary();
         return screen;
     }
 
-    @Override
-    public ACTION getNextAction() throws IOException {
-        if (primaryKeyPressed != null){
-            int primaryKeyCode = primaryKeyPressed.getKeyCode();
-            primaryKeyPressed = null;
-            return switch (primaryKeyCode){
-                case VK_UP -> ACTION.FIREBOY_UP;
-                case VK_W -> ACTION.WATERGIRL_UP;
-                case VK_DOWN -> ACTION.FIREBOY_DOWN;
-                case VK_S -> ACTION.WATERGIRL_DOWN;
-                case VK_ESCAPE -> ACTION.QUIT;
-                case VK_ENTER -> ACTION.SELECT;
-                default -> ACTION.NONE;
-            };
 
-        }
+//    public Set<ACTION> getCurrentActions() {
+//        return new HashSet<>(currentActions);
+//    }
 
-        if (arrowKeyPressed != null) {
-            return switch (arrowKeyPressed.getKeyCode()) {
-                case VK_LEFT -> ACTION.FIREBOY_LEFT;
-                case VK_RIGHT -> ACTION.FIREBOY_RIGHT;
-                default -> ACTION.NONE;
-            };
+    private ACTION getActionFromKeyCode(int keyCode) {
+        return switch (keyCode) {
+            case VK_UP -> ACTION.FIREBOY_UP;
+            case VK_W -> ACTION.WATERGIRL_UP;
+            case VK_DOWN -> ACTION.FIREBOY_DOWN;
+            case VK_S -> ACTION.WATERGIRL_DOWN;
+            case VK_LEFT -> ACTION.FIREBOY_LEFT;
+            case VK_A -> ACTION.WATERGIRL_LEFT;
+            case VK_RIGHT -> ACTION.FIREBOY_RIGHT;
+            case VK_D -> ACTION.WATERGIRL_RIGHT;
+            case VK_ESCAPE -> ACTION.QUIT;
+            case VK_ENTER -> ACTION.SELECT;
+            default -> ACTION.NONE;
         };
-
-        if (WADKeyPressed != null) {
-            return switch (WADKeyPressed.getKeyCode()) {
-                case VK_A -> ACTION.WATERGIRL_LEFT;
-                case VK_D -> ACTION.WATERGIRL_RIGHT;
-                default -> ACTION.NONE;
-            };
-        }
-
-        return ACTION.NONE;
     }
+
+    @Override
+    public Set<ACTION> getCurrentActions() {
+        return new HashSet<>(currentActions);
+    }
+
+//    @Override
+//    public ACTION getNextAction(KeyEvent event){
+//        switch(event.getKeyCode()){
+//            case VK_UP:
+//                set.add(ACTION.FIREBOY_UP);
+//
+//
+//        }
+//
+//    }
+
+//    @Override
+//    public Set<ACTION> getNextAction() throws IOException {
+//        if (primaryKeyPressed != null){
+//            int primaryKeyCode = primaryKeyPressed.getKeyCode();
+//            primaryKeyPressed = null;
+//            return switch (primaryKeyCode){
+//                case VK_UP -> ACTION.FIREBOY_UP;
+//                case VK_W -> ACTION.WATERGIRL_UP;
+//                case VK_DOWN -> ACTION.FIREBOY_DOWN;
+//                case VK_S -> ACTION.WATERGIRL_DOWN;
+//                case VK_ESCAPE -> ACTION.QUIT;
+//                case VK_ENTER -> ACTION.SELECT;
+//                default -> ACTION.NONE;
+//            };
+//
+//        }
+//
+//        if (arrowKeyPressed != null) {
+//            return switch (arrowKeyPressed.getKeyCode()) {
+//                case VK_LEFT -> ACTION.FIREBOY_LEFT;
+//                case VK_RIGHT -> ACTION.FIREBOY_RIGHT;
+//                default -> ACTION.NONE;
+//            };
+//        };
+//
+//        if (WADKeyPressed != null) {
+//            return switch (WADKeyPressed.getKeyCode()) {
+//                case VK_A -> ACTION.WATERGIRL_LEFT;
+//                case VK_D -> ACTION.WATERGIRL_RIGHT;
+//                default -> ACTION.NONE;
+//            };
+//        }
+//
+//        return ACTION.NONE;
+//    }
 
     @Override
     public void drawPixel(int x, int y, TextColor.RGB color){
@@ -158,6 +209,7 @@ public class LanternaGUI implements GUI {
         TextGraphics graphics = screen.newTextGraphics();
         graphics.drawImage(new TerminalPosition((int)position.getX(), (int) position.getY()), image);
     }
+
     @Override
     public void drawMoving(Position position, BufferedImage image){
         TextGraphics graphics = screen.newTextGraphics();
@@ -177,6 +229,26 @@ public class LanternaGUI implements GUI {
             }
         }
     }
+
+//    @Override
+//    public void drawTextImage(Position position, BufferedImage image){
+//        TextGraphics graphics = screen.newTextGraphics();
+//
+//        for (int x = 0; x < image.getWidth(); x++){
+//            for (int y = 0; y < image.getHeight(); y++){
+//                int a = image.getRGB(x,y);
+//                int alpha = (a >> 24) & 0xff;
+//                int red = (a >> 16) & 255;
+//                int green = (a >> 8) & 255;
+//                int blue = a & 255;
+//
+//                if (alpha != 0){
+//                    TextCharacter c = new TextCharacter(' ', new TextColor.RGB(red, green, blue), new TextColor.RGB(red, green, blue));
+//
+//                }
+//            }
+//        }
+//    }
 
     @Override
     public TextImage createTextImage(int width, int height) {

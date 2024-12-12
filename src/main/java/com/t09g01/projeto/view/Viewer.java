@@ -18,7 +18,7 @@ public class Viewer {
 
     public Viewer(String filepath) throws IOException {
         URL resource = getClass().getClassLoader().getResource(filepath);
-        System.out.println(resource);
+        //System.out.println(resource);
         assert resource != null;
         image = ImageIO.read(new File(resource.getFile()));
     }

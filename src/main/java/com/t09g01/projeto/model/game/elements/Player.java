@@ -67,6 +67,12 @@ public class Player extends Element {
         this.isOnGround = false;
     }
 
+//    public void gravity(){
+//        if (!isOnGround){
+//            velocity.setY(Math.min(velocity.getY() + ))
+//        }
+//    }
+
     public boolean hasLanded() {
         return hasLanded;
     }
@@ -81,6 +87,10 @@ public class Player extends Element {
 
     public void setFalling(boolean falling) {
         isFalling = falling;
+    }
+
+    public Position updatePosition() {
+        return new Position(getPosition().getX() + velocity.getX(), getPosition().getY() + velocity.getY());
     }
 
 }

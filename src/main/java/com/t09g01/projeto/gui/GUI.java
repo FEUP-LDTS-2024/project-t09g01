@@ -8,10 +8,12 @@ import com.t09g01.projeto.model.Position;
 
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.Set;
 
 public interface GUI {
 
-    ACTION getNextAction() throws IOException;
+    public Set<ACTION> getCurrentActions();
+//    ACTION getNextAction() throws IOException;
 
     void drawPixel(int x, int y, TextColor.RGB color);
 

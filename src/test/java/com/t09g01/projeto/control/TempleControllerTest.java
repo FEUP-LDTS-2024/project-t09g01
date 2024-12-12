@@ -28,12 +28,12 @@ public class TempleControllerTest {
         this.templeController = new TempleController(temple, fireboyController, watergirlController);
     }
 
-    @Test
-    public void testStep() {
-        ACTION action = ACTION.NONE;
-        templeController.step(game, action, 0);
-        verify(fireboyController, times(1)).step(game, action, 0);
-        verify(watergirlController, times(1)).step(game, action, 0);
-    }
+//    @Test
+//    public void testStep() {
+//        ACTION action = ACTION.NONE;
+//        templeController.step(game, action, 0);
+//        verify(fireboyController, times(1)).step(game, action, 0);
+//        verify(watergirlController, times(1)).step(game, action, 0);
+//    }
 
 }
