@@ -1,27 +1,33 @@
 package com.t09g01.projeto.model.game.elements;
 
 import com.t09g01.projeto.model.Position;
+import com.t09g01.projeto.model.game.temple.Temple;
 
 public class Player extends Element {
 
+    private final int WIDTH = 7;
+    private final int HEIGHT = 8;
     private Position velocity;
+    private Temple temple;
 
-    private final Position maxVelocity;
-    private final double acceleration;
-    private final double jumpboost;
+    private final Position MAX_VELOCITY = new Position(1.5,2.5);
+    private final double ACCELERATION = 0.4;
+    private final double JUMP_BOOST = 3;
 
     private boolean isJumping;
     private boolean hasLanded;
     private boolean isFalling;
 
 
-    public Player(int x, int y){
+    public Player(int x, int y, Temple temple){
         super(x,y);
+        this.temple = temple;
         this.velocity = new Position(0,0);
-        this.maxVelocity = new Position(1.5,2.5);
-        this.acceleration = 0.4;
-        this.jumpboost = 3;
     }
+
+    public int getWidth() {return WIDTH;}
+
+    public int getHeight() {return HEIGHT;}
 
     public Position getVelocity() {
         return velocity;
@@ -32,15 +38,15 @@ public class Player extends Element {
     }
 
     public Position getMaxVelocity() {
-        return maxVelocity;
+        return MAX_VELOCITY;
     }
 
     public double getAcceleration() {
-        return acceleration;
+        return ACCELERATION;
     }
 
     public double getJumpboost() {
-        return jumpboost;
+        return JUMP_BOOST;
     }
 
     public boolean isJumping() {
@@ -49,6 +55,14 @@ public class Player extends Element {
 
     public void setJumping(boolean jumping) {
         isJumping = jumping;
+    }
+
+    public void jump(){
+        velocity.setY(5.0)
+    }
+
+    public boolean isOnGround(){
+        return temple.floorCollision(getPosition());
     }
 
     public boolean hasLanded() {

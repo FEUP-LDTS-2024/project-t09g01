@@ -4,5 +4,4 @@ public class Watergirl extends Player{
     public Watergirl(int x, int y){
         super(x,y);
     }
-
 }

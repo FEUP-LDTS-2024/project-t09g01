@@ -52,8 +52,35 @@ public class Temple {
     public void setGoo(Goo goo) { this.goo = goo; }
 
     public boolean checkCollisions(Position position) {
+        double playerX = position.getX();
+        double playerY = position.getY();
+
         for (Block block : blocks) {
-            if (block.getPosition().equals(position)) {
+            Position blockPosition = block.getPosition();
+            double blockX = blockPosition.getX();
+            double blockY = blockPosition.getY();
+
+            // Check if the player's 8x8 area overlaps with the block's 8x8 area
+            if (playerX < blockX + 8 && playerX + 7 > blockX &&
+                    playerY < blockY + 8 && playerY + 8 > blockY) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean floorCollision(Position position) {
+        double playerX = position.getX();
+        double playerY = position.getY();
+
+        for (Block block : blocks) {
+            Position blockPosition = block.getPosition();
+            double blockX = blockPosition.getX();
+            double blockY = blockPosition.getY();
+
+            // Check if the player's feet are on top of the block
+            if (playerX < blockX + 8 && playerX + 7 > blockX &&
+                    playerY + 8 == blockY) {
                 return true;
             }
         }
