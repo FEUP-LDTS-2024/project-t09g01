@@ -17,12 +17,13 @@ public class Player extends Element {
     private boolean isJumping;
     private boolean hasLanded;
     private boolean isFalling;
+    private boolean isOnGround;
 
-
-    public Player(int x, int y, Temple temple){
+    public Player(int x, int y){
         super(x,y);
-        this.temple = temple;
+        //this.temple = temple;
         this.velocity = new Position(0,0);
+
     }
 
     public int getWidth() {return WIDTH;}
@@ -57,12 +58,13 @@ public class Player extends Element {
         isJumping = jumping;
     }
 
-    public void jump(){
-        velocity.setY(5.0)
-    }
-
     public boolean isOnGround(){
         return temple.floorCollision(getPosition());
+    }
+
+    public void jump(){
+        velocity.setY(JUMP_BOOST);
+        this.isOnGround = false;
     }
 
     public boolean hasLanded() {
