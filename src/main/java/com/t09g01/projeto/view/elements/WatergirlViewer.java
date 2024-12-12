@@ -4,17 +4,20 @@ import com.t09g01.projeto.gui.GUI;
 import com.t09g01.projeto.model.game.elements.Watergirl;
 import com.t09g01.projeto.view.Viewer;
 
+import java.awt.image.BufferedImage;
 import java.io.IOException;
 
 public class WatergirlViewer implements ElementViewer <Watergirl>{
 
-    private Viewer viewer;
+    private BufferedImage image;
 
     public WatergirlViewer() throws IOException {
-        viewer = new Viewer("watergirl/water.png");
+        image = Viewer.loadImage("watergirl/water.png");
     }
 
     @Override
-    public void draw(Watergirl watergirl, GUI gui) { viewer.draw(gui, watergirl.getPosition().getX(), watergirl.getPosition().getY()); }
+    public void draw(Watergirl watergirl, GUI gui) {
+        gui.drawMoving(watergirl.getPosition(), image);
+    }
 
 }

@@ -6,6 +6,7 @@ import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.graphics.TextImage;
 import com.t09g01.projeto.model.Position;
 
+import java.awt.image.BufferedImage;
 import java.io.IOException;
 
 public interface GUI {
@@ -17,6 +18,12 @@ public interface GUI {
     void drawText(Position position, String text, String color);
 
     void drawRectangle(double x, double y, int width, int height, TextColor color);
+
+    public void drawStatic(Position position, TextImage image);
+
+    public void drawMoving(Position position, BufferedImage image);
+
+    public TextImage createTextImage(int width, int height);
 
     void clear();
 

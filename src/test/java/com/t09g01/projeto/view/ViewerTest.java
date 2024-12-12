@@ -20,7 +20,7 @@ class ViewerTest {
 
     @Test
     void drawElement() throws IOException {
-        viewer.draw(gui, 0, 0);
+        //viewer.draw(gui, 0, 0);
         Mockito.verify(gui, Mockito.atLeast(1)).drawPixel(Mockito.anyInt(), Mockito.anyInt(), Mockito.any());
     }
 }

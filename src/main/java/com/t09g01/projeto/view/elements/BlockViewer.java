@@ -8,19 +8,24 @@ import com.t09g01.projeto.model.game.elements.Block;
 import com.t09g01.projeto.model.game.elements.Watergirl;
 import com.t09g01.projeto.view.Viewer;
 
+import java.awt.image.BufferedImage;
 import java.io.IOException;
 
 public class BlockViewer implements ElementViewer<Block> {
 
     private Viewer viewer;
+    private TextImage textImage;
+    private BufferedImage bufferedImage;
 
     public BlockViewer() throws IOException {
         viewer = new Viewer("blocks/brick.png");
+        bufferedImage = Viewer.loadImage("blocks/brick.png");
     }
 
     @Override
     public void draw(Block block, GUI gui) {
-        viewer.draw(gui, block.getPosition().getX(), block.getPosition().getY());
+        textImage = viewer.convertTextImage(gui, bufferedImage);
+        gui.drawStatic(block.getPosition(), textImage);
     }
 
 }
