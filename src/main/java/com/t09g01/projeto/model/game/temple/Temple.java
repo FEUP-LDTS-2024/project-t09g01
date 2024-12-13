@@ -18,6 +18,9 @@ public class Temple {
     private List<Lava> lavas;
     private List<Goo> goos;
 
+    private List<RedDiamond> redDiamonds;
+    private List<BlueDiamond> blueDiamonds;
+
     private final double gravity;
 
     public Temple(int width, int height){
@@ -49,6 +52,12 @@ public class Temple {
     public void setLava(List<Lava> lavas) { this.lavas = lavas; }
     public List<Goo> getGoo() { return goos; }
     public void setGoo(List<Goo> goos) { this.goos = goos; }
+
+    // Diamonds
+    public List<RedDiamond> getRedDiamond() {return redDiamonds;}
+    public List<BlueDiamond> getBlueDiamond() {return blueDiamonds;}
+    public void setRedDiamonds(List<RedDiamond> redDiamonds) {this.redDiamonds = redDiamonds;}
+    public void setBlueDiamonds(List<BlueDiamond> blueDiamonds) {this.blueDiamonds = blueDiamonds;}
 
     public boolean checkCollisions(Position position) {
         double playerX = position.getX();

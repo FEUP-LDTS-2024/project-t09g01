@@ -1,0 +1,25 @@
+package com.t09g01.projeto.view.elements;
+
+import com.googlecode.lanterna.graphics.TextImage;
+import com.t09g01.projeto.gui.GUI;
+import com.t09g01.projeto.model.game.elements.BlueDiamond;
+import com.t09g01.projeto.model.game.elements.Lava;
+import com.t09g01.projeto.model.game.elements.Watergirl;
+import com.t09g01.projeto.view.Viewer;
+
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+
+public class BlueDiamondViewer implements ElementViewer<BlueDiamond> {
+    private BufferedImage image;
+
+    public BlueDiamondViewer() throws IOException {
+        image = Viewer.loadImage("diamonds/blue_diamond.png");
+    }
+
+    @Override
+    public void draw(BlueDiamond blueDiamond, GUI gui) {
+        gui.drawMoving(blueDiamond.getPosition(), image);
+    }
+
+}

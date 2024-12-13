@@ -73,7 +73,6 @@ public class LanternaGUI implements GUI {
                     currentActions.add(action);
 
                 }
-                System.out.println(currentActions.size());
 //                switch (event.getKeyCode()) {
 //                    case VK_LEFT, VK_RIGHT -> arrowKeyPressed = event;
 //                    case VK_D, VK_A -> WADKeyPressed = event;

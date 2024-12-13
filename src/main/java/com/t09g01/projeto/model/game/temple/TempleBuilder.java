@@ -1,6 +1,7 @@
 package com.t09g01.projeto.model.game.temple;
 
 import com.t09g01.projeto.model.game.elements.*;
+import com.t09g01.projeto.view.elements.RedDiamondViewer;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -26,6 +27,8 @@ public class TempleBuilder {
 
     public Temple createTemple() {
         Temple temple = new Temple(getWidth(), getHeight());
+        temple.setBlueDiamonds(createBlueDiamonds());
+        temple.setRedDiamonds(createRedDiamonds());
         temple.setFireboy(createFireboy(temple));
         temple.setWatergirl(createWatergirl(temple));
         temple.setBlocks(createBlocks());
@@ -137,5 +140,31 @@ public class TempleBuilder {
             }
         }
         return goo;
+    }
+
+    private List<BlueDiamond> createBlueDiamonds() {
+        List<BlueDiamond> blueDiamonds = new ArrayList<>();
+        for (int y = 0; y < lines.size(); y++) {
+            String line = lines.get(y);
+            for (int x = 0; x < line.length(); x++) {
+                if (line.charAt(x) == 'B') {
+                    blueDiamonds.add(new BlueDiamond(x*8, y*8));
+                }
+            }
+        }
+        return blueDiamonds;
+    }
+
+    private List<RedDiamond> createRedDiamonds() {
+        List<RedDiamond> redDiamonds = new ArrayList<>();
+        for (int y = 0; y < lines.size(); y++) {
+            String line = lines.get(y);
+            for (int x = 0; x < line.length(); x++) {
+                if (line.charAt(x) == 'R') {
+                    redDiamonds.add(new RedDiamond(x*8, y*8));
+                }
+            }
+        }
+        return redDiamonds;
     }
 }
