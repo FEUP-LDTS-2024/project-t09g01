@@ -17,6 +17,7 @@ public class FireboyController extends Controller<Temple> {
     public void moveFireboy(Position position) {
         if (!getModel().checkCollisions(position)){
             getModel().getFireboy().setPosition(position);
+            getModel().retrieveRedDiamonds(position);
         }
     }
 

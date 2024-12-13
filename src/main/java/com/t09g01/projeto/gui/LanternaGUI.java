@@ -66,9 +66,7 @@ public class LanternaGUI implements GUI {
         ((AWTTerminalFrame)terminal).getComponent(0).addKeyListener(new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent event) {
-                System.out.println(event);
                 ACTION action = getActionFromKeyCode(event.getKeyCode());
-                System.out.println(action);
                 if (action != ACTION.NONE) {
                     currentActions.add(action);
 

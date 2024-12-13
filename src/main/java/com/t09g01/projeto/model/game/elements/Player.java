@@ -13,11 +13,12 @@ public class Player extends Element {
     private final Position MAX_VELOCITY = new Position(1.5,2.5);
     private final double ACCELERATION = 0.4;
     private final double JUMP_BOOST = 3;
+    private final double GRAVITY = -0.2;
 
     private boolean isJumping;
     private boolean hasLanded;
     private boolean isFalling;
-    private boolean isOnGround;
+    private boolean onGround;
 
     public Player(int x, int y, Temple temple){
         super(x,y);
@@ -57,20 +58,25 @@ public class Player extends Element {
         isJumping = jumping;
     }
 
-//    public boolean isOnGround(){
-//        return temple.floorCollision(getPosition());
-//    }
-
-    public void jump(){
-        velocity.setY(JUMP_BOOST);
-        this.isOnGround = false;
+    public void isOnGround(){
+        if (temple.floorCollision(getPosition())){
+            onGround = true;
+        }
     }
 
-//    public void gravity(){
-//        if (!isOnGround){
-//            velocity.setY(Math.min(velocity.getY() + ))
-//        }
-//    }
+    public void jump(){
+        isOnGround();
+        if (onGround){
+            velocity.setY(JUMP_BOOST);
+            this.onGround = false;
+        }
+    }
+
+    public void applyGravity(){
+        if (!onGround){
+            velocity.setY(velocity.getY() + GRAVITY);
+        }
+    }
 
     public boolean hasLanded() {
         return hasLanded;

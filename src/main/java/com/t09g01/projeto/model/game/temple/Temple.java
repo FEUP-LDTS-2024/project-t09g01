@@ -118,9 +118,9 @@ public class Temple {
         double watergirlY = position.getY();
 
         for (Lava lava : lavas) {
-            Position gooPosition = lava.getPosition();
-            double lavaX = gooPosition.getX();
-            double lavaY = gooPosition.getY();
+            Position lavaPosition = lava.getPosition();
+            double lavaX = lavaPosition.getX();
+            double lavaY = lavaPosition.getY();
 
             // Check if the player's feet are on top of the block
             if (watergirlX < lavaX + 8 && watergirlY + 7 > lavaX &&
@@ -136,9 +136,9 @@ public class Temple {
         double fireboyY = position.getY();
 
         for (Water water : waters) {
-            Position gooPosition = water.getPosition();
-            double waterX = gooPosition.getX();
-            double waterY = gooPosition.getY();
+            Position waterPosition = water.getPosition();
+            double waterX = waterPosition.getX();
+            double waterY = waterPosition.getY();
 
             // Check if the player's feet are on top of the block
             if (fireboyX < waterX + 8 && fireboyX + 7 > waterX &&
@@ -147,5 +147,40 @@ public class Temple {
             }
         }
         return false;
+    }
+
+    public void retrieveBlueDiamonds(Position position){
+
+        double watergirlX = position.getX();
+        double watergirlY = position.getY();
+
+        for (BlueDiamond blueDiamond : blueDiamonds) {
+            Position blueDiamondPosition = blueDiamond.getPosition();
+            double blueDiamondX = blueDiamond.getPosition().getX();
+            double blueDiamondY = blueDiamond.getPosition().getY();
+
+            if (watergirlX < blueDiamondX + 6 && watergirlX + 8 > blueDiamondX + 3 &&
+                    watergirlY - 3 < blueDiamondY + 3 && watergirlY + 8 > blueDiamondY) {
+                blueDiamonds.remove(blueDiamond);
+                break;
+            }
+        }
+    }
+
+    public void retrieveRedDiamonds(Position position){
+        double fireboyX = position.getX();
+        double fireboyY = position.getY();
+
+        for (RedDiamond redDiamond : redDiamonds) {
+            Position redDiamondPosition = redDiamond.getPosition();
+            double blueDiamondX = redDiamond.getPosition().getX();
+            double blueDiamondY = redDiamond.getPosition().getY();
+
+            if (fireboyX < blueDiamondX + 6 && fireboyX + 8 > blueDiamondX + 3 &&
+                    fireboyY - 3 < blueDiamondY + 3 && fireboyY + 8 > blueDiamondY) {
+                redDiamonds.remove(redDiamond);
+                break;
+            }
+        }
     }
 }
