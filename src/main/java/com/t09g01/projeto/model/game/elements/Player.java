@@ -92,6 +92,10 @@ public class Player extends Element {
         return new Position(getPosition().getX() + velocity.getX(), getPosition().getY() + velocity.getY());
     }
 
+    protected Temple getTemple() {
+        return temple;
+    }
+
 
 
 

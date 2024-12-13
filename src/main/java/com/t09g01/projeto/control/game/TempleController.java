@@ -3,6 +3,8 @@ package com.t09g01.projeto.control.game;
 import com.t09g01.projeto.Game;
 import com.t09g01.projeto.control.Controller;
 import com.t09g01.projeto.gui.ACTION;
+import com.t09g01.projeto.model.game.elements.Fireboy;
+import com.t09g01.projeto.model.game.elements.Watergirl;
 import com.t09g01.projeto.model.game.temple.Temple;
 
 import java.util.Set;
@@ -21,6 +23,8 @@ public class TempleController extends Controller<Temple> {
 
     @Override
     public void step(Game game, Set<ACTION> currentActions, long time) {
+        Fireboy fireboy = getModel().getFireboy();
+        Watergirl watergirl = getModel().getWatergirl();
         for (ACTION action : currentActions){
             if (action == QUIT){
                 game.setState(null);
@@ -29,7 +33,13 @@ public class TempleController extends Controller<Temple> {
                 fireboyController.step(game, currentActions, time);
                 watergirlController.step(game, currentActions, time);
             }
+
+//            if (watergirl.isDead() || fireboy.isDead()){
+//
+//
+//            }
         }
+
 
 
 

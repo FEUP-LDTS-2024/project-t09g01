@@ -5,4 +5,8 @@ public class Fireboy extends Player{
     public Fireboy(int x, int y, Temple temple){
         super(x,y, temple);
     }
+
+    public boolean isDead() {
+        return getTemple().gooCollision(getPosition()) || getTemple().waterCollision(getPosition());
+    }
 }
