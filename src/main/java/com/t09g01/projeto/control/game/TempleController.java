@@ -6,6 +6,8 @@ import com.t09g01.projeto.gui.ACTION;
 import com.t09g01.projeto.model.game.elements.Fireboy;
 import com.t09g01.projeto.model.game.elements.Watergirl;
 import com.t09g01.projeto.model.game.temple.Temple;
+import com.t09g01.projeto.model.gameover.GameOver;
+import com.t09g01.projeto.states.GameOverState;
 
 import java.util.Set;
 
@@ -34,10 +36,9 @@ public class TempleController extends Controller<Temple> {
                 watergirlController.step(game, currentActions, time);
             }
 
-//            if (watergirl.isDead() || fireboy.isDead()){
-//
-//
-//            }
+            if (watergirl.isDead() || fireboy.isDead()){
+                game.setState(new GameOverState(new GameOver()));
+            }
         }
 
 
