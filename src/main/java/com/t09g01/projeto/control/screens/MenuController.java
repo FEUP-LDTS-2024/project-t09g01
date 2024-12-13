@@ -1,4 +1,4 @@
-package com.t09g01.projeto.control.menu;
+package com.t09g01.projeto.control.screens;
 
 import com.t09g01.projeto.Game;
 import com.t09g01.projeto.control.Controller;
