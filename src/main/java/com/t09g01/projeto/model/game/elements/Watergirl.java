@@ -5,8 +5,8 @@ import com.t09g01.projeto.model.game.temple.Temple;
 
 public class Watergirl extends Player{
 
-    public Watergirl(int x, int y){
-        super(x,y);
+    public Watergirl(int x, int y, Temple temple){
+        super(x,y, temple);
     }
 
 //    public boolean isDead(){

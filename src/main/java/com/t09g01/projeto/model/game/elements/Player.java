@@ -8,7 +8,7 @@ public class Player extends Element {
     private final int WIDTH = 7;
     private final int HEIGHT = 8;
     private Position velocity;
-
+    private final Temple temple;
 
     private final Position MAX_VELOCITY = new Position(1.5,2.5);
     private final double ACCELERATION = 0.4;
@@ -19,10 +19,10 @@ public class Player extends Element {
     private boolean isFalling;
     private boolean isOnGround;
 
-    public Player(int x, int y){
+    public Player(int x, int y, Temple temple){
         super(x,y);
         this.velocity = new Position(0,0);
-
+        this.temple = temple;
     }
 
     public int getWidth() {return WIDTH;}

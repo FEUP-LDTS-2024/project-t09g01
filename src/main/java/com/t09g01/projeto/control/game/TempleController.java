@@ -31,7 +31,7 @@ public class TempleController extends Controller<Temple> {
             }
         }
 
-        
+
 
     }
 

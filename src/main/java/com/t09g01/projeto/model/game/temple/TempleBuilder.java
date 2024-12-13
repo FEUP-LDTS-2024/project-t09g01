@@ -26,8 +26,8 @@ public class TempleBuilder {
 
     public Temple createTemple() {
         Temple temple = new Temple(getWidth(), getHeight());
-        temple.setFireboy(createFireboy());
-        temple.setWatergirl(createWatergirl());
+        temple.setFireboy(createFireboy(temple));
+        temple.setWatergirl(createWatergirl(temple));
         temple.setBlocks(createBlocks());
         temple.setLava(createLava());
         temple.setWater(createWater());
@@ -63,24 +63,24 @@ public class TempleBuilder {
         }
     }
 
-    private Fireboy createFireboy() {
+    private Fireboy createFireboy(Temple temple) {
         for (int y = 0; y < lines.size(); y++) {
             String line = lines.get(y);
             for (int x = 0; x < line.length(); x++) {
                 if (line.charAt(x) == 'F') {
-                    return new Fireboy(x * 8, y * 8);
+                    return new Fireboy(x * 8, y * 8, temple);
                 }
             }
         }
         throw new IllegalStateException("Fireboy position not found in level file!");
     }
 
-    private Watergirl createWatergirl() {
+    private Watergirl createWatergirl(Temple temple) {
         for (int y = 0; y < lines.size(); y++) {
             String line = lines.get(y);
             for (int x = 0; x < line.length(); x++) {
                 if (line.charAt(x) == 'W') {
-                    return new Watergirl(x * 8, y * 8);
+                    return new Watergirl(x * 8, y * 8, temple);
                 }
             }
         }
