@@ -14,12 +14,11 @@ public class Temple {
 
     private List<Block> blocks;
 
-    private Water water;
-    private Lava lava;
-    private Goo goo;
+    private List<Water> waters;
+    private List<Lava> lavas;
+    private List<Goo> goos;
 
     private final double gravity;
-
 
     public Temple(int width, int height){
         this.width = width;
@@ -44,12 +43,12 @@ public class Temple {
     public List<Block> getBlocks() {return blocks;}
 
     // Fluids
-    public Water getWater() { return water; }
-    public void setWater(Water water) { this.water = water; }
-    public Lava getLava() { return lava; }
-    public void setLava(Lava lava) { this.lava = lava; }
-    public Goo getGoo() { return goo; }
-    public void setGoo(Goo goo) { this.goo = goo; }
+    public List<Water> getWater() {return waters;}
+    public void setWater (List<Water> waters) { this.waters = waters; }
+    public List<Lava> getLava() { return lavas; }
+    public void setLava(List<Lava> lavas) { this.lavas = lavas; }
+    public List<Goo> getGoo() { return goos; }
+    public void setGoo(List<Goo> goos) { this.goos = goos; }
 
     public boolean checkCollisions(Position position) {
         double playerX = position.getX();
@@ -81,6 +80,60 @@ public class Temple {
             // Check if the player's feet are on top of the block
             if (playerX < blockX + 8 && playerX + 7 > blockX &&
                     playerY + 8 == blockY) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean gooCollision(Position position) {
+        double playerX = position.getX();
+        double playerY = position.getY();
+
+        for (Goo goo : goos) {
+            Position gooPosition = goo.getPosition();
+            double gooX = gooPosition.getX();
+            double gooY = gooPosition.getY();
+
+            // Check if the player's feet are on top of the block
+            if (playerX < gooX + 8 && playerX + 7 > gooX &&
+                    playerY + 8 == gooY) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean lavaCollision(Position position) {       //watergirl position
+        double watergirlX = position.getX();
+        double watergirlY = position.getY();
+
+        for (Lava lava : lavas) {
+            Position gooPosition = lava.getPosition();
+            double lavaX = gooPosition.getX();
+            double lavaY = gooPosition.getY();
+
+            // Check if the player's feet are on top of the block
+            if (watergirlX < lavaX + 8 && watergirlY + 7 > lavaX &&
+                    watergirlY + 8 == lavaY) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean waterCollision(Position position) {
+        double fireboyX = position.getX();
+        double fireboyY = position.getY();
+
+        for (Water water : waters) {
+            Position gooPosition = water.getPosition();
+            double waterX = gooPosition.getX();
+            double waterY = gooPosition.getY();
+
+            // Check if the player's feet are on top of the block
+            if (fireboyX < waterX + 8 && fireboyX + 7 > waterX &&
+                    fireboyY + 8 == waterY) {
                 return true;
             }
         }

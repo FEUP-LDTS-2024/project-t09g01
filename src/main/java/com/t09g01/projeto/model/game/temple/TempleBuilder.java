@@ -29,6 +29,9 @@ public class TempleBuilder {
         temple.setFireboy(createFireboy());
         temple.setWatergirl(createWatergirl());
         temple.setBlocks(createBlocks());
+        temple.setLava(createLava());
+        temple.setWater(createWater());
+        temple.setGoo(createGoo());
         return temple;
     }
 
@@ -95,5 +98,44 @@ public class TempleBuilder {
             }
         }
         return blocks;
+    }
+
+    private List<Lava> createLava() {
+        List<Lava> lava = new ArrayList<>();
+        for (int y = 0; y < lines.size(); y++) {
+            String line = lines.get(y);
+            for (int x = 0; x < line.length(); x++) {
+                if (line.charAt(x) == 'L') {
+                    lava.add(new Lava(x*8, y*8));
+                }
+            }
+        }
+        return lava;
+    }
+
+    private List<Water> createWater() {
+        List<Water> water = new ArrayList<>();
+        for (int y = 0; y < lines.size(); y++) {
+            String line = lines.get(y);
+            for (int x = 0; x < line.length(); x++) {
+                if (line.charAt(x) == 'A') {
+                    water.add(new Water(x*8, y*8));
+                }
+            }
+        }
+        return water;
+    }
+
+    private List<Goo> createGoo() {
+        List<Goo> goo = new ArrayList<>();
+        for (int y = 0; y < lines.size(); y++) {
+            String line = lines.get(y);
+            for (int x = 0; x < line.length(); x++) {
+                if (line.charAt(x) == 'G') {
+                    goo.add(new Goo(x*8, y*8));
+                }
+            }
+        }
+        return goo;
     }
 }

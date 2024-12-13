@@ -32,12 +32,12 @@ public class FireboyController extends Controller<Temple> {
     public void moveFireboyDown(){
         moveFireboy(getModel().getFireboy().getPosition().getDown());
     }
-    public void jumpFireboy(){
-        Fireboy fireboy = getModel().getFireboy();
-        if (fireboy.isOnGround()){
-            fireboy.jump();
-        }
-    }
+//    public void jumpFireboy(){
+//        Fireboy fireboy = getModel().getFireboy();
+//        if (fireboy.isOnGround()){
+//            fireboy.jump();
+//        }
+//    }
 
     @Override
     public void step(Game game, Set<ACTION> currentActions, long time) {

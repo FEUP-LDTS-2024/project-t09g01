@@ -6,10 +6,7 @@ import com.googlecode.lanterna.graphics.TextImage;
 import com.t09g01.projeto.gui.GUI;
 import com.t09g01.projeto.model.game.elements.Element;
 import com.t09g01.projeto.model.game.temple.Temple;
-import com.t09g01.projeto.view.elements.BlockViewer;
-import com.t09g01.projeto.view.elements.ElementViewer;
-import com.t09g01.projeto.view.elements.FireboyViewer;
-import com.t09g01.projeto.view.elements.WatergirlViewer;
+import com.t09g01.projeto.view.elements.*;
 
 import javax.lang.model.util.Elements;
 import java.io.IOException;
@@ -37,6 +34,9 @@ public class GameViewer extends ScreenViewer<Temple> {
         drawElement(gui, getModel().getWatergirl(), new WatergirlViewer());
         drawElement(gui, getModel().getFireboy(), new FireboyViewer());
         drawElements(gui, getModel().getBlocks(), new BlockViewer());
+        drawElements(gui, getModel().getLava(), new LavaViewer());
+        drawElements(gui, getModel().getWater(), new WaterViewer());
+        drawElements(gui, getModel().getGoo(), new GooViewer());
 
         gui.refresh();
     }

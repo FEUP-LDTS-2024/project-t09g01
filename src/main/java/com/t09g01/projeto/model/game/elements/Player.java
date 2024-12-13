@@ -8,7 +8,7 @@ public class Player extends Element {
     private final int WIDTH = 7;
     private final int HEIGHT = 8;
     private Position velocity;
-    private Temple temple;
+
 
     private final Position MAX_VELOCITY = new Position(1.5,2.5);
     private final double ACCELERATION = 0.4;
@@ -21,7 +21,6 @@ public class Player extends Element {
 
     public Player(int x, int y){
         super(x,y);
-        //this.temple = temple;
         this.velocity = new Position(0,0);
 
     }
@@ -58,9 +57,9 @@ public class Player extends Element {
         isJumping = jumping;
     }
 
-    public boolean isOnGround(){
-        return temple.floorCollision(getPosition());
-    }
+//    public boolean isOnGround(){
+//        return temple.floorCollision(getPosition());
+//    }
 
     public void jump(){
         velocity.setY(JUMP_BOOST);
@@ -92,5 +91,9 @@ public class Player extends Element {
     public Position updatePosition() {
         return new Position(getPosition().getX() + velocity.getX(), getPosition().getY() + velocity.getY());
     }
+
+
+
+
 
 }
