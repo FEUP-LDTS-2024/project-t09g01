@@ -59,6 +59,7 @@ public class Temple {
     public void setRedDiamonds(List<RedDiamond> redDiamonds) {this.redDiamonds = redDiamonds;}
     public void setBlueDiamonds(List<BlueDiamond> blueDiamonds) {this.blueDiamonds = blueDiamonds;}
 
+
     public boolean checkCollisions(Position position) {
         double playerX = position.getX();
         double playerY = position.getY();
@@ -71,6 +72,39 @@ public class Temple {
             // Check if the player's 8x8 area overlaps with the block's 8x8 area
             if (playerX < blockX + 8 && playerX + 7 > blockX &&
                     playerY < blockY + 8 && playerY + 8 > blockY) {
+                return true;
+            }
+        }
+
+        for (Lava lava : lavas) {
+            Position lavaPosition = lava.getPosition();
+            double lavaX = lavaPosition.getX();
+            double lavaY = lavaPosition.getY();
+
+            if (playerX < lavaX + 8 && playerX + 7 > lavaX &&
+                    playerY < lavaY + 8 && playerY + 8 > lavaY) {
+                return true;
+            }
+        }
+
+        for (Water water : waters) {
+            Position waterPosition = water.getPosition();
+            double waterX = waterPosition.getX();
+            double waterY = waterPosition.getY();
+
+            if (playerX < waterX + 8 && playerX + 7 > waterX &&
+                    playerY < waterY + 8 && playerY + 8 > waterY) {
+                return true;
+            }
+        }
+
+        for (Goo goo : goos) {
+            Position gooPosition = goo.getPosition();
+            double gooX = gooPosition.getX();
+            double gooY = gooPosition.getY();
+
+            if (playerX < gooX + 8 && playerX + 7 > gooX &&
+                    playerY < gooY + 8 && playerY + 8 > gooY) {
                 return true;
             }
         }
