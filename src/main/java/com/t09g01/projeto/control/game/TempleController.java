@@ -39,6 +39,10 @@ public class TempleController extends Controller<Temple> {
             if (watergirl.isDead() || fireboy.isDead()){
                 game.setState(new GameOverState(new GameOver()));
             }
+
+//            if (watergirl.isOnDoor() && fireboy.isOnDoor() && getModel().allDiamondsCollected()){
+//                // proximo nivel
+//            }
         }
 
 

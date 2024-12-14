@@ -1,10 +1,8 @@
 package com.t09g01.projeto.view.elements;
 
-import com.googlecode.lanterna.graphics.TextImage;
+
 import com.t09g01.projeto.gui.GUI;
 import com.t09g01.projeto.model.game.elements.BlueDiamond;
-import com.t09g01.projeto.model.game.elements.Lava;
-import com.t09g01.projeto.model.game.elements.Watergirl;
 import com.t09g01.projeto.view.Viewer;
 
 import java.awt.image.BufferedImage;

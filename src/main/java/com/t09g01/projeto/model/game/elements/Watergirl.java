@@ -13,4 +13,8 @@ public class Watergirl extends Player{
     public boolean isDead(){
         return getTemple().gooCollision(getPosition()) || getTemple().lavaCollision(getPosition());
     }
+
+    public boolean isOnDoor(){
+        return getTemple().blueDoorCollision(getPosition());
+    }
 }

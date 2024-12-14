@@ -35,6 +35,9 @@ public class TempleBuilder {
         temple.setLava(createLava());
         temple.setWater(createWater());
         temple.setGoo(createGoo());
+        temple.setRedDoor(createRedDoor());
+        temple.setBlueDoor(createBlueDoor());
+
         return temple;
     }
 
@@ -166,5 +169,30 @@ public class TempleBuilder {
             }
         }
         return redDiamonds;
+    }
+
+    private BlueDoor createBlueDoor() {
+        for (int y = 0; y < lines.size(); y++) {
+            String line = lines.get(y);
+            for (int x = 0; x < line.length(); x++) {
+                if (line.charAt(x) == 'D') {
+                    return new BlueDoor(x * 8, y * 8);
+                }
+            }
+        }
+        throw new IllegalStateException("BlueDoor position not found in level file!");
+    }
+
+
+    private RedDoor createRedDoor() {
+        for (int y = 0; y < lines.size(); y++) {
+            String line = lines.get(y);
+            for (int x = 0; x < line.length(); x++) {
+                if (line.charAt(x) == 'P') {
+                    return new RedDoor(x * 8, y * 8);
+                }
+            }
+        }
+        throw new IllegalStateException("RedDoor position not found in level file!");
     }
 }

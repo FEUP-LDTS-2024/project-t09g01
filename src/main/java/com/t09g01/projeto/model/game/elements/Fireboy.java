@@ -9,4 +9,8 @@ public class Fireboy extends Player{
     public boolean isDead() {
         return getTemple().gooCollision(getPosition()) || getTemple().waterCollision(getPosition());
     }
+
+    public boolean isOnDoor(){
+        return getTemple().redDoorCollision(getPosition());
+    }
 }

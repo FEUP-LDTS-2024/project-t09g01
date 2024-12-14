@@ -39,6 +39,8 @@ public class GameViewer extends ScreenViewer<Temple> {
         drawElements(gui, getModel().getLava(), new LavaViewer());
         drawElements(gui, getModel().getWater(), new WaterViewer());
         drawElements(gui, getModel().getGoo(), new GooViewer());
+        drawElement(gui, getModel().getBlueDoor(), new BlueDoorViewer());
+        drawElement(gui, getModel().getRedDoor(), new RedDoorViewer());
 
 
         gui.refresh();

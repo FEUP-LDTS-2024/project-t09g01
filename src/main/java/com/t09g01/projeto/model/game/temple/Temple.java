@@ -23,6 +23,9 @@ public class Temple {
 
     private final double gravity;
 
+    private BlueDoor blueDoor;
+    private RedDoor redDoor;
+
     public Temple(int width, int height){
         this.width = width;
         this.height = height;
@@ -59,6 +62,11 @@ public class Temple {
     public void setRedDiamonds(List<RedDiamond> redDiamonds) {this.redDiamonds = redDiamonds;}
     public void setBlueDiamonds(List<BlueDiamond> blueDiamonds) {this.blueDiamonds = blueDiamonds;}
 
+    // Doors
+    public RedDoor getRedDoor() {return redDoor;}
+    public BlueDoor getBlueDoor() {return blueDoor;}
+    public void setRedDoor(RedDoor redDoor) {this.redDoor = redDoor;}
+    public void setBlueDoor(BlueDoor blueDoor) {this.blueDoor = blueDoor;}
 
     public boolean checkCollisions(Position position) {
         double playerX = position.getX();
@@ -216,5 +224,22 @@ public class Temple {
                 break;
             }
         }
+    }
+
+    public boolean redDoorCollision(Position position){
+        if (position == redDoor.getPosition()){
+            return true;
+        }
+        return false;
+
+
+    }
+
+    public boolean blueDoorCollision(Position position) {
+        return position == blueDoor.getPosition();
+    }
+
+    public boolean allDiamondsCollected(){
+        return blueDiamonds.isEmpty() && redDiamonds.isEmpty();
     }
 }
