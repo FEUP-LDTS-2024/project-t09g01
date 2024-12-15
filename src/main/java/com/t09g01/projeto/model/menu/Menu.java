@@ -3,11 +3,21 @@ package com.t09g01.projeto.model.menu;
 import java.util.List;
 import java.util.Arrays;
 
-public class Menu {
-    private final List<String> entries;
+public abstract class Menu {
+    private final List<Entry> entries;
     private int currentEntry = 0;
 
-    public Menu() {this.entries = Arrays.asList("Start", "Exit");}
+    public Menu() {this.entries = createEntries();}
+
+    protected abstract List<Entry> createEntries();
+
+    public List<Entry> getEntries() {
+        return entries;
+    }
+
+    public int getNumberEntries() {
+        return this.entries.size();
+    }
 
     public void nextEntry(){
         currentEntry++;
@@ -23,9 +33,7 @@ public class Menu {
         }
     }
 
-    public String getEntry(int x) {return entries.get(x);}
-    public boolean isSelected(int x) {return currentEntry == x;}
-    public boolean isSelectedStart() {return currentEntry == 0;}
-    public boolean isSelectedExit() {return currentEntry == 1;}
-    public int getEntriesNumber() {return this.entries.size();}
+    public Entry getCurrentEntry() {
+        return entries.get(currentEntry);
+    }
 }
