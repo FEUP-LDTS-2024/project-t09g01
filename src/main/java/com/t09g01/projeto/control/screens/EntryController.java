@@ -21,8 +21,8 @@ public class EntryController extends Controller<Menu>{
         for (ACTION action : currentActions){
             switch(getModel().getCurrentEntry().getType()) {
                 case PLAY:
-                    if(action==ACTION.SELECT) {
-                        game.setState( new GameState(new TempleBuilder(1).createTemple() ));
+                    if(action == ACTION.SELECT) {
+                        game.setState( new GameState(new TempleBuilder(1).createTemple(), game.getImageLoader() ));
                     }
                     break;
 

@@ -3,7 +3,7 @@ package com.t09g01.projeto.model.menu;
 import com.t09g01.projeto.model.Position;
 
 public class Entry {
-    public enum TYPE { PLAY, EXIT};
+    public enum TYPE { PLAY, INSTRUCTIONS, EXIT, PLAY_AGAIN};
 
     private final Position position;
     private final TYPE type;

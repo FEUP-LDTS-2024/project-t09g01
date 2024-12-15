@@ -11,32 +11,11 @@ import com.t09g01.projeto.states.GameState;
 import java.io.IOException;
 import java.util.Set;
 
-public class GameOverController extends Controller<GameOver> {
-    //private final Temple temple;
-    public GameOverController(GameOver gameOver) {
-        super(gameOver);
-        //this.temple = temple;
-    }
+public class GameOverController extends MenuController<GameOver> {
+    public GameOverController(GameOver gameOver, EntryController entryController) {super(gameOver, entryController);}
 
     @Override
-    public void step(Game game, Set<ACTION> currentActions, long time) throws IOException {
-        for (ACTION action : currentActions){
-            switch (action){
-                case FIREBOY_UP:
-                    getModel().previousEntry();
-                    break;
-                case FIREBOY_DOWN:
-                    getModel().nextEntry();
-                    break;
-                case SELECT:
-                    if(getModel().isSelectedPlayAgain()){
-                        game.setState(new GameState(new TempleBuilder(1).createTemple()));
-                    }
-                    if (getModel().isSelectedExit()){
-                        game.setState(null);
-                    }
-            }
-
-        }
+    protected void quit(Game game) {
+        game.setState(null);
     }
 }

@@ -30,7 +30,7 @@ public abstract class MenuController<T extends Menu> extends Controller<T> {
                 case FIREBOY_DOWN:
                     getModel().nextEntry();
                     break;
-                case SELECT:
+                case QUIT:
                     try {
                         quit(game);
                     } catch(FontFormatException e) {

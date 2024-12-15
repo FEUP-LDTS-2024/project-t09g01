@@ -9,13 +9,16 @@ import com.t09g01.projeto.gui.ACTION;
 import com.t09g01.projeto.gui.GUI;
 import com.t09g01.projeto.model.game.temple.Temple;
 import com.t09g01.projeto.model.game.temple.TempleBuilder;
+import com.t09g01.projeto.view.ImageLoader;
 import com.t09g01.projeto.view.game.GameViewer;
 import com.t09g01.projeto.view.game.ScreenViewer;
+import com.t09g01.projeto.view.text.ViewerProvider;
 
 import java.io.IOException;
 
 public class GameState extends State<Temple>{
-    public GameState(Temple temple) {super(temple);}
+    public GameState(Temple temple, ImageLoader imageLoader) throws IOException {
+        super(temple, imageLoader);}
 
     @Override
     protected Controller<Temple> getController() {
@@ -23,8 +26,8 @@ public class GameState extends State<Temple>{
     }
 
     @Override
-    protected ScreenViewer<Temple> getScreenViewer() {
-        return new GameViewer(getModel());
+    protected ScreenViewer<Temple> getScreenViewer(ViewerProvider viewerProvider) {
+        return new GameViewer(getModel(), viewerProvider);
     }
 
 

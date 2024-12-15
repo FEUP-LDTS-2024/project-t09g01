@@ -7,7 +7,9 @@ import com.t09g01.projeto.gui.GUI;
 import com.t09g01.projeto.model.Position;
 import com.t09g01.projeto.model.game.elements.Element;
 import com.t09g01.projeto.model.game.temple.Temple;
+import com.t09g01.projeto.view.Viewer;
 import com.t09g01.projeto.view.elements.*;
+import com.t09g01.projeto.view.text.ViewerProvider;
 
 import javax.lang.model.util.Elements;
 import java.io.IOException;
@@ -17,10 +19,14 @@ import java.util.List;
 
 public class GameViewer extends ScreenViewer<Temple> {
     private BasicTextImage background;
+    private final FireboyViewer fireboyViewer;
+    private final WatergirlViewer watergirlViewer;
 
-    public GameViewer(Temple temple) {
+    public GameViewer(Temple temple, ViewerProvider viewerProvider) {
         super(temple);
         this.background =  new BasicTextImage(temple.getHeight(), temple.getWidth());
+        this.fireboyViewer = viewerProvider.getFireboyViewer();
+        this.watergirlViewer = viewerProvider.getWatergirlViewer();
     }
 
     public final static TextColor.RGB windowColor = new TextColor.RGB(76, 68, 87);

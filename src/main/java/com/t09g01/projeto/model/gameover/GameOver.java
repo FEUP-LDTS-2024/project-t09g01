@@ -1,32 +1,21 @@
 package com.t09g01.projeto.model.gameover;
 
+import com.t09g01.projeto.model.Position;
+import com.t09g01.projeto.model.menu.Entry;
+import com.t09g01.projeto.model.menu.Menu;
+
 import java.util.Arrays;
 import java.util.List;
 
-public class GameOver {
-    private final List<String> entries;
-    private int currentEntry = 0;
+public class GameOver extends Menu {
+    @Override
+    protected List<Entry> createEntries() {
+        Position playPosition = new Position(153, 130);
+        Position quitPosition = new Position(139, 138);
 
-    public GameOver() {this.entries = Arrays.asList("Play Again", "Exit");}
+        Entry play = new Entry(playPosition, Entry.TYPE.PLAY_AGAIN);
+        Entry exit = new Entry(quitPosition, Entry.TYPE.EXIT);
 
-    public void nextEntry(){
-        currentEntry++;
-        if (currentEntry > this.entries.size() - 1){
-            currentEntry = 0;
-        }
+        return Arrays.asList(play, exit);
     }
-
-    public void previousEntry(){
-
-        currentEntry--;
-        if(currentEntry < 0){
-            currentEntry = this.entries.size() - 1;
-        }
-    }
-
-    public String getEntry(int x) {return entries.get(x);}
-    public boolean isSelected(int x) {return currentEntry == x;}
-    public boolean isSelectedPlayAgain() {return currentEntry == 0;}
-    public boolean isSelectedExit() {return currentEntry == 1;}
-    public int getEntriesNumber() {return this.entries.size();}
 }
