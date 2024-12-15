@@ -1,16 +1,16 @@
 package com.t09g01.projeto.gui;
 
-import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TextColor;
-import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.graphics.TextImage;
 import com.t09g01.projeto.model.Position;
 
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.Set;
+import com.googlecode.lanterna.screen.Screen;
 
 public interface GUI {
+    Screen getScreen();
 
     public Set<ACTION> getCurrentActions();
 //    ACTION getNextAction() throws IOException;

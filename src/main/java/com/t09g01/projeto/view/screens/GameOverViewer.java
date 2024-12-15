@@ -10,6 +10,8 @@ import java.io.IOException;
 
 public class GameOverViewer extends ScreenViewer<GameOver> {
 
+    //private final EntryViewer entryViewer;
+
     public GameOverViewer(GameOver gameOver) {super(gameOver);}
 
     @Override

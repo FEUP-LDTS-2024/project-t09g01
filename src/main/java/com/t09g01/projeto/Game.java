@@ -3,10 +3,13 @@ package com.t09g01.projeto;
 import com.t09g01.projeto.gui.LanternaGUI;
 import com.t09g01.projeto.model.game.temple.Temple;
 import com.t09g01.projeto.model.game.temple.TempleBuilder;
+import com.t09g01.projeto.model.menu.MainMenu;
 import com.t09g01.projeto.model.menu.Menu;
 import com.t09g01.projeto.states.GameState;
 import com.t09g01.projeto.states.MenuState;
 import com.t09g01.projeto.states.State;
+import com.t09g01.projeto.view.GameImageLoader;
+import com.t09g01.projeto.view.ImageLoader;
 
 import java.awt.*;
 import java.io.IOException;
@@ -15,10 +18,12 @@ import java.net.URISyntaxException;
 public class Game {
     private final LanternaGUI gui;
     private State state;
+    private final ImageLoader imageLoader;
 
     public Game() throws IOException, FontFormatException, URISyntaxException {
         this.gui = new LanternaGUI(320, 192);
-        this.state = new MenuState(new Menu());
+        this.imageLoader = new GameImageLoader();
+        this.state = new MenuState(new MainMenu(), imageLoader);
     }
 
     public static void main(String[] args) throws IOException, FontFormatException, URISyntaxException {
@@ -48,4 +53,6 @@ public class Game {
         }
         gui.close();
     }
+
+    public ImageLoader getImageLoader() {return imageLoader;}
 }

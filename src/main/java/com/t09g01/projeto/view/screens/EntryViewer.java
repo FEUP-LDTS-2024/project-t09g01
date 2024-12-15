@@ -14,8 +14,8 @@ public class EntryViewer {
 
     public void draw(Entry model, GUI gui, TextColor color) {
         String entryText = switch (model.getType()) {
-            case PLAY -> "Play";
-            case EXIT -> "Exit";
+            case PLAY -> "PLAY";
+            case EXIT -> "EXIT";
         };
         textViewer.draw(entryText, (int) model.getPosition().getX(), (int) model.getPosition().getY(), color, gui);
 
