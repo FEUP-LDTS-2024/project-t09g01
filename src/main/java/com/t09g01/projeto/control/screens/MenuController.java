@@ -7,14 +7,21 @@ import com.t09g01.projeto.model.game.temple.TempleBuilder;
 import com.t09g01.projeto.model.menu.Menu;
 import com.t09g01.projeto.states.GameState;
 
+import java.awt.*;
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.util.Set;
 
-public class MenuController extends Controller<Menu> {
-    public MenuController(Menu menu) {super(menu);}
+public abstract class MenuController<T extends Menu> extends Controller<T> {
+    private final EntryController entryController;
+
+    public MenuController(T menu, EntryController entryController) {
+        super(menu);
+        this.entryController = entryController;
+    }
 
     @Override
-    public void step(Game game, Set<ACTION> currentActions, long time) throws IOException {
+    public void step(Game game, Set<ACTION> currentActions, long time) throws IOException, URISyntaxException, FontFormatException {
         for (ACTION action : currentActions){
             switch (action){
                 case FIREBOY_UP:
@@ -24,15 +31,17 @@ public class MenuController extends Controller<Menu> {
                     getModel().nextEntry();
                     break;
                 case SELECT:
-                    if(getModel().isSelectedStart()){
-                        game.setState(new GameState(new TempleBuilder(1).createTemple()));
+                    try {
+                        quit(game);
+                    } catch(FontFormatException e) {
+                        throw new RuntimeException(e);
                     }
-                    if (getModel().isSelectedExit()){
-                        game.setState(null);
-                    }
+                    break;
+                default:
+                    entryController.step(game, currentActions, time);
             }
-
         }
-
     }
+
+    protected abstract void quit(Game game) throws IOException, FontFormatException, URISyntaxException;
 }
