@@ -1,5 +1,6 @@
 package com.t09g01.projeto.view.elements;
 
+import com.googlecode.lanterna.graphics.BasicTextImage;
 import com.t09g01.projeto.gui.GUI;
 import com.t09g01.projeto.model.game.elements.Fireboy;
 import com.t09g01.projeto.view.Viewer;
@@ -16,7 +17,7 @@ public class FireboyViewer implements ElementViewer <Fireboy>{
     }
 
     @Override
-    public void draw(Fireboy fireboy, GUI gui) {
+    public void draw(Fireboy fireboy, GUI gui, BasicTextImage background) {
         gui.drawMoving(fireboy.getPosition(), image);
     }
 

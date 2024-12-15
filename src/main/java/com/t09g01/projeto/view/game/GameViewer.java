@@ -24,7 +24,7 @@ public class GameViewer extends ScreenViewer<Temple> {
     }
 
     public final static TextColor.RGB windowColor = new TextColor.RGB(76, 68, 87);
-
+    private GameViewer gameViewer;
 
     @Override
     public void draw(GUI gui) throws IOException {
@@ -47,10 +47,10 @@ public class GameViewer extends ScreenViewer<Temple> {
         gui.refresh();
     }
 
-    public BasicTextImage getBackground() {return background;}
+    public BasicTextImage getBackground() { return background; }
 
     private <T extends Element> void drawElement(GUI gui, T element, ElementViewer<T> viewer) throws IOException {
-        viewer.draw(element, gui);
+        viewer.draw(element, gui, background);
     }
 
     private <T extends Element> void drawElements(GUI gui, List<T> elements, ElementViewer<T> viewer) throws IOException {

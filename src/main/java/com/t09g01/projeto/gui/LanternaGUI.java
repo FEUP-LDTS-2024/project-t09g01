@@ -177,8 +177,6 @@ public class LanternaGUI implements GUI {
 
     @Override
     public void drawTextImage(Position position, BufferedImage image, TextImage background){
-        TextGraphics graphics = screen.newTextGraphics();
-
         for (int x = 0; x < image.getWidth(); x++){
             for (int y = 0; y < image.getHeight(); y++){
                 int a = image.getRGB(x,y);
@@ -200,7 +198,6 @@ public class LanternaGUI implements GUI {
         TerminalSize size = new TerminalSize(width, height);
         return new BasicTextImage(size);
     }
-
 
     @Override
     public void clear() {

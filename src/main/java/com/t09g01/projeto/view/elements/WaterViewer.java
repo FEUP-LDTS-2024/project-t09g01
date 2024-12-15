@@ -1,5 +1,6 @@
 package com.t09g01.projeto.view.elements;
 
+import com.googlecode.lanterna.graphics.BasicTextImage;
 import com.googlecode.lanterna.graphics.TextImage;
 import com.t09g01.projeto.gui.GUI;
 import com.t09g01.projeto.model.game.elements.Block;
@@ -21,7 +22,7 @@ public class WaterViewer implements ElementViewer<Water> {
     }
 
     @Override
-    public void draw(Water water, GUI gui) {
+    public void draw(Water water, GUI gui, BasicTextImage background) {
         textImage = viewer.convertTextImage(gui, bufferedImage);
         gui.drawStatic(water.getPosition(), textImage);
     }

@@ -1,5 +1,6 @@
 package com.t09g01.projeto.view.elements;
 
+import com.googlecode.lanterna.graphics.BasicTextImage;
 import com.googlecode.lanterna.graphics.TextImage;
 import com.t09g01.projeto.gui.GUI;
 import com.t09g01.projeto.view.Viewer;
@@ -19,7 +20,7 @@ public class BlueDoorViewer implements ElementViewer<BlueDoor>{
     }
 
     @Override
-    public void draw(BlueDoor blueDoor, GUI gui) {
+    public void draw(BlueDoor blueDoor, GUI gui, BasicTextImage background) {
         textImage = viewer.convertTextImage(gui, bufferedImage);
         gui.drawStatic(blueDoor.getPosition(), textImage);
     }
