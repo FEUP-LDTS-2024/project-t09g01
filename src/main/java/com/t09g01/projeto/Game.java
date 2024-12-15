@@ -15,6 +15,9 @@ import java.net.URISyntaxException;
 public class Game {
     private final LanternaGUI gui;
     private State state;
+    public int getNumberOfLevels() {
+        return 3;
+    }
 
     public Game() throws IOException, FontFormatException, URISyntaxException {
         this.gui = new LanternaGUI(320, 192);

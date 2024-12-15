@@ -25,6 +25,8 @@ public interface GUI {
 
     public void drawMoving(Position position, BufferedImage image);
 
+    public void drawTextImage(Position position, BufferedImage image, TextImage background);
+
     public TextImage createTextImage(int width, int height);
 
     void clear();

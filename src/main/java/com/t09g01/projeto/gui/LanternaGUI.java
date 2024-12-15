@@ -227,25 +227,25 @@ public class LanternaGUI implements GUI {
         }
     }
 
-//    @Override
-//    public void drawTextImage(Position position, BufferedImage image){
-//        TextGraphics graphics = screen.newTextGraphics();
-//
-//        for (int x = 0; x < image.getWidth(); x++){
-//            for (int y = 0; y < image.getHeight(); y++){
-//                int a = image.getRGB(x,y);
-//                int alpha = (a >> 24) & 0xff;
-//                int red = (a >> 16) & 255;
-//                int green = (a >> 8) & 255;
-//                int blue = a & 255;
-//
-//                if (alpha != 0){
-//                    TextCharacter c = new TextCharacter(' ', new TextColor.RGB(red, green, blue), new TextColor.RGB(red, green, blue));
-//
-//                }
-//            }
-//        }
-//    }
+    @Override
+    public void drawTextImage(Position position, BufferedImage image, TextImage background){
+        TextGraphics graphics = screen.newTextGraphics();
+
+        for (int x = 0; x < image.getWidth(); x++){
+            for (int y = 0; y < image.getHeight(); y++){
+                int a = image.getRGB(x,y);
+                int alpha = (a >> 24) & 0xff;
+                int red = (a >> 16) & 255;
+                int green = (a >> 8) & 255;
+                int blue = a & 255;
+
+                if (alpha != 0){
+                    TextCharacter c = new TextCharacter(' ', new TextColor.RGB(red, green, blue), new TextColor.RGB(red, green, blue));
+                    background.setCharacterAt(x, y, c);
+                }
+            }
+        }
+    }
 
     @Override
     public TextImage createTextImage(int width, int height) {
