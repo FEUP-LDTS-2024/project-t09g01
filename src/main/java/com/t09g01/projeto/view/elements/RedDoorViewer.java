@@ -1,5 +1,6 @@
 package com.t09g01.projeto.view.elements;
 
+import com.googlecode.lanterna.graphics.BasicTextImage;
 import com.googlecode.lanterna.graphics.TextImage;
 import com.t09g01.projeto.gui.GUI;
 import com.t09g01.projeto.model.game.elements.RedDoor;
@@ -19,7 +20,7 @@ public class RedDoorViewer implements ElementViewer<RedDoor>{
     }
 
     @Override
-    public void draw(RedDoor redDoor, GUI gui) {
+    public void draw(RedDoor redDoor, GUI gui, BasicTextImage background) {
         textImage = viewer.convertTextImage(gui, bufferedImage);
         gui.drawStatic(redDoor.getPosition(), textImage);
     }

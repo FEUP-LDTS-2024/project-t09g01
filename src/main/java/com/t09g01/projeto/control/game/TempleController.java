@@ -6,9 +6,12 @@ import com.t09g01.projeto.gui.ACTION;
 import com.t09g01.projeto.model.game.elements.Fireboy;
 import com.t09g01.projeto.model.game.elements.Watergirl;
 import com.t09g01.projeto.model.game.temple.Temple;
+import com.t09g01.projeto.model.game.temple.TempleBuilder;
 import com.t09g01.projeto.model.gameover.GameOver;
 import com.t09g01.projeto.states.GameOverState;
+import com.t09g01.projeto.states.GameState;
 
+import java.io.IOException;
 import java.util.Set;
 
 import static com.t09g01.projeto.gui.ACTION.QUIT;
@@ -24,7 +27,7 @@ public class TempleController extends Controller<Temple> {
     }
 
     @Override
-    public void step(Game game, Set<ACTION> currentActions, long time) {
+    public void step(Game game, Set<ACTION> currentActions, long time) throws IOException {
         Fireboy fireboy = getModel().getFireboy();
         Watergirl watergirl = getModel().getWatergirl();
         for (ACTION action : currentActions){
@@ -40,9 +43,12 @@ public class TempleController extends Controller<Temple> {
                 game.setState(new GameOverState(new GameOver()));
             }
 
-//            if (watergirl.isOnDoor() && fireboy.isOnDoor() && getModel().allDiamondsCollected()){
-//                // proximo nivel
-//            }
+            if (watergirl.isOnDoor() && fireboy.isOnDoor() && getModel().allDiamondsCollected()){
+                System.out.println(getModel().getLevel());
+                TempleBuilder templeBuilder = new TempleBuilder((getModel().getLevel() + 1));
+                Temple newTemple = templeBuilder.createTemple();
+                game.setState(new GameState(newTemple));
+            }
         }
 
 

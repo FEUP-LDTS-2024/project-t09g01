@@ -25,7 +25,7 @@ public class MenuController extends Controller<Menu> {
                     break;
                 case SELECT:
                     if(getModel().isSelectedStart()){
-                        game.setState(new GameState(new TempleBuilder().createTemple()));
+                        game.setState(new GameState(new TempleBuilder(1).createTemple()));
                     }
                     if (getModel().isSelectedExit()){
                         game.setState(null);

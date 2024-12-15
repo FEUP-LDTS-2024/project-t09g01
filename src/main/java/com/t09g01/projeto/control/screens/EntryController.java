@@ -20,13 +20,13 @@ public class EntryController extends Controller<Menu>{
         switch(getModel().getCurrentEntry().getType()) {
             case PLAY:
                 if(action==ACTION.SELECT) {
-                    game.setState( new GameState(new TempleBuilder().createTemple() ));
+                    game.setState( new GameState(new TempleBuilder(1).createTemple() ));
                 }
                 break;
 
             case EXIT:
                 if(action==ACTION.SELECT) {
-                    game.setState(new GameState(new Game(), game.getImageLoader()));
+                    game.setState(null);
                 }
         }
     }

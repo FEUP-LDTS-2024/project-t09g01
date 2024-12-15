@@ -13,9 +13,11 @@ import java.util.List;
 public class TempleBuilder {
 
     private final List<String> lines;
+    private final int level;
 
-    public TempleBuilder() throws IOException {
-        URL resource = TempleBuilder.class.getResource("/levels/level1.lvl");
+    public TempleBuilder(int level) throws IOException {
+        this.level = level;
+        URL resource = TempleBuilder.class.getResource("/levels/level" + level + ".lvl");
         if (resource == null) {
             throw new IOException("Level file not found: /levels/level1.lvl");
         }
@@ -26,7 +28,7 @@ public class TempleBuilder {
     }
 
     public Temple createTemple() {
-        Temple temple = new Temple(getWidth(), getHeight());
+        Temple temple = new Temple(getWidth(), getHeight(), level);
         temple.setBlueDiamonds(createBlueDiamonds());
         temple.setRedDiamonds(createRedDiamonds());
         temple.setFireboy(createFireboy(temple));

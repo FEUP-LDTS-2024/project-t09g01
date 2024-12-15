@@ -8,6 +8,7 @@ import java.util.List;
 public class Temple {
     private int width;
     private int height;
+    private int level;
 
     private Watergirl watergirl;
     private Fireboy fireboy;
@@ -26,10 +27,11 @@ public class Temple {
     private BlueDoor blueDoor;
     private RedDoor redDoor;
 
-    public Temple(int width, int height){
+    public Temple(int width, int height, int level){
         this.width = width;
         this.height = height;
         this.gravity = 0.3;
+        this.level = level;
     }
 
     // Width and Height
@@ -67,6 +69,8 @@ public class Temple {
     public BlueDoor getBlueDoor() {return blueDoor;}
     public void setRedDoor(RedDoor redDoor) {this.redDoor = redDoor;}
     public void setBlueDoor(BlueDoor blueDoor) {this.blueDoor = blueDoor;}
+
+    public int getLevel() {return level;}
 
     public boolean checkCollisions(Position position) {
         double playerX = position.getX();
@@ -165,7 +169,7 @@ public class Temple {
             double lavaY = lavaPosition.getY();
 
             // Check if the player's feet are on top of the block
-            if (watergirlX < lavaX + 8 && watergirlY + 7 > lavaX &&
+            if (watergirlX < lavaX + 8 && watergirlX + 7 > lavaX &&
                     watergirlY + 8 == lavaY) {
                 return true;
             }
@@ -207,6 +211,7 @@ public class Temple {
                 break;
             }
         }
+
     }
 
     public void retrieveRedDiamonds(Position position){
@@ -224,19 +229,21 @@ public class Temple {
                 break;
             }
         }
+
     }
 
     public boolean redDoorCollision(Position position){
-        if (position == redDoor.getPosition()){
-            return true;
-        }
-        return false;
-
-
+        return position.getX() < redDoor.getPosition().getX() + 8 &&
+                position.getX() + 8 > redDoor.getPosition().getX() &&
+                position.getY() < redDoor.getPosition().getY() + 8 &&
+                position.getY() + 8 > redDoor.getPosition().getY();
     }
 
     public boolean blueDoorCollision(Position position) {
-        return position == blueDoor.getPosition();
+        return position.getX() < blueDoor.getPosition().getX() + 8 &&
+                position.getX() + 8 > blueDoor.getPosition().getX() &&
+                position.getY() < blueDoor.getPosition().getY() + 8 &&
+                position.getY() + 8 > blueDoor.getPosition().getY();
     }
 
     public boolean allDiamondsCollected(){
