@@ -20,12 +20,14 @@ public class BlockViewer implements ElementViewer<Block> {
     public BlockViewer() throws IOException {
         viewer = new Viewer("blocks/brick.png");
         bufferedImage = Viewer.loadImage("blocks/brick.png");
+
     }
 
     @Override
     public void draw(Block block, GUI gui) {
         textImage = viewer.convertTextImage(gui, bufferedImage);
         gui.drawStatic(block.getPosition(), textImage);
+        //gui.drawTextImage(block.getPosition(), bufferedImage, getTextImage());
     }
 
 }

@@ -169,7 +169,7 @@ public class Temple {
             double lavaY = lavaPosition.getY();
 
             // Check if the player's feet are on top of the block
-            if (watergirlX < lavaX + 8 && watergirlY + 7 > lavaX &&
+            if (watergirlX < lavaX + 8 && watergirlX + 7 > lavaX &&
                     watergirlY + 8 == lavaY) {
                 return true;
             }

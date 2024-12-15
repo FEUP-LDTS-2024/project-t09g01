@@ -104,11 +104,6 @@ public class LanternaGUI implements GUI {
         return screen;
     }
 
-
-//    public Set<ACTION> getCurrentActions() {
-//        return new HashSet<>(currentActions);
-//    }
-
     private ACTION getActionFromKeyCode(int keyCode) {
         return switch (keyCode) {
             case VK_UP -> ACTION.FIREBOY_UP;
@@ -129,53 +124,6 @@ public class LanternaGUI implements GUI {
     public Set<ACTION> getCurrentActions() {
         return new HashSet<>(currentActions);
     }
-
-//    @Override
-//    public ACTION getNextAction(KeyEvent event){
-//        switch(event.getKeyCode()){
-//            case VK_UP:
-//                set.add(ACTION.FIREBOY_UP);
-//
-//
-//        }
-//
-//    }
-
-//    @Override
-//    public Set<ACTION> getNextAction() throws IOException {
-//        if (primaryKeyPressed != null){
-//            int primaryKeyCode = primaryKeyPressed.getKeyCode();
-//            primaryKeyPressed = null;
-//            return switch (primaryKeyCode){
-//                case VK_UP -> ACTION.FIREBOY_UP;
-//                case VK_W -> ACTION.WATERGIRL_UP;
-//                case VK_DOWN -> ACTION.FIREBOY_DOWN;
-//                case VK_S -> ACTION.WATERGIRL_DOWN;
-//                case VK_ESCAPE -> ACTION.QUIT;
-//                case VK_ENTER -> ACTION.SELECT;
-//                default -> ACTION.NONE;
-//            };
-//
-//        }
-//
-//        if (arrowKeyPressed != null) {
-//            return switch (arrowKeyPressed.getKeyCode()) {
-//                case VK_LEFT -> ACTION.FIREBOY_LEFT;
-//                case VK_RIGHT -> ACTION.FIREBOY_RIGHT;
-//                default -> ACTION.NONE;
-//            };
-//        };
-//
-//        if (WADKeyPressed != null) {
-//            return switch (WADKeyPressed.getKeyCode()) {
-//                case VK_A -> ACTION.WATERGIRL_LEFT;
-//                case VK_D -> ACTION.WATERGIRL_RIGHT;
-//                default -> ACTION.NONE;
-//            };
-//        }
-//
-//        return ACTION.NONE;
-//    }
 
     @Override
     public void drawPixel(int x, int y, TextColor.RGB color){
