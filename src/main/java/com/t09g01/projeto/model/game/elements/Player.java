@@ -11,20 +11,7 @@ public class Player extends Element {
     private final int HEIGHT = 8;
     private Position velocity;
     private final Temple temple;
-    private float VELOCITY = 250F;
-    private int horizontalSpeed = 1;
-    private boolean direction = true; // true = right, false = left
-    private Position lastPosition;
-    //private int isJumping = 0;
-    private long jumpStart;
-    private int jumpHeight = 50;
-    private int gravity = 1000;
-
-    private boolean isJumping;
-
-    private boolean hasLanded;
-    private boolean isFalling;
-
+    private double gravity = -0.2;
 
 
     private final Position maxVelocity = new Position(2.0, 3.0) ;
@@ -36,16 +23,8 @@ public class Player extends Element {
 
     public Player(int x, int y, Temple temple){
         super(x,y);
-        this.velocity = new Position(1,1);
+        this.velocity = new Position(0,0);
         this.temple = temple;
-
-//        Polygon playerHitbox = new Polygon();
-//
-//        playerHitbox.addPoint(x - 8, y - 8);
-//        playerHitbox.addPoint(x, y - 8);
-//        playerHitbox.addPoint(x - 8, y + 1);
-//        playerHitbox.addPoint(x, y + 1);
-//        this.hitbox = playerHitbox;
 
     }
 
@@ -61,7 +40,7 @@ public class Player extends Element {
         this.velocity = velocity;
     }
 
-    public int getGravity() {
+    public double getGravity() {
         return gravity;
     }
 
@@ -69,22 +48,6 @@ public class Player extends Element {
         this.gravity = gravity;
     }
 
-    public boolean isDirection() {
-        return direction;
-    }
-
-    public void setDirection(boolean direction) {
-        this.direction = direction;
-    }
-
-    public int getHorizontalSpeed() {
-        return horizontalSpeed;
-    }
-
-    @Override
-    public void setPosition(Position position) {
-        super.setPosition(new Position(position.getX(), position.getY()));
-    }
 
     public Position getMaxVelocity() {
         return maxVelocity;
@@ -98,40 +61,18 @@ public class Player extends Element {
         return jump_boost;
     }
 
-    public boolean isJumping() {
-        return isJumping;
-    }
-
-    public void setJumping(boolean jumping) {
-        isJumping = jumping;
-    }
-
-    public boolean hasLanded() {
-        return hasLanded;
-    }
-
-    public void setHasLanded(boolean hasLanded) {
-        this.hasLanded = hasLanded;
-    }
-
-    public boolean isFalling() {
-        return isFalling;
-    }
-
-    public void setFalling(boolean falling) {
-        isFalling = falling;
-    }
 
 
 
 
 
-    public boolean isOnGround(){
-        if (temple.floorCollision(getPosition())){
-            onGround = true;
-        }
-        return onGround;
-    }
+
+//    public boolean isOnGround(){
+//        if (temple.floorCollision(getPosition())){
+//            onGround = true;
+//        }
+//        return onGround;
+//    }
 
 //    public void jump(){
 //        isOnGround();
@@ -211,27 +152,27 @@ public class Player extends Element {
 //    }
 
 
-    public void move(){
-        Position nextPosition = new Position(getPosition().getX() + velocity.getX(), getPosition().getY() + velocity.getY());
-
-        Position horizontalPos = new Position(nextPosition.getX(), getPosition().getY());
-        if (temple.checkCollisions(horizontalPos)){
-            velocity.setX(0);
-        }
-        else {
-            this.lastPosition = getPosition();
-            setPosition(new Position(horizontalPos.getX(), getPosition().getY()));
-        }
-
-        Position verticalPos = new Position(getPosition().getX(), nextPosition.getY());
-        if (temple.checkCollisions(verticalPos)) {
-            velocity.setY(0);
-        }
-        else{
-            this.lastPosition = getPosition();
-            setPosition(new Position(getPosition().getX(), verticalPos.getY()));
-        }
-    }
+//    public void move(){
+//        Position nextPosition = new Position(getPosition().getX() + velocity.getX(), getPosition().getY() + velocity.getY());
+//
+//        Position horizontalPos = new Position(nextPosition.getX(), getPosition().getY());
+//        if (temple.checkCollisions(horizontalPos)){
+//            velocity.setX(0);
+//        }
+//        else {
+//            this.lastPosition = getPosition();
+//            setPosition(new Position(horizontalPos.getX(), getPosition().getY()));
+//        }
+//
+//        Position verticalPos = new Position(getPosition().getX(), nextPosition.getY());
+//        if (temple.checkCollisions(verticalPos)) {
+//            velocity.setY(0);
+//        }
+//        else{
+//            this.lastPosition = getPosition();
+//            setPosition(new Position(getPosition().getX(), verticalPos.getY()));
+//        }
+//    }
 
 //    public void moveLeft() {
 //        setVelocity(new Position(

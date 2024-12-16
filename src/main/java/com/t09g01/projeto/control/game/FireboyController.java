@@ -194,8 +194,7 @@ public class FireboyController extends Controller<Temple> {
                         fireboy.setHasLanded(false);
                     }
                     break;
-                case FIREBOY_DOWN:
-                    // Handle down action if needed
+                default:
                     break;
             }
         }

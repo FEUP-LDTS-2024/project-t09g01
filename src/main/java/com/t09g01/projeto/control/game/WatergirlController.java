@@ -15,26 +15,26 @@ public class WatergirlController extends Controller<Temple> {
         super(temple);
     }
 
-    public void moveWatergirl(Position position) {
-        if (!getModel().checkCollisions(position)) {
-            getModel().getWatergirl().setPosition(position);
-            getModel().retrieveBlueDiamonds(position);
-        }
-    }
-
-
-    public void moveWatergirlRight(){
-        moveWatergirl(getModel().getWatergirl().getPosition().getRight());
-    }
-    public void moveWatergirlLeft(){
-        moveWatergirl(getModel().getWatergirl().getPosition().getLeft());
-    }
-    public void moveWatergirlUp(){
-        moveWatergirl(getModel().getWatergirl().getPosition().getUp());
-    }
-    public void moveWatergirlDown(){
-        moveWatergirl(getModel().getWatergirl().getPosition().getDown());
-    }
+//    public void moveWatergirl(Position position) {
+//        if (!getModel().checkCollision(position, getModel().getBlocks())) {
+//            getModel().getWatergirl().setPosition(position);
+//            getModel().retrieveBlueDiamonds(position);
+//        }
+//    }
+//
+//
+//    public void moveWatergirlRight(){
+//        moveWatergirl(getModel().getWatergirl().getPosition().getRight());
+//    }
+//    public void moveWatergirlLeft(){
+//        moveWatergirl(getModel().getWatergirl().getPosition().getLeft());
+//    }
+//    public void moveWatergirlUp(){
+//        moveWatergirl(getModel().getWatergirl().getPosition().getUp());
+//    }
+//    public void moveWatergirlDown(){
+//        moveWatergirl(getModel().getWatergirl().getPosition().getDown());
+//    }
 
 //    public void jumpWatergirl(){
 //        Watergirl watergirl = getModel().getWatergirl();
@@ -44,15 +44,65 @@ public class WatergirlController extends Controller<Temple> {
     @Override
     public void step(Game game, Set<ACTION> currentActions, long time) {
         Watergirl watergirl = getModel().getWatergirl();
-        for (ACTION action : currentActions){
+        double x = watergirl.getPosition().getX(), y = watergirl.getPosition().getY();
+        double vx = watergirl.getVelocity().getX(), vy = watergirl.getVelocity().getY();
+        vy += getModel().getGravity();
+        for (ACTION action : currentActions) {
+
             switch (action) {
-                case WATERGIRL_UP -> moveWatergirlUp();
-                case WATERGIRL_DOWN -> moveWatergirlDown();
-                case WATERGIRL_LEFT -> moveWatergirlLeft();
-                case WATERGIRL_RIGHT -> moveWatergirlRight();
+                case WATERGIRL_LEFT:
+                    vx = Math.max(vx - watergirl.getAcceleration(), -watergirl.getMaxVelocity().getX());
+                    break;
+                case WATERGIRL_RIGHT:
+                    vx = Math.min(vx + watergirl.getAcceleration(), watergirl.getMaxVelocity().getX());
+                    break;
+                case WATERGIRL_UP:
+                    if (watergirl.hasLanded()) {
+                        vy = -watergirl.getJumpBoost();
+                        watergirl.setHasLanded(false);
+                    }
+                    break;
+                default:
+                    break;
             }
         }
-        //watergirl.defyingGravity();
-        //watergirl.update();
+
+        if (vy > 0) {
+            watergirl.setFalling(true);
+            watergirl.setHasLanded(false);
+            watergirl.setJumping(false);
+
+            vy = Math.min(vy, watergirl.getMaxVelocity().getY());
+            if (getModel().collidesDown(new Position(x, y + vy), getModel().getBlocks())) {
+                watergirl.setHasLanded(true);
+                watergirl.setFalling(false);
+                do {
+                    vy = Math.max(vy - 1, 0);
+                } while (getModel().collidesDown(new Position(x, y + vy), getModel().getBlocks()) && vy > 0);
+            }
+        } else if (vy < 0) {
+            watergirl.setJumping(true);
+            while (getModel().collidesUp(new Position(x, y + vy), getModel().getBlocks()) && vy < 0) {
+                vy = Math.min(vy + 1, 0);
+            }
+        }
+
+        if (vx < 0) {
+            vx = Math.max(vx, -watergirl.getMaxVelocity().getX());
+            while (getModel().collidesLeft(new Position(x + vx, y + vy), getModel().getBlocks()) && vx < 0) {
+                vx = Math.min(vx + 1, 0);
+            }
+        } else if (vx > 0) {
+            vx = Math.min(vx, watergirl.getMaxVelocity().getY());
+            while (getModel().collidesRight(new Position(x + vx, y + vy), getModel().getBlocks()) && vx > 0) {
+                vx = Math.max(vx - 1, 0);
+            }
+        }
+
+        x += vx;
+        y += vy;
+
+        watergirl.setVelocity(new Position(vx, vy));
+        watergirl.setPosition(new Position(x, y));
     }
 }
