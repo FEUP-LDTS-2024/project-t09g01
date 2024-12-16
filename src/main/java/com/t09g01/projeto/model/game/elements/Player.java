@@ -9,21 +9,17 @@ public class Player extends Element {
 
     private final int WIDTH = 7;
     private final int HEIGHT = 8;
-    private Position velocity;
+
     private final Temple temple;
-    private double gravity = -0.2;
 
 
-    private final Position maxVelocity = new Position(2.0, 3.0) ;
-    private final double acceleration = 0.5;
+    private final Position maxVelocity = new Position(3.0, 4.0) ;
+    private final double acceleration = 1.0;
     private final double jump_boost = 4.0;
-//    private final double GRAVITY = -0.2;
 
-    private boolean onGround;
 
     public Player(int x, int y, Temple temple){
         super(x,y);
-        this.velocity = new Position(0,0);
         this.temple = temple;
 
     }
@@ -32,34 +28,7 @@ public class Player extends Element {
 
     public int getHeight() {return HEIGHT;}
 
-    public Position getVelocity() {
-        return velocity;
-    }
 
-    public void setVelocity(Position velocity) {
-        this.velocity = velocity;
-    }
-
-    public double getGravity() {
-        return gravity;
-    }
-
-    public void setGravity(int gravity) {
-        this.gravity = gravity;
-    }
-
-
-    public Position getMaxVelocity() {
-        return maxVelocity;
-    }
-
-    public double getAcceleration() {
-        return acceleration;
-    }
-
-    public double getJumpBoost() {
-        return jump_boost;
-    }
 
 
 

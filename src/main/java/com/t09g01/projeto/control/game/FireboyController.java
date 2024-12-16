@@ -173,8 +173,6 @@ public class FireboyController extends Controller<Temple> {
 //        }
 //        //fireboy.defyingGravity();
 //        //fireboy.update();
-
-
         Fireboy fireboy = getModel().getFireboy();
         double x = fireboy.getPosition().getX(), y = fireboy.getPosition().getY();
         double vx = fireboy.getVelocity().getX(), vy = fireboy.getVelocity().getY();

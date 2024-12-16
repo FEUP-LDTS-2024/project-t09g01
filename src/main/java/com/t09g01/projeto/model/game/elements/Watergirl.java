@@ -7,10 +7,15 @@ public class Watergirl extends Player{
     private boolean isJumping;
     private boolean hasLanded;
     private boolean isFalling;
+    private final Position maxVelocity = new Position(3.0, 4.0) ;
+    private final double acceleration = 1.0;
+    private final double jump_boost = 4.0;
+    private Position velocity;
 
 
     public Watergirl(int x, int y, Temple temple){
         super(x,y, temple);
+        this.velocity = new Position(0,0);
     }
 
     public boolean isDead(){
@@ -19,10 +24,6 @@ public class Watergirl extends Player{
 
     public boolean isOnDoor(){
         return getTemple().blueDoorCollision(getPosition());
-    }
-
-    public boolean isJumping() {
-        return isJumping;
     }
 
     public void setJumping(boolean jumping) {
@@ -37,11 +38,27 @@ public class Watergirl extends Player{
         this.hasLanded = hasLanded;
     }
 
-    public boolean isFalling() {
-        return isFalling;
-    }
-
     public void setFalling(boolean falling) {
         isFalling = falling;
+    }
+
+    public Position getVelocity() {
+        return velocity;
+    }
+
+    public void setVelocity(Position velocity) {
+        this.velocity = velocity;
+    }
+
+    public Position getMaxVelocity() {
+        return maxVelocity;
+    }
+
+    public double getAcceleration() {
+        return acceleration;
+    }
+
+    public double getJumpBoost() {
+        return jump_boost;
     }
 }

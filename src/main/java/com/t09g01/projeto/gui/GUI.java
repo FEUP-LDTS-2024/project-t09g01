@@ -34,4 +34,5 @@ public interface GUI {
     void refresh() throws IOException;
 
     void close() throws IOException;
+
 }

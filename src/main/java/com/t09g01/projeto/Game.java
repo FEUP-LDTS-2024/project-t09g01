@@ -1,5 +1,6 @@
 package com.t09g01.projeto;
 
+import com.t09g01.projeto.gui.GUI;
 import com.t09g01.projeto.gui.LanternaGUI;
 import com.t09g01.projeto.model.game.temple.Temple;
 import com.t09g01.projeto.model.game.temple.TempleBuilder;
@@ -36,7 +37,7 @@ public class Game {
     public void setState(State state) {this.state = state;}
 
     private void start() throws IOException, URISyntaxException, FontFormatException {
-        int FPS = 10;
+        int FPS = 30;
         int frameTime = 1000 / FPS;
 
         while(this.state != null){
@@ -58,4 +59,8 @@ public class Game {
     }
 
     public ImageLoader getImageLoader() {return imageLoader;}
+
+    public GUI getGUI() {
+        return gui;
+    }
 }

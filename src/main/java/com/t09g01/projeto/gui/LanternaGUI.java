@@ -34,16 +34,11 @@ import static java.awt.event.KeyEvent.*;
 public class LanternaGUI implements GUI {
     private final Screen screen;
     private final Set<ACTION> currentActions = new HashSet<>();
-    private KeyEvent arrowKeyPressed;
-    private KeyEvent WADKeyPressed;
-    private KeyEvent primaryKeyPressed;
 
 
     public LanternaGUI(Screen screen){
         this.screen = screen;
-        this.arrowKeyPressed = null;
-        this.WADKeyPressed = null;
-        this.primaryKeyPressed = null;
+
     }
 
     public LanternaGUI(int width, int height) throws IOException, FontFormatException, URISyntaxException {
@@ -69,6 +64,8 @@ public class LanternaGUI implements GUI {
                 ACTION action = getActionFromKeyCode(event.getKeyCode());
                 if (action != ACTION.NONE) {
                     currentActions.add(action);
+                    System.out.println("key pressed:");
+                    System.out.println(action);
 
                 }
 //                switch (event.getKeyCode()) {
@@ -82,7 +79,12 @@ public class LanternaGUI implements GUI {
             @Override
             public void keyReleased(KeyEvent event) {
                 ACTION action = getActionFromKeyCode(event.getKeyCode());
-                currentActions.remove(action);
+                if (action != ACTION.NONE) {
+                    currentActions.remove(action);
+                }
+                System.out.println("key released:");
+                System.out.println();
+                System.out.println(action);
 //                switch (event.getKeyCode()) {
 //                    case VK_LEFT, VK_RIGHT -> arrowKeyPressed = null;
 //                    case VK_D, VK_A -> WADKeyPressed = null;
@@ -215,5 +217,11 @@ public class LanternaGUI implements GUI {
     public void close() throws IOException {
         screen.close();
     }
+
+//    public void setKeySpam(boolean keySpam) {
+//        if (!keySpam)
+//            priorityKeyPressed = null;
+//        this.keySpam = keySpam;
+//    }
 
 }
