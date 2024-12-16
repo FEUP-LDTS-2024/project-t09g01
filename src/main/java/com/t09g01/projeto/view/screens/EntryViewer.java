@@ -16,8 +16,9 @@ public class EntryViewer {
         String entryText = switch (model.getType()) {
             case PLAY -> "PLAY";
             case EXIT -> "EXIT";
-            case PLAY_AGAIN -> "PLAY AGAIN";
+            case RETRY -> "RETRY";
             case INSTRUCTIONS -> "INSTRUCTIONS";
+            case RETURN_MENU -> "RETURN TO MENU";
         };
 
         textViewer.draw(entryText, (int) model.getPosition().getX(), (int) model.getPosition().getY(), color, gui);

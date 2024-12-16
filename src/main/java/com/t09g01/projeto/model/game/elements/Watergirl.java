@@ -9,7 +9,7 @@ public class Watergirl extends Player{
     private boolean isFalling;
     private final Position maxVelocity = new Position(2.7, 3.6);
     private final double acceleration = 0.8;
-    private final double jump_boost = 5.0;
+    private final double jump_boost = 8.0;
     private Position velocity;
 
 

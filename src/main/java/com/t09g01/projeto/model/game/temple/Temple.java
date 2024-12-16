@@ -165,8 +165,8 @@ public class Temple {
     }
 
     public boolean collidesDown(Position position, List<Block> blocks) {
-        Position topLeft = new Position(position.getX(), position.getY() + 8 - 2);
-        Position bottomRight = new Position(position.getX() + 8 - 1, position.getY() + 8 - 1);
+        Position topLeft = new Position(position.getX(), position.getY() + 8 -1);
+        Position bottomRight = new Position(position.getX() + 8 - 1, position.getY() + 8 );
         return checkCollision(topLeft, bottomRight, blocks);
     }
 

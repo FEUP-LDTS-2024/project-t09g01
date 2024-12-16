@@ -7,8 +7,10 @@ import com.t09g01.projeto.model.game.elements.Fireboy;
 import com.t09g01.projeto.model.game.elements.Watergirl;
 import com.t09g01.projeto.model.game.temple.Temple;
 import com.t09g01.projeto.model.game.temple.TempleBuilder;
+import com.t09g01.projeto.model.gameover.Credits;
 import com.t09g01.projeto.model.gameover.GameOver;
 import com.t09g01.projeto.model.menu.MainMenu;
+import com.t09g01.projeto.states.CreditsState;
 import com.t09g01.projeto.states.GameOverState;
 import com.t09g01.projeto.states.GameState;
 import com.t09g01.projeto.states.MainMenuState;
@@ -35,23 +37,30 @@ public class TempleController extends Controller<Temple> {
                 quit(game);
                 break;
             }
-        fireboyController.step(game, currentActions, time);
-        watergirlController.step(game, currentActions, time);
+            fireboyController.step(game, currentActions, time);
+            watergirlController.step(game, currentActions, time);
 
-        Fireboy fireboy = getModel().getFireboy();
-        Watergirl watergirl = getModel().getWatergirl();
+            Fireboy fireboy = getModel().getFireboy();
+            Watergirl watergirl = getModel().getWatergirl();
 
-        if (watergirl.isDead() || fireboy.isDead()){
-            game.setState(new GameOverState(new GameOver(), game.getImageLoader()));
+            if (watergirl.isDead() || fireboy.isDead()){
+                game.setState(new GameOverState(new GameOver(), game.getImageLoader()));
+            }
+
+            if (watergirl.isOnDoor() && fireboy.isOnDoor() && getModel().allDiamondsCollected()){
+                if (getModel().getLevel() + 1 > game.getNumberOfLevels()){
+                    Credits credits = new Credits();
+                    game.setState(new CreditsState(credits, game.getImageLoader()));
+
+                }
+                else{
+                    TempleBuilder templeBuilder = new TempleBuilder((getModel().getLevel() + 1));
+                    Temple newTemple = templeBuilder.createTemple();
+                    game.setState(new GameState(newTemple, game.getImageLoader()));
+                }
+
+            }
         }
-
-        if (watergirl.isOnDoor() && fireboy.isOnDoor() && getModel().allDiamondsCollected()){
-            System.out.println(getModel().getLevel());
-            TempleBuilder templeBuilder = new TempleBuilder((getModel().getLevel() + 1));
-            Temple newTemple = templeBuilder.createTemple();
-            game.setState(new GameState(newTemple, game.getImageLoader()));
-        }
-    }
     }
 
     private void quit(Game game) throws IOException {

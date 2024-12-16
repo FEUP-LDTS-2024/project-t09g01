@@ -2,10 +2,12 @@ package com.t09g01.projeto.control.screens;
 
 import com.t09g01.projeto.Game;
 import com.t09g01.projeto.model.game.temple.TempleBuilder;
+import com.t09g01.projeto.model.menu.MainMenu;
 import com.t09g01.projeto.model.menu.Menu;
 import com.t09g01.projeto.states.GameState;
 import com.t09g01.projeto.control.Controller;
 import com.t09g01.projeto.gui.ACTION;
+import com.t09g01.projeto.states.MainMenuState;
 
 import java.awt.*;
 import java.io.IOException;
@@ -30,6 +32,17 @@ public class EntryController extends Controller<Menu>{
                     if(action==ACTION.SELECT) {
                         game.setState(null);
                     }
+                    break;
+                case RETRY:
+                    if(action == ACTION.SELECT) {
+                        game.setState( new GameState(new TempleBuilder(1).createTemple(), game.getImageLoader() ));
+                    }
+                    break;
+                case RETURN_MENU:
+                    if (action == ACTION.SELECT){
+                        game.setState(new MainMenuState(new MainMenu(), game.getImageLoader()));
+                    }
+
             }
 
         }
