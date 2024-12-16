@@ -141,6 +141,55 @@ public class Temple {
         return false;
     }
 
+    public boolean checkCollisionLeft(Position position) {
+        double playerX = position.getX();
+        double playerY = position.getY();
+
+        for (Block block : blocks) {
+            Position blockPosition = block.getPosition();
+            double blockX = blockPosition.getX();
+            double blockY = blockPosition.getY();
+
+            if (playerX == blockX + 8 && playerY < blockY + 8 && playerY + 8 > blockY) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean checkCollisionRight(Position position) {
+        double playerX = position.getX();
+        double playerY = position.getY();
+
+        for (Block block : blocks) {
+            Position blockPosition = block.getPosition();
+            double blockX = blockPosition.getX();
+            double blockY = blockPosition.getY();
+
+            if (playerX + 8 == blockX && playerY < blockY + 8 && playerY + 8 > blockY) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean checkCollisionUp(Position position) {
+        double playerX = position.getX();
+        double playerY = position.getY();
+
+        for (Block block : blocks) {
+            Position blockPosition = block.getPosition();
+            double blockX = blockPosition.getX();
+            double blockY = blockPosition.getY();
+
+            if (playerY == blockY + 8 && playerX < blockX + 8 && playerX + 8 > blockX) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+
     public boolean gooCollision(Position position) {
         double playerX = position.getX();
         double playerY = position.getY();
@@ -249,4 +298,6 @@ public class Temple {
     public boolean allDiamondsCollected(){
         return blueDiamonds.isEmpty() && redDiamonds.isEmpty();
     }
+
+    public double getGravity() {return gravity;}
 }

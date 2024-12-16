@@ -30,29 +30,28 @@ public class TempleController extends Controller<Temple> {
 
     @Override
     public void step(Game game, Set<ACTION> currentActions, long time) throws IOException {
-        Fireboy fireboy = getModel().getFireboy();
-        Watergirl watergirl = getModel().getWatergirl();
         for (ACTION action : currentActions){
             if (action == QUIT){
                 quit(game);
                 break;
             }
-            else{
-                fireboyController.step(game, currentActions, time);
-                watergirlController.step(game, currentActions, time);
-            }
+        fireboyController.step(game, currentActions, time);
+        watergirlController.step(game, currentActions, time);
 
-            if (watergirl.isDead() || fireboy.isDead()){
-                game.setState(new GameOverState(new GameOver(), game.getImageLoader()));
-            }
+        Fireboy fireboy = getModel().getFireboy();
+        Watergirl watergirl = getModel().getWatergirl();
 
-            if (watergirl.isOnDoor() && fireboy.isOnDoor() && getModel().allDiamondsCollected()){
-                System.out.println(getModel().getLevel());
-                TempleBuilder templeBuilder = new TempleBuilder((getModel().getLevel() + 1));
-                Temple newTemple = templeBuilder.createTemple();
-                game.setState(new GameState(newTemple, game.getImageLoader()));
-            }
+        if (watergirl.isDead() || fireboy.isDead()){
+            game.setState(new GameOverState(new GameOver(), game.getImageLoader()));
         }
+
+        if (watergirl.isOnDoor() && fireboy.isOnDoor() && getModel().allDiamondsCollected()){
+            System.out.println(getModel().getLevel());
+            TempleBuilder templeBuilder = new TempleBuilder((getModel().getLevel() + 1));
+            Temple newTemple = templeBuilder.createTemple();
+            game.setState(new GameState(newTemple, game.getImageLoader()));
+        }
+    }
     }
 
     private void quit(Game game) throws IOException {

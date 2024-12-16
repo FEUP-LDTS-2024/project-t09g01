@@ -27,6 +27,7 @@ public class Position {
         return new Position(x - 1, y);
     }
 
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
