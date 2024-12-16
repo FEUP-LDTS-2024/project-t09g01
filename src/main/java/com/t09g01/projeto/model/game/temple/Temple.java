@@ -72,6 +72,55 @@ public class Temple {
 
     public int getLevel() {return level;}
 
+
+    private boolean checkCollision(Position topLeft, Position bottomRight, List<Block> blocks) {
+        // Iterate through all blocks in the list
+        for (Block block : blocks) {
+            // Get the block's bounding box
+            double blockLeft = block.getPosition().getX();
+            double blockRight = block.getPosition().getX() + 8;
+            double blockTop = block.getPosition().getY();
+            double blockBottom = block.getPosition().getY() + 8;
+
+            // Check if the player overlaps with this block
+            boolean overlaps = !(topLeft.getX() >= blockRight ||  // Player is to the right of the block
+                    bottomRight.getX() <= blockLeft || // Player is to the left of the block
+                    topLeft.getY() >= blockBottom ||   // Player is below the block
+                    bottomRight.getY() <= blockTop);   // Player is above the block
+
+            if (overlaps) {
+                return true; // Collision detected
+            }
+        }
+        return false; // No collision
+    }
+
+    public boolean collidesLeft(Position position, List<Block> blocks) {
+        Position topLeft = position;
+        Position bottomRight = new Position(position.getX() + 1, position.getY() + 8 - 1);
+        return checkCollision(topLeft, bottomRight, blocks);
+    }
+
+    public boolean collidesRight(Position position, List<Block> blocks) {
+        Position topLeft = new Position(position.getX() + 8 - 1, position.getY());
+        Position bottomRight = new Position(position.getX() + 8, position.getY() + 8 - 1);
+        return checkCollision(topLeft, bottomRight, blocks);
+    }
+
+    public boolean collidesUp(Position position, List<Block> blocks) {
+        Position topLeft = position;
+        Position bottomRight = new Position(position.getX() + 8 - 1, position.getY() + 1);
+        return checkCollision(topLeft, bottomRight, blocks);
+    }
+
+    public boolean collidesDown(Position position, List<Block> blocks) {
+        Position topLeft = new Position(position.getX(), position.getY() + 8 - 2);
+        Position bottomRight = new Position(position.getX() + 8 - 1, position.getY() + 8 - 1);
+        boolean collisionDetected = checkCollision(topLeft, bottomRight, blocks);
+        System.out.println("Collides down check: " + collisionDetected + " for position: " + position.getX() + ", " + position.getY());
+        return checkCollision(topLeft, bottomRight, blocks);
+    }
+
     public boolean checkCollisions(Position position) {
         double playerX = position.getX();
         double playerY = position.getY();

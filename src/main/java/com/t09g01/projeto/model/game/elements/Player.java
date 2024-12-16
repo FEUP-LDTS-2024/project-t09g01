@@ -3,22 +3,29 @@ package com.t09g01.projeto.model.game.elements;
 import com.t09g01.projeto.model.Position;
 import com.t09g01.projeto.model.game.temple.Temple;
 
+import java.awt.*;
+
 public class Player extends Element {
 
     private final int WIDTH = 7;
     private final int HEIGHT = 8;
     private Position velocity;
     private final Temple temple;
+    private float VELOCITY = 250F;
+    private int horizontalSpeed = 1;
+    private boolean direction = true; // true = right, false = left
     private Position lastPosition;
     //private int isJumping = 0;
     private long jumpStart;
     private int jumpHeight = 50;
+    private int gravity = 1000;
 
     private boolean isJumping;
 
     private boolean hasLanded;
     private boolean isFalling;
-    private boolean isFacingRight;
+
+
 
     private final Position maxVelocity = new Position(2.0, 3.0) ;
     private final double acceleration = 0.5;
@@ -32,6 +39,14 @@ public class Player extends Element {
         this.velocity = new Position(1,1);
         this.temple = temple;
 
+//        Polygon playerHitbox = new Polygon();
+//
+//        playerHitbox.addPoint(x - 8, y - 8);
+//        playerHitbox.addPoint(x, y - 8);
+//        playerHitbox.addPoint(x - 8, y + 1);
+//        playerHitbox.addPoint(x, y + 1);
+//        this.hitbox = playerHitbox;
+
     }
 
     public int getWidth() {return WIDTH;}
@@ -44,6 +59,31 @@ public class Player extends Element {
 
     public void setVelocity(Position velocity) {
         this.velocity = velocity;
+    }
+
+    public int getGravity() {
+        return gravity;
+    }
+
+    public void setGravity(int gravity) {
+        this.gravity = gravity;
+    }
+
+    public boolean isDirection() {
+        return direction;
+    }
+
+    public void setDirection(boolean direction) {
+        this.direction = direction;
+    }
+
+    public int getHorizontalSpeed() {
+        return horizontalSpeed;
+    }
+
+    @Override
+    public void setPosition(Position position) {
+        super.setPosition(new Position(position.getX(), position.getY()));
     }
 
     public Position getMaxVelocity() {
