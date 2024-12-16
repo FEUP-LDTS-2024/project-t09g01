@@ -4,6 +4,7 @@ import com.t09g01.projeto.view.ImageLoader;
 import com.t09g01.projeto.view.elements.*;
 import com.t09g01.projeto.view.game.ScreenViewer;
 import com.t09g01.projeto.view.screens.EntryViewer;
+import com.t09g01.projeto.view.screens.LogoViewer;
 
 import java.io.IOException;
 
@@ -20,6 +21,7 @@ public class ViewerProvider {
     private final RedDoorViewer redDoorViewer;
     private final EntryViewer entryViewer;
     private final TextViewer textViewer;
+    private final LogoViewer logoViewer;
 
     public ViewerProvider(ImageLoader imageLoader) throws IOException {
         this.fireboyViewer = new FireboyViewer();
@@ -34,6 +36,7 @@ public class ViewerProvider {
         this.redDoorViewer = new RedDoorViewer();
         this.textViewer = new GameTextViewer();
         this.entryViewer = new EntryViewer(textViewer);
+        this.logoViewer = new LogoViewer(imageLoader);
     }
 
     public FireboyViewer getFireboyViewer() {
@@ -83,4 +86,6 @@ public class ViewerProvider {
     public TextViewer getTextViewer() {
         return textViewer;
     }
+
+    public LogoViewer getLogoViewer() {return logoViewer;}
 }

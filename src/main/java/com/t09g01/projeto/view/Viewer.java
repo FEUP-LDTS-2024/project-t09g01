@@ -47,6 +47,19 @@ public class Viewer {
         return textImage;
     }
 
+    public void draw(GUI gui, int a, int b){                           // a e b representam as coordenadas de início onde a imagem deve ser desenhada na tela
+        for (int y = 0; y < image.getHeight(); y++) {                  // x e y são as coordenadas dos pixels dentro da imagem
+            for (int x = 0; x < image.getWidth(); x++) {
+                int rgb = image.getRGB(x, y);                         // valor do RGB do pixel
+                TextColor.RGB color = getLanternaColor(rgb);          // mapear para cor no Lanterna
+                if (rgb >> 24 == 0){
+                    continue;
+                }
+                gui.drawPixel(a + x,b + y, color);              // desenhar o pixel
+            }
+        }
+    }
+
     public TextColor.RGB getLanternaColor(int rgb){
         int red = (rgb >> 16) & 0xFF;
         int green = (rgb >> 8) & 0xFF;

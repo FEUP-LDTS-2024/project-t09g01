@@ -7,9 +7,9 @@ public class Fireboy extends Player{
     private boolean hasLanded;
     private boolean isFalling;
     private Position velocity;
-    private final Position maxVelocity = new Position(3.0, 4.0);
-    private final double acceleration = 1.0;
-    private final double jump_boost = 4.0;
+    private final Position maxVelocity = new Position(2.7, 3.6);
+    private final double acceleration = 0.8;
+    private final double jump_boost = 5.0;
 
     public Fireboy(int x, int y, Temple temple){
         super(x,y, temple);
