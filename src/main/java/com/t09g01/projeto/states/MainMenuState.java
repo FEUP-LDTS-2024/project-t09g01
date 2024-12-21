@@ -5,8 +5,8 @@ import com.t09g01.projeto.control.screens.EntryController;
 import com.t09g01.projeto.control.screens.MainMenuController;
 
 import com.t09g01.projeto.model.menu.MainMenu;
-import com.t09g01.projeto.view.ImageLoader;
-import com.t09g01.projeto.view.game.ScreenViewer;
+import com.t09g01.projeto.view.image.ImageLoader;
+import com.t09g01.projeto.view.screens.ScreenViewer;
 import com.t09g01.projeto.view.screens.MenuViewer;
 import com.t09g01.projeto.view.text.ViewerProvider;
 

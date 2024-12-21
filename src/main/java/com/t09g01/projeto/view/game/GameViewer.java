@@ -7,6 +7,17 @@ import com.t09g01.projeto.model.Position;
 import com.t09g01.projeto.model.game.elements.Element;
 import com.t09g01.projeto.model.game.temple.Temple;
 import com.t09g01.projeto.view.elements.*;
+import com.t09g01.projeto.view.elements.blocks.BrickViewer;
+import com.t09g01.projeto.view.elements.blocks.GooViewer;
+import com.t09g01.projeto.view.elements.blocks.LavaViewer;
+import com.t09g01.projeto.view.elements.blocks.WaterViewer;
+import com.t09g01.projeto.view.elements.diamonds.BlueDiamondViewer;
+import com.t09g01.projeto.view.elements.diamonds.RedDiamondViewer;
+import com.t09g01.projeto.view.elements.doors.BlueDoorViewer;
+import com.t09g01.projeto.view.elements.doors.RedDoorViewer;
+import com.t09g01.projeto.view.elements.players.FireboyViewer;
+import com.t09g01.projeto.view.elements.players.WatergirlViewer;
+import com.t09g01.projeto.view.screens.ScreenViewer;
 import com.t09g01.projeto.view.text.ViewerProvider;
 
 import java.io.IOException;

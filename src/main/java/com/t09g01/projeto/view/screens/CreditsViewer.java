@@ -3,11 +3,10 @@ package com.t09g01.projeto.view.screens;
 import com.googlecode.lanterna.TextColor;
 import com.t09g01.projeto.gui.GUI;
 import com.t09g01.projeto.model.menu.Entry;
-import com.t09g01.projeto.view.game.ScreenViewer;
 import com.t09g01.projeto.model.menu.Menu;
 import com.t09g01.projeto.view.text.TextViewer;
 import com.t09g01.projeto.view.text.ViewerProvider;
-import com.t09g01.projeto.model.gameover.Credits;
+import com.t09g01.projeto.model.screens.Credits;
 
 import java.io.IOException;
 import java.util.List;

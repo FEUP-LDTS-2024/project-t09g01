@@ -1,7 +1,7 @@
 package com.t09g01.projeto.view.screens;
 
 import com.t09g01.projeto.gui.GUI;
-import com.t09g01.projeto.view.ImageLoader;
+import com.t09g01.projeto.view.image.ImageLoader;
 import com.t09g01.projeto.view.Viewer;
 
 import java.io.IOException;

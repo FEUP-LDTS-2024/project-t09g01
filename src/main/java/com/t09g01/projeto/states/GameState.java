@@ -5,9 +5,9 @@ import com.t09g01.projeto.control.game.FireboyController;
 import com.t09g01.projeto.control.game.TempleController;
 import com.t09g01.projeto.control.game.WatergirlController;
 import com.t09g01.projeto.model.game.temple.Temple;
-import com.t09g01.projeto.view.ImageLoader;
+import com.t09g01.projeto.view.image.ImageLoader;
 import com.t09g01.projeto.view.game.GameViewer;
-import com.t09g01.projeto.view.game.ScreenViewer;
+import com.t09g01.projeto.view.screens.ScreenViewer;
 import com.t09g01.projeto.view.text.ViewerProvider;
 
 import java.io.IOException;

@@ -1,9 +1,8 @@
 package com.t09g01.projeto.control;
 
 import com.t09g01.projeto.control.game.FireboyController;
-import com.t09g01.projeto.gui.ACTION;
 import com.t09g01.projeto.model.Position;
-import com.t09g01.projeto.model.game.elements.Fireboy;
+import com.t09g01.projeto.model.game.elements.players.Fireboy;
 import com.t09g01.projeto.model.game.temple.Temple;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

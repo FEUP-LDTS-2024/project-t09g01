@@ -1,6 +1,12 @@
 package com.t09g01.projeto.model.game.temple;
 
-import com.t09g01.projeto.model.game.elements.*;
+import com.t09g01.projeto.model.game.elements.blocks.*;
+import com.t09g01.projeto.model.game.elements.diamonds.BlueDiamond;
+import com.t09g01.projeto.model.game.elements.diamonds.RedDiamond;
+import com.t09g01.projeto.model.game.elements.doors.BlueDoor;
+import com.t09g01.projeto.model.game.elements.doors.RedDoor;
+import com.t09g01.projeto.model.game.elements.players.Fireboy;
+import com.t09g01.projeto.model.game.elements.players.Watergirl;
 
 import java.io.BufferedReader;
 import java.io.IOException;
