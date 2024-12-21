@@ -22,15 +22,12 @@ public class Temple {
     private List<RedDiamond> redDiamonds;
     private List<BlueDiamond> blueDiamonds;
 
-    private final double gravity;
-
     private BlueDoor blueDoor;
     private RedDoor redDoor;
 
     public Temple(int width, int height, int level){
         this.width = width;
         this.height = height;
-        this.gravity = 0.8;
         this.level = level;
     }
 
@@ -170,123 +167,6 @@ public class Temple {
         return checkCollision(topLeft, bottomRight, blocks);
     }
 
-//    public boolean checkCollisions(Position position) {
-//        double playerX = position.getX();
-//        double playerY = position.getY();
-//
-//        for (Block block : blocks) {
-//            Position blockPosition = block.getPosition();
-//            double blockX = blockPosition.getX();
-//            double blockY = blockPosition.getY();
-//
-//            // Check if the player's 8x8 area overlaps with the block's 8x8 area
-//            if (playerX < blockX + 8 && playerX + 7 > blockX &&
-//                    playerY < blockY + 8 && playerY + 8 > blockY) {
-//                return true;
-//            }
-//        }
-//
-//        for (Lava lava : lavas) {
-//            Position lavaPosition = lava.getPosition();
-//            double lavaX = lavaPosition.getX();
-//            double lavaY = lavaPosition.getY();
-//
-//            if (playerX < lavaX + 8 && playerX + 7 > lavaX &&
-//                    playerY < lavaY + 8 && playerY + 8 > lavaY) {
-//                return true;
-//            }
-//        }
-//
-//        for (Water water : waters) {
-//            Position waterPosition = water.getPosition();
-//            double waterX = waterPosition.getX();
-//            double waterY = waterPosition.getY();
-//
-//            if (playerX < waterX + 8 && playerX + 7 > waterX &&
-//                    playerY < waterY + 8 && playerY + 8 > waterY) {
-//                return true;
-//            }
-//        }
-//
-//        for (Goo goo : goos) {
-//            Position gooPosition = goo.getPosition();
-//            double gooX = gooPosition.getX();
-//            double gooY = gooPosition.getY();
-//
-//            if (playerX < gooX + 8 && playerX + 7 > gooX &&
-//                    playerY < gooY + 8 && playerY + 8 > gooY) {
-//                return true;
-//            }
-//        }
-//        return false;
-//    }
-//
-//    public boolean floorCollision(Position position) {
-//        double playerX = position.getX();
-//        double playerY = position.getY();
-//
-//        for (Block block : blocks) {
-//            Position blockPosition = block.getPosition();
-//            double blockX = blockPosition.getX();
-//            double blockY = blockPosition.getY();
-//
-//            // Check if the player's feet are on top of the block
-//            if (playerX < blockX + 8 && playerX + 7 > blockX &&
-//                    playerY + 8 == blockY) {
-//                return true;
-//            }
-//        }
-//        return false;
-//    }
-//
-//    public boolean checkCollisionLeft(Position position) {
-//        double playerX = position.getX();
-//        double playerY = position.getY();
-//
-//        for (Block block : blocks) {
-//            Position blockPosition = block.getPosition();
-//            double blockX = blockPosition.getX();
-//            double blockY = blockPosition.getY();
-//
-//            if (playerX == blockX + 8 && playerY < blockY + 8 && playerY + 8 > blockY) {
-//                return true;
-//            }
-//        }
-//        return false;
-//    }
-//
-//    public boolean checkCollisionRight(Position position) {
-//        double playerX = position.getX();
-//        double playerY = position.getY();
-//
-//        for (Block block : blocks) {
-//            Position blockPosition = block.getPosition();
-//            double blockX = blockPosition.getX();
-//            double blockY = blockPosition.getY();
-//
-//            if (playerX + 8 == blockX && playerY < blockY + 8 && playerY + 8 > blockY) {
-//                return true;
-//            }
-//        }
-//        return false;
-//    }
-//
-//    public boolean checkCollisionUp(Position position) {
-//        double playerX = position.getX();
-//        double playerY = position.getY();
-//
-//        for (Block block : blocks) {
-//            Position blockPosition = block.getPosition();
-//            double blockX = blockPosition.getX();
-//            double blockY = blockPosition.getY();
-//
-//            if (playerY == blockY + 8 && playerX < blockX + 8 && playerX + 8 > blockX) {
-//                return true;
-//            }
-//        }
-//        return false;
-//    }
-
 
     public boolean gooCollision(Position position) {
         double playerX = position.getX();
@@ -343,14 +223,13 @@ public class Temple {
     }
 
     public void retrieveBlueDiamonds(Position position){
-
         double watergirlX = position.getX();
         double watergirlY = position.getY();
 
         for (BlueDiamond blueDiamond : blueDiamonds) {
             Position blueDiamondPosition = blueDiamond.getPosition();
-            double blueDiamondX = blueDiamond.getPosition().getX();
-            double blueDiamondY = blueDiamond.getPosition().getY();
+            double blueDiamondX = blueDiamondPosition.getX();
+            double blueDiamondY = blueDiamondPosition.getY();
 
             if (watergirlX < blueDiamondX + 6 && watergirlX + 8 > blueDiamondX + 3 &&
                     watergirlY - 3 < blueDiamondY + 3 && watergirlY + 8 > blueDiamondY) {
@@ -367,11 +246,11 @@ public class Temple {
 
         for (RedDiamond redDiamond : redDiamonds) {
             Position redDiamondPosition = redDiamond.getPosition();
-            double blueDiamondX = redDiamond.getPosition().getX();
-            double blueDiamondY = redDiamond.getPosition().getY();
+            double redDiamondX = redDiamondPosition.getX();
+            double redDiamondY = redDiamondPosition.getY();
 
-            if (fireboyX < blueDiamondX + 6 && fireboyX + 8 > blueDiamondX + 3 &&
-                    fireboyY - 3 < blueDiamondY + 3 && fireboyY + 8 > blueDiamondY) {
+            if (fireboyX < redDiamondX + 6 && fireboyX + 8 > redDiamondX + 3 &&
+                    fireboyY - 3 < redDiamondY + 3 && fireboyY + 8 > redDiamondY) {
                 redDiamonds.remove(redDiamond);
                 break;
             }
@@ -397,5 +276,5 @@ public class Temple {
         return blueDiamonds.isEmpty() && redDiamonds.isEmpty();
     }
 
-    public double getGravity() {return gravity;}
+
 }

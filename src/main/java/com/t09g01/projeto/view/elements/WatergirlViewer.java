@@ -10,7 +10,7 @@ import java.io.IOException;
 
 public class WatergirlViewer implements ElementViewer <Watergirl>{
 
-    private BufferedImage image;
+    private final BufferedImage image;
 
     public WatergirlViewer() throws IOException {
         image = Viewer.loadImage("watergirl/water.png");

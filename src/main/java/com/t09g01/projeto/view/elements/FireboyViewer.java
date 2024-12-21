@@ -10,7 +10,7 @@ import java.io.IOException;
 
 public class FireboyViewer implements ElementViewer <Fireboy>{
 
-    private BufferedImage image;
+    private final BufferedImage image;
 
     public FireboyViewer() throws IOException {
         image = Viewer.loadImage("fireboy/fire.png");

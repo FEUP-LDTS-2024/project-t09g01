@@ -3,7 +3,6 @@ package com.t09g01.projeto.view.elements;
 import com.googlecode.lanterna.graphics.BasicTextImage;
 import com.googlecode.lanterna.graphics.TextImage;
 import com.t09g01.projeto.gui.GUI;
-import com.t09g01.projeto.model.game.elements.Block;
 import com.t09g01.projeto.model.game.elements.Water;
 import com.t09g01.projeto.view.Viewer;
 

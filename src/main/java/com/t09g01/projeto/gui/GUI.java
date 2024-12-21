@@ -12,22 +12,19 @@ import com.googlecode.lanterna.screen.Screen;
 public interface GUI {
     Screen getScreen();
 
-    public Set<ACTION> getCurrentActions();
-//    ACTION getNextAction() throws IOException;
+    Set<ACTION> getCurrentActions();
 
     void drawPixel(int x, int y, TextColor.RGB color);
 
-    void drawText(Position position, String text, String color);
-
     void drawRectangle(double x, double y, int width, int height, TextColor color);
 
-    public void drawStatic(Position position, TextImage image);
+    void drawStatic(Position position, TextImage image);
 
-    public void drawMoving(Position position, BufferedImage image);
+    void drawMoving(Position position, BufferedImage image);
 
-    public void drawTextImage(Position position, BufferedImage image, TextImage background);
+    void drawTextImage(Position position, BufferedImage image, TextImage background);
 
-    public TextImage createTextImage(int width, int height);
+    TextImage createTextImage(int width, int height);
 
     void clear();
 

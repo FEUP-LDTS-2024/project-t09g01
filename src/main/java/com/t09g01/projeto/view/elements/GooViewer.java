@@ -11,9 +11,8 @@ import java.io.IOException;
 
 public class GooViewer implements ElementViewer<Goo> {
 
-    private Viewer viewer;
-    private TextImage textImage;
-    private BufferedImage bufferedImage;
+    private final Viewer viewer;
+    private final BufferedImage bufferedImage;
 
     public GooViewer() throws IOException {
         viewer = new Viewer("blocks/goo.png");
@@ -22,7 +21,7 @@ public class GooViewer implements ElementViewer<Goo> {
 
     @Override
     public void draw(Goo goo, GUI gui, BasicTextImage background) {
-        textImage = viewer.convertTextImage(gui, bufferedImage);
+        TextImage textImage = viewer.convertTextImage(gui, bufferedImage);
         gui.drawStatic(goo.getPosition(), textImage);
     }
 }

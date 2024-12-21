@@ -34,8 +34,7 @@ public class GameOverViewer<T extends Menu> extends ScreenViewer<GameOver> {
     public void draw(GUI gui) throws IOException {
         gui.clear();
         drawBackground(gui, backgroundColor);
-        textViewer.draw("GAME", 130, 30, titleColor, gui);
-        textViewer.draw("OVER", 148, 30, titleColor, gui);
+        textViewer.draw("GAME OVER", 145, 60, titleColor, gui);
 
         drawEntries(gui, getModel().getEntries());
         gui.refresh();

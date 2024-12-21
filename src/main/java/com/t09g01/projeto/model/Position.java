@@ -3,6 +3,7 @@ package com.t09g01.projeto.model;
 public class Position {
     private double x;
     private double y;
+    private final int velocity = 2;
 
     public Position(double x, double y){
         this.x = x;
@@ -15,16 +16,16 @@ public class Position {
     public void setY(double y) { this.y = y; }
 
     public Position getUp() {
-        return new Position(x, y - 2);
+        return new Position(x, y - velocity);
     }
     public Position getDown() {
-        return new Position(x, y +2);
+        return new Position(x, y + velocity);
     }
     public Position getRight() {
-        return new Position(x + 2, y);
+        return new Position(x + velocity, y);
     }
     public Position getLeft() {
-        return new Position(x - 2, y);
+        return new Position(x - velocity, y);
     }
 
 

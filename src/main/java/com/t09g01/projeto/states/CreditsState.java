@@ -14,7 +14,6 @@ import java.io.IOException;
 public class CreditsState extends State<Credits>{
     public CreditsState(Credits credits, ImageLoader imageLoader) throws IOException {
         super(credits, imageLoader);
-        //this.temple = temple;
     }
 
     @Override
@@ -23,6 +22,6 @@ public class CreditsState extends State<Credits>{
 
     @Override
     protected ScreenViewer<Credits> getScreenViewer(ViewerProvider viewerProvider) {
-        return new CreditsViewer(getModel(), viewerProvider);
+        return new CreditsViewer<>(getModel(), viewerProvider);
     }
 }

@@ -10,7 +10,7 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 
 public class BlueDiamondViewer implements ElementViewer<BlueDiamond> {
-    private BufferedImage image;
+    private final BufferedImage image;
 
     public BlueDiamondViewer() throws IOException {
         image = Viewer.loadImage("diamonds/blue_diamond.png");

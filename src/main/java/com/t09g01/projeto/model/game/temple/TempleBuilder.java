@@ -1,7 +1,6 @@
 package com.t09g01.projeto.model.game.temple;
 
 import com.t09g01.projeto.model.game.elements.*;
-import com.t09g01.projeto.view.elements.RedDiamondViewer;
 
 import java.io.BufferedReader;
 import java.io.IOException;

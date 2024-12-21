@@ -10,9 +10,8 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 
 public class BlueDoorViewer implements ElementViewer<BlueDoor>{
-    private Viewer viewer;
-    private TextImage textImage;
-    private BufferedImage bufferedImage;
+    private final Viewer viewer;
+    private final BufferedImage bufferedImage;
 
     public BlueDoorViewer() throws IOException {
         viewer = new Viewer("doors/waterdoor.png");
@@ -21,7 +20,7 @@ public class BlueDoorViewer implements ElementViewer<BlueDoor>{
 
     @Override
     public void draw(BlueDoor blueDoor, GUI gui, BasicTextImage background) {
-        textImage = viewer.convertTextImage(gui, bufferedImage);
+        TextImage textImage = viewer.convertTextImage(gui, bufferedImage);
         gui.drawStatic(blueDoor.getPosition(), textImage);
     }
 }

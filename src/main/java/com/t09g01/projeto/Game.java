@@ -20,6 +20,7 @@ public class Game {
     private final LanternaGUI gui;
     private State state;
     private final ImageLoader imageLoader;
+
     public int getNumberOfLevels() {
         return 3;
     }

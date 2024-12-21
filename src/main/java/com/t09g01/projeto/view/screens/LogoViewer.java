@@ -4,7 +4,6 @@ import com.t09g01.projeto.gui.GUI;
 import com.t09g01.projeto.view.ImageLoader;
 import com.t09g01.projeto.view.Viewer;
 
-import java.awt.*;
 import java.io.IOException;
 
 public class LogoViewer {
