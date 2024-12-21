@@ -17,7 +17,6 @@ public class EntryViewer {
             case PLAY -> "PLAY";
             case EXIT -> "EXIT";
             case RETRY -> "RETRY";
-            case INSTRUCTIONS -> "INSTRUCTIONS";
             case RETURN_MENU -> "RETURN TO MENU";
         };
 
