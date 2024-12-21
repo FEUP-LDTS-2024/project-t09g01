@@ -13,11 +13,13 @@ public class Temple {
     private Watergirl watergirl;
     private Fireboy fireboy;
 
-    private List<Block> blocks;
+    private List<Brick> bricks;
 
     private List<Water> waters;
     private List<Lava> lavas;
     private List<Goo> goos;
+
+    private List<Block> blocks;
 
     private List<RedDiamond> redDiamonds;
     private List<BlueDiamond> blueDiamonds;
@@ -44,16 +46,20 @@ public class Temple {
     public void setFireboy(Fireboy fireboy) {this.fireboy = fireboy;}
 
     // Walls and Floors
-    public void setBlocks(List<Block> blocks) {this.blocks = blocks;}
-    public List<Block> getBlocks() {return blocks;}
+    public void setBricks(List<Brick> bricks) {this.bricks = bricks;}
+    public List<Brick> getBricks() {return bricks;}
 
-    // Fluids
     public List<Water> getWater() {return waters;}
     public void setWater (List<Water> waters) { this.waters = waters; }
     public List<Lava> getLava() { return lavas; }
     public void setLava(List<Lava> lavas) { this.lavas = lavas; }
     public List<Goo> getGoo() { return goos; }
     public void setGoo(List<Goo> goos) { this.goos = goos; }
+
+    public void setBlocks(List<Block> blocks) {this.blocks = blocks;}
+    public List<Block> getBlocks() {return blocks;}
+
+
 
     // Diamonds
     public List<RedDiamond> getRedDiamond() {return redDiamonds;}
@@ -71,73 +77,21 @@ public class Temple {
 
 
     private boolean checkCollision(Position topLeft, Position bottomRight, List<Block> blocks) {
-        // Iterate through all blocks in the list
         for (Block block : blocks) {
-            // Get the block's bounding box
+            // get the block's bounding box
             double blockLeft = block.getPosition().getX();
-            double blockRight = block.getPosition().getX() + 8;
+            double blockRight = block.getPosition().getX() + 7;
             double blockTop = block.getPosition().getY();
             double blockBottom = block.getPosition().getY() + 8;
 
-            // Check if the player overlaps with this block
-            boolean overlaps = !(topLeft.getX() >= blockRight ||  // Player is to the right of the block
-                    bottomRight.getX() <= blockLeft || // Player is to the left of the block
-                    topLeft.getY() >= blockBottom ||   // Player is below the block
-                    bottomRight.getY() <= blockTop);   // Player is above the block
+            // check if the player overlaps with this block
+            boolean overlaps = !(topLeft.getX() >= blockRight ||  // player is to the right of the block
+                    bottomRight.getX() <= blockLeft || // player is to the left of the block
+                    topLeft.getY() >= blockBottom ||   // player is below the block
+                    bottomRight.getY() <= blockTop);   // player is above the block
 
             if (overlaps) {
-                return true; // Collision detected
-            }
-        }
-
-        for (Lava lava : lavas){
-            // Get the block's bounding box
-            double blockLeft = lava.getPosition().getX();
-            double blockRight = lava.getPosition().getX() + 8;
-            double blockTop = lava.getPosition().getY();
-            double blockBottom = lava.getPosition().getY() + 8;
-
-            boolean overlaps = !(topLeft.getX() >= blockRight ||
-                    bottomRight.getX() <= blockLeft ||
-                    topLeft.getY() >= blockBottom ||
-                    bottomRight.getY() <= blockTop);
-
-            if (overlaps) {
-                return true;
-            }
-        }
-
-        for (Water water : waters){
-            // Get the block's bounding box
-            double blockLeft = water.getPosition().getX();
-            double blockRight = water.getPosition().getX() + 8;
-            double blockTop = water.getPosition().getY();
-            double blockBottom = water.getPosition().getY() + 8;
-
-            // Check if the player overlaps with this block
-            boolean overlaps = !(topLeft.getX() >= blockRight ||  // Player is to the right of the block
-                    bottomRight.getX() <= blockLeft || // Player is to the left of the block
-                    topLeft.getY() >= blockBottom ||   // Player is below the block
-                    bottomRight.getY() <= blockTop);   // Player is above the block
-
-            if (overlaps) {
-                return true; // Collision detected
-            }
-        }
-
-        for (Goo goo : goos){
-            double blockLeft = goo.getPosition().getX();
-            double blockRight = goo.getPosition().getX() + 8;
-            double blockTop = goo.getPosition().getY();
-            double blockBottom = goo.getPosition().getY() + 8;
-
-            boolean overlaps = !(topLeft.getX() >= blockRight ||
-                    bottomRight.getX() <= blockLeft ||
-                    topLeft.getY() >= blockBottom ||
-                    bottomRight.getY() <= blockTop);
-
-            if (overlaps) {
-                return true;
+                return true; // collision detected
             }
         }
         return false;
@@ -151,7 +105,7 @@ public class Temple {
 
     public boolean collidesRight(Position position, List<Block> blocks) {
         Position topLeft = new Position(position.getX() + 8 - 1, position.getY());
-        Position bottomRight = new Position(position.getX() + 8, position.getY() + 8 - 1);
+        Position bottomRight = new Position(position.getX() + 8, position.getY() + 8);
         return checkCollision(topLeft, bottomRight, blocks);
     }
 
@@ -162,8 +116,8 @@ public class Temple {
     }
 
     public boolean collidesDown(Position position, List<Block> blocks) {
-        Position topLeft = new Position(position.getX(), position.getY() + 8 -1);
-        Position bottomRight = new Position(position.getX() + 8 - 1, position.getY() + 8 );
+        Position topLeft = new Position(position.getX(), position.getY() + 8 - 1);
+        Position bottomRight = new Position(position.getX() + 8 - 2, position.getY() + 8);
         return checkCollision(topLeft, bottomRight, blocks);
     }
 

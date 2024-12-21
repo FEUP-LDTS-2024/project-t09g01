@@ -2,7 +2,6 @@ package com.t09g01.projeto.view.text;
 
 import com.t09g01.projeto.view.ImageLoader;
 import com.t09g01.projeto.view.elements.*;
-import com.t09g01.projeto.view.game.ScreenViewer;
 import com.t09g01.projeto.view.screens.EntryViewer;
 import com.t09g01.projeto.view.screens.LogoViewer;
 
@@ -11,7 +10,7 @@ import java.io.IOException;
 public class ViewerProvider {
     private final FireboyViewer fireboyViewer;
     private final WatergirlViewer watergirlViewer;
-    private final BlockViewer blockViewer;
+    private final BrickViewer brickViewer;
     private final LavaViewer lavaViewer;
     private final WaterViewer waterViewer;
     private final GooViewer gooViewer;
@@ -26,7 +25,7 @@ public class ViewerProvider {
     public ViewerProvider(ImageLoader imageLoader) throws IOException {
         this.fireboyViewer = new FireboyViewer();
         this.watergirlViewer = new WatergirlViewer();
-        this.blockViewer = new BlockViewer();
+        this.brickViewer = new BrickViewer();
         this.lavaViewer = new LavaViewer();
         this.waterViewer = new WaterViewer();
         this.gooViewer = new GooViewer();
@@ -47,8 +46,8 @@ public class ViewerProvider {
         return watergirlViewer;
     }
 
-    public BlockViewer getBlockViewer() {
-        return blockViewer;
+    public BrickViewer getBrickViewer() {
+        return brickViewer;
     }
 
     public LavaViewer getLavaViewer() {
