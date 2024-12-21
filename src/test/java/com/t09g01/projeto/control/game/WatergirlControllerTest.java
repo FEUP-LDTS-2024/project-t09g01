@@ -1,59 +1,188 @@
-package com.t09g01.projeto.control;
+package com.t09g01.projeto.control.game;
 
+import com.t09g01.projeto.Game;
 import com.t09g01.projeto.control.game.WatergirlController;
 import com.t09g01.projeto.gui.ACTION;
 import com.t09g01.projeto.model.Position;
+import com.t09g01.projeto.model.game.elements.Block;
+import com.t09g01.projeto.model.game.elements.Fireboy;
+import com.t09g01.projeto.model.game.elements.Water;
 import com.t09g01.projeto.model.game.elements.Watergirl;
 import com.t09g01.projeto.model.game.temple.Temple;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import java.util.Collections;
+import java.util.List;
+import java.util.Set;
+
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.*;
 
 public class WatergirlControllerTest {
     private Temple temple;
     private WatergirlController controller;
     private Watergirl watergirl;
+    private Position position;
+    private List<Block> blocks;
+
 
     @BeforeEach
     void setUp() {
-        temple = Mockito.mock(Temple.class);
-        watergirl = Mockito.mock(Watergirl.class);
+        this.temple = Mockito.mock(Temple.class);
+        this.watergirl = Mockito.mock(Watergirl.class);
+        this.position = Mockito.mock(Position.class);
+        this.blocks = Mockito.mock(List.class);
+
         when(temple.getWatergirl()).thenReturn(watergirl);
-        when(watergirl.getPosition()).thenReturn(new Position(5,5));
+        when(watergirl.getPosition()).thenReturn(position);
+        when(temple.getBlocks()).thenReturn(blocks);
 
-        controller = new WatergirlController(temple);
+        this.controller = new WatergirlController(temple);
     }
 
     @Test
-    void testMoveRight() {
+    void testMove() {
+        Position newPosition = mock(Position.class);
+
+        controller.moveWatergirl(newPosition);
+
+        verify(watergirl).setPosition(newPosition);
+        verify(temple).retrieveBlueDiamonds(newPosition);
+    }
+
+
+    @Test
+    void testMoveRight_NoCollision() {
+        when(position.getRight()).thenReturn(position);
+        when(temple.collidesRight(position, blocks)).thenReturn(false);
+
         controller.moveWatergirlRight();
-        verify(watergirl).setPosition(new Position(6,5));
+
+        verify(watergirl).setPosition(position);
     }
 
     @Test
-    void testMoveLeft() {
+    void testMoveRight_WithCollision() {
+        when(position.getRight()).thenReturn(position);
+        when(temple.collidesRight(position, blocks)).thenReturn(true);
+
+        controller.moveWatergirlRight();
+
+        verify(watergirl, never()).setPosition(any());
+    }
+
+    @Test
+    void testMoveLeft_NoCollision() {
+        when(position.getLeft()).thenReturn(position);
+        when(temple.collidesLeft(position, blocks)).thenReturn(false);
+
         controller.moveWatergirlLeft();
-        verify(watergirl).setPosition(new Position(4,5));
+
+        verify(watergirl).setPosition(position);
     }
 
     @Test
-    void testMoveUp() {
+    void testMoveLeft_WithCollision() {
+        when(position.getLeft()).thenReturn(position);
+        when(temple.collidesLeft(position, blocks)).thenReturn(true);
+
+        controller.moveWatergirlLeft();
+
+        verify(watergirl, never()).setPosition(any());
+    }
+
+    @Test
+    void testMoveUp_NoCollision() {
+        when(position.getUp()).thenReturn(position);
+        when(temple.collidesUp(position, blocks)).thenReturn(false);
+
         controller.moveWatergirlUp();
-        verify(watergirl).setPosition(new Position(5,6));
+
+        verify(watergirl).setPosition(position);
     }
 
     @Test
-    void testMoveDown() {
-        controller.moveWatergirlDown();
-        verify(watergirl).setPosition(new Position(5,4));
+    void testMoveUp_WithCollision() {
+        when(position.getUp()).thenReturn(position);
+        when(temple.collidesUp(position, blocks)).thenReturn(true);
+
+        controller.moveWatergirlUp();
+
+        verify(watergirl, never()).setPosition(any());
     }
 
-//    @Test
-//    void testStep() {
-//        controller.step(null, ACTION.WATERGIRL_LEFT, 100);
-//        verify(watergirl).setPosition(new Position(4,5));
-//    }
+    @Test
+    void testMoveDown_NoCollision() {
+        when(position.getDown()).thenReturn(position);
+        when(temple.collidesDown(position, blocks)).thenReturn(false);
+
+        controller.moveWatergirlDown();
+
+        verify(watergirl).setPosition(position);
+    }
+
+    @Test
+    void testMoveDown_WithCollision() {
+        when(position.getDown()).thenReturn(position);
+        when(temple.collidesDown(position, blocks)).thenReturn(true);
+
+        controller.moveWatergirlDown();
+
+        verify(watergirl, never()).setPosition(any());
+    }
+
+    @Test
+    void testStepRight() {
+        Game game = mock(Game.class);
+        when(position.getRight()).thenReturn(position);
+        when(temple.collidesRight(position, blocks)).thenReturn(false);
+
+        controller.step(game, Set.of(ACTION.WATERGIRL_RIGHT), System.currentTimeMillis());
+
+        verify(watergirl).setPosition(position);
+    }
+
+    @Test
+    void testStepLeft() {
+        Game game = mock(Game.class);
+        when(position.getLeft()).thenReturn(position);
+        when(temple.collidesRight(position, blocks)).thenReturn(false);
+
+        controller.step(game, Set.of(ACTION.WATERGIRL_LEFT), System.currentTimeMillis());
+
+        verify(watergirl).setPosition(position);
+    }
+
+    @Test
+    void testStepUp() {
+        Game game = mock(Game.class);
+        when(position.getUp()).thenReturn(position);
+        when(temple.collidesRight(position, blocks)).thenReturn(false);
+
+        controller.step(game, Set.of(ACTION.WATERGIRL_UP), System.currentTimeMillis());
+
+        verify(watergirl).setPosition(position);
+    }
+
+    @Test
+    void testStepDown() {
+        Game game = mock(Game.class);
+        when(position.getDown()).thenReturn(position);
+        when(temple.collidesRight(position, blocks)).thenReturn(false);
+
+        controller.step(game, Set.of(ACTION.WATERGIRL_DOWN), System.currentTimeMillis());
+
+        verify(watergirl).setPosition(position);
+    }
+
+    @Test
+    void testStep_NoActions() {
+        Game game = mock(Game.class);
+
+        controller.step(game, Collections.emptySet(), System.currentTimeMillis());
+
+        verify(watergirl, never()).setPosition(any());
+    }
 }
