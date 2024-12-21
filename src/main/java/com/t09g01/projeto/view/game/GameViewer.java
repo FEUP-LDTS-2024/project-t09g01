@@ -23,18 +23,12 @@ import com.t09g01.projeto.view.text.ViewerProvider;
 import java.io.IOException;
 import java.util.List;
 
-
-
 public class GameViewer extends ScreenViewer<Temple> {
     private final BasicTextImage background;
-    private final FireboyViewer fireboyViewer;
-    private final WatergirlViewer watergirlViewer;
 
     public GameViewer(Temple temple, ViewerProvider viewerProvider) {
         super(temple);
         this.background =  new BasicTextImage(temple.getHeight(), temple.getWidth());
-        this.fireboyViewer = viewerProvider.getFireboyViewer();
-        this.watergirlViewer = viewerProvider.getWatergirlViewer();
     }
 
     public final static TextColor.RGB windowColor = new TextColor.RGB(76, 68, 87);
