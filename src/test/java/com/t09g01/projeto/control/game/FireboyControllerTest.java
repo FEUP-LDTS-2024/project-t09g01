@@ -51,7 +51,7 @@ public class FireboyControllerTest {
 
 
     @Test
-    void testRight_NoCollision() {
+    void testMoveRight_NoCollision() {
         when(position.getRight()).thenReturn(position);
         when(temple.collidesRight(position, blocks)).thenReturn(false);
 
@@ -61,7 +61,7 @@ public class FireboyControllerTest {
     }
 
     @Test
-    void testRight_WithCollision() {
+    void testMoveRight_WithCollision() {
         when(position.getRight()).thenReturn(position);
         when(temple.collidesRight(position, blocks)).thenReturn(true);
 
@@ -71,7 +71,7 @@ public class FireboyControllerTest {
     }
 
     @Test
-    void testLeft_NoCollision() {
+    void testMoveLeft_NoCollision() {
         when(position.getLeft()).thenReturn(position);
         when(temple.collidesLeft(position, blocks)).thenReturn(false);
 
@@ -81,7 +81,7 @@ public class FireboyControllerTest {
     }
 
     @Test
-    void testLeft_WithCollision() {
+    void testMoveLeft_WithCollision() {
         when(position.getLeft()).thenReturn(position);
         when(temple.collidesLeft(position, blocks)).thenReturn(true);
 
@@ -91,7 +91,7 @@ public class FireboyControllerTest {
     }
 
     @Test
-    void testUp_NoCollision() {
+    void testMoveUp_NoCollision() {
         when(position.getUp()).thenReturn(position);
         when(temple.collidesUp(position, blocks)).thenReturn(false);
 
@@ -101,7 +101,7 @@ public class FireboyControllerTest {
     }
 
     @Test
-    void testUp_WithCollision() {
+    void testMoveUp_WithCollision() {
         when(position.getUp()).thenReturn(position);
         when(temple.collidesUp(position, blocks)).thenReturn(true);
 
@@ -111,7 +111,7 @@ public class FireboyControllerTest {
     }
 
     @Test
-    void testDown_NoCollision() {
+    void testMoveDown_NoCollision() {
         when(position.getDown()).thenReturn(position);
         when(temple.collidesDown(position, blocks)).thenReturn(false);
 
@@ -121,7 +121,7 @@ public class FireboyControllerTest {
     }
 
     @Test
-    void testDown_WithCollision() {
+    void testMoveDown_WithCollision() {
         when(position.getDown()).thenReturn(position);
         when(temple.collidesDown(position, blocks)).thenReturn(true);
 
@@ -131,12 +131,45 @@ public class FireboyControllerTest {
     }
 
     @Test
-    void testStep_WithActions() {
+    void testStepRight() {
         Game game = mock(Game.class);
         when(position.getRight()).thenReturn(position);
         when(temple.collidesRight(position, blocks)).thenReturn(false);
 
         controller.step(game, Set.of(ACTION.FIREBOY_RIGHT), System.currentTimeMillis());
+
+        verify(fireboy).setPosition(position);
+    }
+
+    @Test
+    void testStepLeft() {
+        Game game = mock(Game.class);
+        when(position.getLeft()).thenReturn(position);
+        when(temple.collidesRight(position, blocks)).thenReturn(false);
+
+        controller.step(game, Set.of(ACTION.FIREBOY_LEFT), System.currentTimeMillis());
+
+        verify(fireboy).setPosition(position);
+    }
+
+    @Test
+    void testStepUp() {
+        Game game = mock(Game.class);
+        when(position.getUp()).thenReturn(position);
+        when(temple.collidesRight(position, blocks)).thenReturn(false);
+
+        controller.step(game, Set.of(ACTION.FIREBOY_UP), System.currentTimeMillis());
+
+        verify(fireboy).setPosition(position);
+    }
+
+    @Test
+    void testStepDown() {
+        Game game = mock(Game.class);
+        when(position.getDown()).thenReturn(position);
+        when(temple.collidesRight(position, blocks)).thenReturn(false);
+
+        controller.step(game, Set.of(ACTION.FIREBOY_DOWN), System.currentTimeMillis());
 
         verify(fireboy).setPosition(position);
     }
