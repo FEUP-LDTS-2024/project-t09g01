@@ -15,7 +15,7 @@ public class RedDoorTest {
     }
 
     @Test
-    void testRedDoorInitialization() {
+    void testInitialization() {
         Position position = redDoor.getPosition();
         assertEquals(10, position.getX());
         assertEquals(20, position.getY());

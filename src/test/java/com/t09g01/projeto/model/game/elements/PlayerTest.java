@@ -19,7 +19,7 @@ public class PlayerTest {
     }
 
     @Test
-    void testPlayerInstantiation() {
+    void testInstantiation() {
         Position position = player.getPosition();  // Assuming Player has a method getPosition()
         assertEquals(5, position.getX());
         assertEquals(10, position.getY());

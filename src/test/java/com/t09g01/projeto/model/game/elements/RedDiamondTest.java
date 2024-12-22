@@ -15,7 +15,7 @@ public class RedDiamondTest {
     }
 
     @Test
-    void testBlueDoorInitialization() {
+    void testInitialization() {
         Position position = redDiamond.getPosition();
         assertEquals(10, position.getX());
         assertEquals(20, position.getY());

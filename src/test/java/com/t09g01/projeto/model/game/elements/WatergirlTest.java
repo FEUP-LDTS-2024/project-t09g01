@@ -19,7 +19,7 @@ public class WatergirlTest {
     }
 
     @Test
-    void testWatergirlInitialization() {
+    void testInitialization() {
         Position position = watergirl.getPosition();
         assertEquals(5, position.getX());
         assertEquals(10, position.getY());
