@@ -74,27 +74,23 @@ public class Temple {
 
 
     private boolean checkCollision(Position topLeft, Position bottomRight, List<Block> blocks) {
-        // Iterate through all blocks in the list
         for (Block block : blocks) {
-            // Get the block's bounding box
             double blockLeft = block.getPosition().getX();
             double blockRight = block.getPosition().getX() + 8;
             double blockTop = block.getPosition().getY();
             double blockBottom = block.getPosition().getY() + 8;
 
-            // Check if the player overlaps with this block
-            boolean overlaps = !(topLeft.getX() >= blockRight ||  // Player is to the right of the block
-                    bottomRight.getX() <= blockLeft || // Player is to the left of the block
-                    topLeft.getY() >= blockBottom ||   // Player is below the block
-                    bottomRight.getY() <= blockTop);   // Player is above the block
+            boolean overlaps = !(topLeft.getX() >= blockRight ||
+                    bottomRight.getX() <= blockLeft ||
+                    topLeft.getY() >= blockBottom ||
+                    bottomRight.getY() <= blockTop);
 
             if (overlaps) {
-                return true; // Collision detected
+                return true;
             }
         }
 
         for (Lava lava : lavas){
-            // Get the block's bounding box
             double blockLeft = lava.getPosition().getX();
             double blockRight = lava.getPosition().getX() + 8;
             double blockTop = lava.getPosition().getY();
@@ -111,20 +107,18 @@ public class Temple {
         }
 
         for (Water water : waters){
-            // Get the block's bounding box
             double blockLeft = water.getPosition().getX();
             double blockRight = water.getPosition().getX() + 8;
             double blockTop = water.getPosition().getY();
             double blockBottom = water.getPosition().getY() + 8;
 
-            // Check if the player overlaps with this block
-            boolean overlaps = !(topLeft.getX() >= blockRight ||  // Player is to the right of the block
-                    bottomRight.getX() <= blockLeft || // Player is to the left of the block
-                    topLeft.getY() >= blockBottom ||   // Player is below the block
-                    bottomRight.getY() <= blockTop);   // Player is above the block
+            boolean overlaps = !(topLeft.getX() >= blockRight ||
+                    bottomRight.getX() <= blockLeft ||
+                    topLeft.getY() >= blockBottom ||
+                    bottomRight.getY() <= blockTop);
 
             if (overlaps) {
-                return true; // Collision detected
+                return true;
             }
         }
 
@@ -169,124 +163,6 @@ public class Temple {
         Position bottomRight = new Position(position.getX() + 8 - 1, position.getY() + 8 );
         return checkCollision(topLeft, bottomRight, blocks);
     }
-
-//    public boolean checkCollisions(Position position) {
-//        double playerX = position.getX();
-//        double playerY = position.getY();
-//
-//        for (Block block : blocks) {
-//            Position blockPosition = block.getPosition();
-//            double blockX = blockPosition.getX();
-//            double blockY = blockPosition.getY();
-//
-//            // Check if the player's 8x8 area overlaps with the block's 8x8 area
-//            if (playerX < blockX + 8 && playerX + 7 > blockX &&
-//                    playerY < blockY + 8 && playerY + 8 > blockY) {
-//                return true;
-//            }
-//        }
-//
-//        for (Lava lava : lavas) {
-//            Position lavaPosition = lava.getPosition();
-//            double lavaX = lavaPosition.getX();
-//            double lavaY = lavaPosition.getY();
-//
-//            if (playerX < lavaX + 8 && playerX + 7 > lavaX &&
-//                    playerY < lavaY + 8 && playerY + 8 > lavaY) {
-//                return true;
-//            }
-//        }
-//
-//        for (Water water : waters) {
-//            Position waterPosition = water.getPosition();
-//            double waterX = waterPosition.getX();
-//            double waterY = waterPosition.getY();
-//
-//            if (playerX < waterX + 8 && playerX + 7 > waterX &&
-//                    playerY < waterY + 8 && playerY + 8 > waterY) {
-//                return true;
-//            }
-//        }
-//
-//        for (Goo goo : goos) {
-//            Position gooPosition = goo.getPosition();
-//            double gooX = gooPosition.getX();
-//            double gooY = gooPosition.getY();
-//
-//            if (playerX < gooX + 8 && playerX + 7 > gooX &&
-//                    playerY < gooY + 8 && playerY + 8 > gooY) {
-//                return true;
-//            }
-//        }
-//        return false;
-//    }
-//
-//    public boolean floorCollision(Position position) {
-//        double playerX = position.getX();
-//        double playerY = position.getY();
-//
-//        for (Block block : blocks) {
-//            Position blockPosition = block.getPosition();
-//            double blockX = blockPosition.getX();
-//            double blockY = blockPosition.getY();
-//
-//            // Check if the player's feet are on top of the block
-//            if (playerX < blockX + 8 && playerX + 7 > blockX &&
-//                    playerY + 8 == blockY) {
-//                return true;
-//            }
-//        }
-//        return false;
-//    }
-//
-//    public boolean checkCollisionLeft(Position position) {
-//        double playerX = position.getX();
-//        double playerY = position.getY();
-//
-//        for (Block block : blocks) {
-//            Position blockPosition = block.getPosition();
-//            double blockX = blockPosition.getX();
-//            double blockY = blockPosition.getY();
-//
-//            if (playerX == blockX + 8 && playerY < blockY + 8 && playerY + 8 > blockY) {
-//                return true;
-//            }
-//        }
-//        return false;
-//    }
-//
-//    public boolean checkCollisionRight(Position position) {
-//        double playerX = position.getX();
-//        double playerY = position.getY();
-//
-//        for (Block block : blocks) {
-//            Position blockPosition = block.getPosition();
-//            double blockX = blockPosition.getX();
-//            double blockY = blockPosition.getY();
-//
-//            if (playerX + 8 == blockX && playerY < blockY + 8 && playerY + 8 > blockY) {
-//                return true;
-//            }
-//        }
-//        return false;
-//    }
-//
-//    public boolean checkCollisionUp(Position position) {
-//        double playerX = position.getX();
-//        double playerY = position.getY();
-//
-//        for (Block block : blocks) {
-//            Position blockPosition = block.getPosition();
-//            double blockX = blockPosition.getX();
-//            double blockY = blockPosition.getY();
-//
-//            if (playerY == blockY + 8 && playerX < blockX + 8 && playerX + 8 > blockX) {
-//                return true;
-//            }
-//        }
-//        return false;
-//    }
-
 
     public boolean gooCollision(Position position) {
         double playerX = position.getX();
@@ -397,5 +273,4 @@ public class Temple {
         return blueDiamonds.isEmpty() && redDiamonds.isEmpty();
     }
 
-    public double getGravity() {return gravity;}
 }

@@ -20,4 +20,15 @@ public class WaterTest {
         assertEquals(10, position.getX());
         assertEquals(20, position.getY());
     }
+
+    @Test
+    void testSetPosition() {
+        Position newPosition = new Position(30, 40);
+
+        water.setPosition(newPosition);
+
+        Position updatedPosition = water.getPosition();
+        assertEquals(30, updatedPosition.getX(), "X position should be updated");
+        assertEquals(40, updatedPosition.getY(), "Y position should be updated");
+    }
 }
