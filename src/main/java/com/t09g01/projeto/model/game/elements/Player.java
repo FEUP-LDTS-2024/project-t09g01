@@ -13,9 +13,9 @@ public class Player extends Element {
     private final Temple temple;
 
 
-    private final Position maxVelocity = new Position(3.0, 4.0) ;
-    private final double acceleration = 1.0;
-    private final double jump_boost = 4.0;
+//    private final Position maxVelocity = new Position(3.0, 4.0) ;
+//    private final double acceleration = 1.0;
+//    private final double jump_boost = 4.0;
 
 
     public Player(int x, int y, Temple temple){

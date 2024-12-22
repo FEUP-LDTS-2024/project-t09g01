@@ -29,7 +29,6 @@ public abstract class Element {
 
         hitbox.translate(deltaX, deltaY);
     }
-
     public Polygon getPolygon() {
         return hitbox;
     }
