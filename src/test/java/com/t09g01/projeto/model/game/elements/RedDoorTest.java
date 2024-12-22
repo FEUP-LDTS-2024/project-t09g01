@@ -6,17 +6,17 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class BlueDoorTest {
-    private BlueDoor blueDoor;
+public class RedDoorTest {
+    private RedDoor redDoor;
 
     @BeforeEach
     void setUp() {
-        this.blueDoor = new BlueDoor(10, 20);
+        this.redDoor = new RedDoor(10, 20);
     }
 
     @Test
-    void testBlueDoorInitialization() {
-        Position position = blueDoor.getPosition();
+    void testRedDoorInitialization() {
+        Position position = redDoor.getPosition();
         assertEquals(10, position.getX());
         assertEquals(20, position.getY());
     }
