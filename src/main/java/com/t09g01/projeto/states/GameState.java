@@ -29,7 +29,4 @@ public class GameState extends State<Temple>{
     protected ScreenViewer<Temple> getScreenViewer(ViewerProvider viewerProvider) {
         return new GameViewer(getModel(), viewerProvider);
     }
-
-
-
 }
