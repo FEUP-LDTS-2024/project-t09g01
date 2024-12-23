@@ -3,7 +3,7 @@ package com.t09g01.projeto.view.elements.blocks;
 import com.googlecode.lanterna.graphics.TextImage;
 import com.t09g01.projeto.gui.GUI;
 import com.t09g01.projeto.model.Position;
-import com.t09g01.projeto.model.game.elements.blocks.Brick;
+import com.t09g01.projeto.model.game.elements.blocks.Water;
 import com.t09g01.projeto.view.Viewer;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -15,10 +15,10 @@ import java.lang.reflect.Field;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Mockito.*;
 
-public class BrickViewerTester {
-    private BrickViewer brickViewer;
+public class WaterViewerTester {
+    private WaterViewer waterViewer;
     private GUI gui;
-    private Brick brick;
+    private Water water;
     private Viewer viewer;
     private BufferedImage bufferedImage;
     private TextImage textImage;
@@ -26,34 +26,34 @@ public class BrickViewerTester {
     @BeforeEach
     void setUp() throws IOException, NoSuchFieldException, IllegalAccessException {
         gui = mock(GUI.class);
-        brick = mock(Brick.class);
+        water = mock(Water.class);
         viewer = mock(Viewer.class);
         bufferedImage = mock(BufferedImage.class);
         textImage = mock(TextImage.class);
 
         when(viewer.convertTextImage(gui, bufferedImage)).thenReturn(textImage);
 
-        brickViewer = new BrickViewer();
-        Field viewerField = BrickViewer.class.getDeclaredField("viewer");
+        waterViewer = new WaterViewer();
+        Field viewerField = WaterViewer.class.getDeclaredField("viewer");
         viewerField.setAccessible(true);
-        viewerField.set(brickViewer, viewer);
+        viewerField.set(waterViewer, viewer);
 
-        Field bufferedImageField = BrickViewer.class.getDeclaredField("bufferedImage");
+        Field bufferedImageField = WaterViewer.class.getDeclaredField("bufferedImage");
         bufferedImageField.setAccessible(true);
-        bufferedImageField.set(brickViewer, bufferedImage);
+        bufferedImageField.set(waterViewer, bufferedImage);
     }
 
     @Test
-    void testConstructor() throws IOException {
-        assertNotNull(brickViewer);
+    void testConstructor() {
+        assertNotNull(waterViewer);
     }
 
     @Test
-    void testDraw() throws IOException {
+    void testDraw() {
         Position position = new Position(1, 1);
-        when(brick.getPosition()).thenReturn(position);
+        when(water.getPosition()).thenReturn(position);
 
-        brickViewer.draw(brick, gui);
+        waterViewer.draw(water, gui);
 
         verify(gui).drawStatic(eq(position), any(TextImage.class));
     }
