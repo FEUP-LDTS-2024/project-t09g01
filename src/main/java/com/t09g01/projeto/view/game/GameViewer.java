@@ -54,7 +54,7 @@ public class GameViewer extends ScreenViewer<Temple> {
     public BasicTextImage getBackground() { return background; }
 
     private <T extends Element> void drawElement(GUI gui, T element, ElementViewer<T> viewer) {
-        viewer.draw(element, gui, background);
+        viewer.draw(element, gui);
     }
 
     private <T extends Element> void drawElements(GUI gui, List<T> elements, ElementViewer<T> viewer) {

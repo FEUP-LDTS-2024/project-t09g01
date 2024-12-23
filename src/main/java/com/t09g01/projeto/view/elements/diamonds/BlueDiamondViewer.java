@@ -1,7 +1,6 @@
 package com.t09g01.projeto.view.elements.diamonds;
 
 
-import com.googlecode.lanterna.graphics.BasicTextImage;
 import com.t09g01.projeto.gui.GUI;
 import com.t09g01.projeto.model.game.elements.diamonds.BlueDiamond;
 import com.t09g01.projeto.view.Viewer;
@@ -18,7 +17,7 @@ public class BlueDiamondViewer implements ElementViewer<BlueDiamond> {
     }
 
     @Override
-    public void draw(BlueDiamond blueDiamond, GUI gui, BasicTextImage background) {
+    public void draw(BlueDiamond blueDiamond, GUI gui) {
         gui.drawMoving(blueDiamond.getPosition(), image);
     }
 

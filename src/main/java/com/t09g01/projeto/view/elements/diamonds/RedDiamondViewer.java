@@ -1,6 +1,5 @@
 package com.t09g01.projeto.view.elements.diamonds;
 
-import com.googlecode.lanterna.graphics.BasicTextImage;
 import com.t09g01.projeto.gui.GUI;
 import com.t09g01.projeto.model.game.elements.diamonds.RedDiamond;
 import com.t09g01.projeto.view.Viewer;
@@ -17,7 +16,7 @@ public class RedDiamondViewer implements ElementViewer<RedDiamond> {
     }
 
     @Override
-    public void draw(RedDiamond redDiamond, GUI gui, BasicTextImage background) {
+    public void draw(RedDiamond redDiamond, GUI gui) {
         gui.drawMoving(redDiamond.getPosition(), image);
     }
 }

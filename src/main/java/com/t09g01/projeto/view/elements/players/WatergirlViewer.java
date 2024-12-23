@@ -1,6 +1,5 @@
 package com.t09g01.projeto.view.elements.players;
 
-import com.googlecode.lanterna.graphics.BasicTextImage;
 import com.t09g01.projeto.gui.GUI;
 import com.t09g01.projeto.model.game.elements.players.Watergirl;
 import com.t09g01.projeto.view.Viewer;
@@ -18,7 +17,7 @@ public class WatergirlViewer implements ElementViewer<Watergirl> {
     }
 
     @Override
-    public void draw(Watergirl watergirl, GUI gui, BasicTextImage background) {
+    public void draw(Watergirl watergirl, GUI gui) {
         gui.drawMoving(watergirl.getPosition(), image);
     }
 

@@ -1,6 +1,5 @@
 package com.t09g01.projeto.view.elements.blocks;
 
-import com.googlecode.lanterna.graphics.BasicTextImage;
 import com.googlecode.lanterna.graphics.TextImage;
 import com.t09g01.projeto.gui.GUI;
 import com.t09g01.projeto.model.game.elements.blocks.Brick;
@@ -22,7 +21,7 @@ public class BrickViewer implements ElementViewer<Brick> {
     }
 
     @Override
-    public void draw(Brick brick, GUI gui, BasicTextImage background) {
+    public void draw(Brick brick, GUI gui) {
         TextImage textImage = viewer.convertTextImage(gui, bufferedImage);
         gui.drawStatic(brick.getPosition(), textImage);
     }

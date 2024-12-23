@@ -1,6 +1,5 @@
 package com.t09g01.projeto.view.elements.blocks;
 
-import com.googlecode.lanterna.graphics.BasicTextImage;
 import com.googlecode.lanterna.graphics.TextImage;
 import com.t09g01.projeto.gui.GUI;
 import com.t09g01.projeto.model.game.elements.blocks.Lava;
@@ -21,7 +20,7 @@ public class LavaViewer implements ElementViewer<Lava> {
     }
 
     @Override
-    public void draw(Lava lava, GUI gui, BasicTextImage background) {
+    public void draw(Lava lava, GUI gui) {
         TextImage textImage = viewer.convertTextImage(gui, bufferedImage);
         gui.drawStatic(lava.getPosition(), textImage);
     }
