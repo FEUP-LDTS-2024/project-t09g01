@@ -1,6 +1,7 @@
 package com.t09g01.projeto.model.game.elements;
 
 import com.t09g01.projeto.model.Position;
+import com.t09g01.projeto.model.game.elements.diamonds.RedDiamond;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

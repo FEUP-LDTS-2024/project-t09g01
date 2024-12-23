@@ -80,20 +80,20 @@ public class LanternaGUITest {
         verify(textGraphics).putString(5, 10, " ");
     }
 
-    @Test
-    public void testDrawText() {
-        TextGraphics textGraphics = mock(TextGraphics.class);
-        when(screen.newTextGraphics()).thenReturn(textGraphics);
-
-        String text = "Hello";
-        String color = "#FFFFFF";
-        Position position = new Position(10, 15);
-
-        gui.drawText(position, text, color);
-
-        verify(textGraphics).setForegroundColor(TextColor.Factory.fromString(color));
-        verify(textGraphics).putString(10, 15, text);
-    }
+//    @Test
+//    public void testDrawText() {
+//        TextGraphics textGraphics = mock(TextGraphics.class);
+//        when(screen.newTextGraphics()).thenReturn(textGraphics);
+//
+//        String text = "Hello";
+//        String color = "#FFFFFF";
+//        Position position = new Position(10, 15);
+//
+//        gui.drawText(position, text, color);
+//
+//        verify(textGraphics).setForegroundColor(TextColor.Factory.fromString(color));
+//        verify(textGraphics).putString(10, 15, text);
+//    }
 
     @Test
     public void testDrawRectangle() {

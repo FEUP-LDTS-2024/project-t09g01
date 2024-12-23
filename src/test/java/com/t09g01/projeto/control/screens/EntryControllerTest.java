@@ -6,7 +6,7 @@ import com.t09g01.projeto.model.menu.Entry;
 import com.t09g01.projeto.model.menu.Menu;
 import com.t09g01.projeto.states.GameState;
 import com.t09g01.projeto.states.MainMenuState;
-import com.t09g01.projeto.view.ImageLoader;
+import com.t09g01.projeto.view.image.ImageLoader;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;

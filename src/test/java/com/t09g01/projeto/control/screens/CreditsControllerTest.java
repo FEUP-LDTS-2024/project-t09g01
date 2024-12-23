@@ -2,8 +2,8 @@ package com.t09g01.projeto.control.screens;
 
 import com.t09g01.projeto.Game;
 import com.t09g01.projeto.gui.ACTION;
-import com.t09g01.projeto.model.gameover.Credits;
-import com.t09g01.projeto.view.ImageLoader;
+import com.t09g01.projeto.model.screens.Credits;
+import com.t09g01.projeto.view.image.ImageLoader;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;

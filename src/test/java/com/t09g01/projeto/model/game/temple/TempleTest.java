@@ -1,7 +1,10 @@
 package com.t09g01.projeto.model.game.temple;
 
 import com.t09g01.projeto.model.Position;
-import com.t09g01.projeto.model.game.elements.*;
+import com.t09g01.projeto.model.game.elements.blocks.*;
+import com.t09g01.projeto.model.game.elements.players.*;
+import com.t09g01.projeto.model.game.elements.diamonds.*;
+import com.t09g01.projeto.model.game.elements.doors.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -43,8 +46,7 @@ public class TempleTest {
     }
 
     @Test
-    void testBlocks() {
-        Block block = new Block(5, 5);
+    void testBlocks() {Block block = new Block(5, 5);
         List<Block> blocks = Collections.singletonList(block);
 
         temple.setBlocks(blocks);

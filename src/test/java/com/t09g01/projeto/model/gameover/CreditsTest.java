@@ -2,6 +2,7 @@ package com.t09g01.projeto.model.gameover;
 
 import com.t09g01.projeto.model.Position;
 import com.t09g01.projeto.model.menu.Entry;
+import com.t09g01.projeto.model.screens.Credits;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;

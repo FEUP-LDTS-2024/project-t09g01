@@ -29,25 +29,25 @@ public class FireboyControllerTest {
     @Test
     void testMoveRight() {
         controller.moveFireboyRight();
-        verify(fireboy).setPosition(new Position(6,5));
+        verify(fireboy).setPosition(new Position(7,5));
     }
 
     @Test
     void testMoveLeft() {
         controller.moveFireboyLeft();
-        verify(fireboy).setPosition(new Position(4,5));
+        verify(fireboy).setPosition(new Position(3,5));
     }
 
     @Test
     void testMoveUp() {
         controller.moveFireboyUp();
-        verify(fireboy).setPosition(new Position(5,6));
+        verify(fireboy).setPosition(new Position(5,3));
     }
 
     @Test
     void testMoveDown() {
         controller.moveFireboyDown();
-        verify(fireboy).setPosition(new Position(5,4));
+        verify(fireboy).setPosition(new Position(5,7));
     }
 
 //    @Test

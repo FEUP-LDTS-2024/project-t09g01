@@ -70,12 +70,10 @@ public class LanternaGUI implements GUI {
                 if (action != ACTION.NONE) {
                     currentActions.remove(action);
                 }
-<<<<<<< HEAD
                 System.out.println("key released:");
                 System.out.println();
                 System.out.println(action);
-=======
->>>>>>> develop
+
             }
         });
 
@@ -196,8 +194,5 @@ public class LanternaGUI implements GUI {
     public void close() throws IOException {
         screen.close();
     }
-<<<<<<< HEAD
-=======
 
->>>>>>> develop
 }

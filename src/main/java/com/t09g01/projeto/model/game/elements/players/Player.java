@@ -18,12 +18,8 @@ public class Player extends Element {
     public int getWidth() {return WIDTH;}
     public int getHeight() {return HEIGHT;}
 
-    protected Temple getTemple() {
+    public Temple getTemple() {
         return temple;
     }
-
-
-
-
 
 }

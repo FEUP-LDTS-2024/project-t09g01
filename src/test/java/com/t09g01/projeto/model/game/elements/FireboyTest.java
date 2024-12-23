@@ -2,6 +2,7 @@ package com.t09g01.projeto.model.game.elements;
 
 import com.t09g01.projeto.model.Position;
 import com.t09g01.projeto.model.game.temple.Temple;
+import com.t09g01.projeto.model.game.elements.players.Fireboy;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;

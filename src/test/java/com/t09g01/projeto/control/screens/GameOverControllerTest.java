@@ -2,7 +2,7 @@ package com.t09g01.projeto.control.screens;
 
 import com.t09g01.projeto.Game;
 import com.t09g01.projeto.gui.ACTION;
-import com.t09g01.projeto.model.gameover.GameOver;
+import com.t09g01.projeto.model.screens.GameOver;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;

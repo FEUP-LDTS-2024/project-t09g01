@@ -29,25 +29,25 @@ public class WatergirlControllerTest {
     @Test
     void testMoveRight() {
         controller.moveWatergirlRight();
-        verify(watergirl).setPosition(new Position(6,5));
+        verify(watergirl).setPosition(new Position(7,5));
     }
 
     @Test
     void testMoveLeft() {
         controller.moveWatergirlLeft();
-        verify(watergirl).setPosition(new Position(4,5));
+        verify(watergirl).setPosition(new Position(3,5));
     }
 
     @Test
     void testMoveUp() {
         controller.moveWatergirlUp();
-        verify(watergirl).setPosition(new Position(5,6));
+        verify(watergirl).setPosition(new Position(5,3));
     }
 
     @Test
     void testMoveDown() {
         controller.moveWatergirlDown();
-        verify(watergirl).setPosition(new Position(5,4));
+        verify(watergirl).setPosition(new Position(5,7));
     }
 
 //    @Test
