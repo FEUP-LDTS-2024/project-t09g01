@@ -70,10 +70,6 @@ public class LanternaGUI implements GUI {
                 if (action != ACTION.NONE) {
                     currentActions.remove(action);
                 }
-                System.out.println("key released:");
-                System.out.println();
-                System.out.println(action);
-
             }
         });
 
