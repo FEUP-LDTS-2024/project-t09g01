@@ -20,6 +20,7 @@ public class Game {
     public int getNumberOfLevels() {
         return 3;
     }
+    public State getState() {return state;}
 
     public Game() throws IOException, FontFormatException, URISyntaxException {
         this.gui = new LanternaGUI(320, 192);
@@ -33,7 +34,7 @@ public class Game {
 
     public void setState(State state) {this.state = state;}
 
-    private void start() throws IOException, URISyntaxException, FontFormatException {
+    void start() throws IOException, URISyntaxException, FontFormatException {
         int FPS = 30;
         int frameTime = 1000 / FPS;
 
