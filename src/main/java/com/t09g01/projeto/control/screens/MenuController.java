@@ -3,9 +3,7 @@ package com.t09g01.projeto.control.screens;
 import com.t09g01.projeto.Game;
 import com.t09g01.projeto.control.Controller;
 import com.t09g01.projeto.gui.ACTION;
-import com.t09g01.projeto.model.game.temple.TempleBuilder;
 import com.t09g01.projeto.model.menu.Menu;
-import com.t09g01.projeto.states.GameState;
 
 import java.awt.*;
 import java.io.IOException;

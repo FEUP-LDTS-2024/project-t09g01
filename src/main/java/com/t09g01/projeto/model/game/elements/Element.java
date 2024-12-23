@@ -1,8 +1,7 @@
 package com.t09g01.projeto.model.game.elements;
-import com.googlecode.lanterna.graphics.TextGraphics;
+
 import com.t09g01.projeto.model.Position;
 
-import java.awt.*;
 
 public abstract class Element {
     private Position position;
@@ -16,5 +15,4 @@ public abstract class Element {
     }
 
     public void setPosition(Position position) {this.position = position;}
-
 }

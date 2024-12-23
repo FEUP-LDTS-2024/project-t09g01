@@ -1,7 +1,13 @@
 package com.t09g01.projeto.model.game.temple;
 
 import com.t09g01.projeto.model.Position;
-import com.t09g01.projeto.model.game.elements.*;
+import com.t09g01.projeto.model.game.elements.blocks.*;
+import com.t09g01.projeto.model.game.elements.diamonds.BlueDiamond;
+import com.t09g01.projeto.model.game.elements.diamonds.RedDiamond;
+import com.t09g01.projeto.model.game.elements.doors.BlueDoor;
+import com.t09g01.projeto.model.game.elements.doors.RedDoor;
+import com.t09g01.projeto.model.game.elements.players.Fireboy;
+import com.t09g01.projeto.model.game.elements.players.Watergirl;
 
 import java.util.List;
 
@@ -13,16 +19,16 @@ public class Temple {
     private Watergirl watergirl;
     private Fireboy fireboy;
 
-    private List<Block> blocks;
+    private List<Brick> bricks;
 
     private List<Water> waters;
     private List<Lava> lavas;
     private List<Goo> goos;
 
+    private List<Block> blocks;
+
     private List<RedDiamond> redDiamonds;
     private List<BlueDiamond> blueDiamonds;
-
-    private final double gravity;
 
     private BlueDoor blueDoor;
     private RedDoor redDoor;
@@ -30,7 +36,6 @@ public class Temple {
     public Temple(int width, int height, int level){
         this.width = width;
         this.height = height;
-        this.gravity = 0.8;
         this.level = level;
     }
 
@@ -47,16 +52,18 @@ public class Temple {
     public void setFireboy(Fireboy fireboy) {this.fireboy = fireboy;}
 
     // Walls and Floors
-    public void setBlocks(List<Block> blocks) {this.blocks = blocks;}
-    public List<Block> getBlocks() {return blocks;}
+    public void setBricks(List<Brick> bricks) {this.bricks = bricks;}
+    public List<Brick> getBricks() {return bricks;}
 
-    // Fluids
     public List<Water> getWater() {return waters;}
     public void setWater (List<Water> waters) { this.waters = waters; }
     public List<Lava> getLava() { return lavas; }
     public void setLava(List<Lava> lavas) { this.lavas = lavas; }
     public List<Goo> getGoo() { return goos; }
     public void setGoo(List<Goo> goos) { this.goos = goos; }
+
+    public void setBlocks(List<Block> blocks) {this.blocks = blocks;}
+    public List<Block> getBlocks() {return blocks;}
 
     // Diamonds
     public List<RedDiamond> getRedDiamond() {return redDiamonds;}
@@ -75,59 +82,12 @@ public class Temple {
 
     private boolean checkCollision(Position topLeft, Position bottomRight, List<Block> blocks) {
         for (Block block : blocks) {
+            // get the block's bounding box
             double blockLeft = block.getPosition().getX();
-            double blockRight = block.getPosition().getX() + 8;
+            double blockRight = block.getPosition().getX() + 7;
             double blockTop = block.getPosition().getY();
             double blockBottom = block.getPosition().getY() + 8;
-
-            boolean overlaps = !(topLeft.getX() >= blockRight ||
-                    bottomRight.getX() <= blockLeft ||
-                    topLeft.getY() >= blockBottom ||
-                    bottomRight.getY() <= blockTop);
-
-            if (overlaps) {
-                return true;
-            }
-        }
-
-        for (Lava lava : lavas){
-            double blockLeft = lava.getPosition().getX();
-            double blockRight = lava.getPosition().getX() + 8;
-            double blockTop = lava.getPosition().getY();
-            double blockBottom = lava.getPosition().getY() + 8;
-
-            boolean overlaps = !(topLeft.getX() >= blockRight ||
-                    bottomRight.getX() <= blockLeft ||
-                    topLeft.getY() >= blockBottom ||
-                    bottomRight.getY() <= blockTop);
-
-            if (overlaps) {
-                return true;
-            }
-        }
-
-        for (Water water : waters){
-            double blockLeft = water.getPosition().getX();
-            double blockRight = water.getPosition().getX() + 8;
-            double blockTop = water.getPosition().getY();
-            double blockBottom = water.getPosition().getY() + 8;
-
-            boolean overlaps = !(topLeft.getX() >= blockRight ||
-                    bottomRight.getX() <= blockLeft ||
-                    topLeft.getY() >= blockBottom ||
-                    bottomRight.getY() <= blockTop);
-
-            if (overlaps) {
-                return true;
-            }
-        }
-
-        for (Goo goo : goos){
-            double blockLeft = goo.getPosition().getX();
-            double blockRight = goo.getPosition().getX() + 8;
-            double blockTop = goo.getPosition().getY();
-            double blockBottom = goo.getPosition().getY() + 8;
-
+            
             boolean overlaps = !(topLeft.getX() >= blockRight ||
                     bottomRight.getX() <= blockLeft ||
                     topLeft.getY() >= blockBottom ||
@@ -148,7 +108,7 @@ public class Temple {
 
     public boolean collidesRight(Position position, List<Block> blocks) {
         Position topLeft = new Position(position.getX() + 8 - 1, position.getY());
-        Position bottomRight = new Position(position.getX() + 8, position.getY() + 8 - 1);
+        Position bottomRight = new Position(position.getX() + 8, position.getY() + 8);
         return checkCollision(topLeft, bottomRight, blocks);
     }
 
@@ -159,11 +119,11 @@ public class Temple {
     }
 
     public boolean collidesDown(Position position, List<Block> blocks) {
-        Position topLeft = new Position(position.getX(), position.getY() + 8 -1);
-        Position bottomRight = new Position(position.getX() + 8 - 1, position.getY() + 8 );
+        Position topLeft = new Position(position.getX(), position.getY() + 8 - 1);
+        Position bottomRight = new Position(position.getX() + 8 - 2, position.getY() + 8);
         return checkCollision(topLeft, bottomRight, blocks);
     }
-
+    
     public boolean gooCollision(Position position) {
         double playerX = position.getX();
         double playerY = position.getY();
@@ -219,14 +179,13 @@ public class Temple {
     }
 
     public void retrieveBlueDiamonds(Position position){
-
         double watergirlX = position.getX();
         double watergirlY = position.getY();
 
         for (BlueDiamond blueDiamond : blueDiamonds) {
             Position blueDiamondPosition = blueDiamond.getPosition();
-            double blueDiamondX = blueDiamond.getPosition().getX();
-            double blueDiamondY = blueDiamond.getPosition().getY();
+            double blueDiamondX = blueDiamondPosition.getX();
+            double blueDiamondY = blueDiamondPosition.getY();
 
             if (watergirlX < blueDiamondX + 6 && watergirlX + 8 > blueDiamondX + 3 &&
                     watergirlY - 3 < blueDiamondY + 3 && watergirlY + 8 > blueDiamondY) {
@@ -243,11 +202,11 @@ public class Temple {
 
         for (RedDiamond redDiamond : redDiamonds) {
             Position redDiamondPosition = redDiamond.getPosition();
-            double blueDiamondX = redDiamond.getPosition().getX();
-            double blueDiamondY = redDiamond.getPosition().getY();
+            double redDiamondX = redDiamondPosition.getX();
+            double redDiamondY = redDiamondPosition.getY();
 
-            if (fireboyX < blueDiamondX + 6 && fireboyX + 8 > blueDiamondX + 3 &&
-                    fireboyY - 3 < blueDiamondY + 3 && fireboyY + 8 > blueDiamondY) {
+            if (fireboyX < redDiamondX + 6 && fireboyX + 8 > redDiamondX + 3 &&
+                    fireboyY - 3 < redDiamondY + 3 && fireboyY + 8 > redDiamondY) {
                 redDiamonds.remove(redDiamond);
                 break;
             }
@@ -272,5 +231,5 @@ public class Temple {
     public boolean allDiamondsCollected(){
         return blueDiamonds.isEmpty() && redDiamonds.isEmpty();
     }
-
+    
 }

@@ -3,11 +3,10 @@ package com.t09g01.projeto.view.screens;
 import com.googlecode.lanterna.TextColor;
 import com.t09g01.projeto.gui.GUI;
 import com.t09g01.projeto.model.menu.Entry;
-import com.t09g01.projeto.view.game.ScreenViewer;
 import com.t09g01.projeto.model.menu.Menu;
 import com.t09g01.projeto.view.text.TextViewer;
 import com.t09g01.projeto.view.text.ViewerProvider;
-import com.t09g01.projeto.model.gameover.Credits;
+import com.t09g01.projeto.model.screens.Credits;
 
 import java.io.IOException;
 import java.util.List;
@@ -32,11 +31,11 @@ public class CreditsViewer<T extends Menu> extends ScreenViewer<Credits> {
     public void draw(GUI gui) throws IOException {
         gui.clear();
         drawBackground(gui, backgroundColor);
-        textViewer.draw("THANKS FOR PLAYING!", 130, 30, titleColor, gui);
-        textViewer.draw("CLASS 09 GROUP 01", 130, 40, titleColor, gui);
-        textViewer.draw("CAROLINA FERREIRA", 130, 48, titleColor, gui);
-        textViewer.draw("CONSTANCA FERREIRA", 130, 56, titleColor, gui);
-        textViewer.draw("MARIA LUIZA VIEIRA", 130, 64, titleColor, gui);
+        textViewer.draw("THANKS FOR PLAYING", 130, 30, titleColor, gui);
+        textViewer.draw("CLASS 09 GROUP 01", 130, 50, titleColor, gui);
+        textViewer.draw("CAROLINA FERREIRA", 130, 58, titleColor, gui);
+        textViewer.draw("CONSTANCA FERREIRA", 130, 64, titleColor, gui);
+        textViewer.draw("MARIA LUIZA VIEIRA", 130, 72, titleColor, gui);
         drawEntries(gui, getModel().getEntries());
         gui.refresh();
     }

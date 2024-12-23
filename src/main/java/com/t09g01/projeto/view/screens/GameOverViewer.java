@@ -2,11 +2,8 @@ package com.t09g01.projeto.view.screens;
 
 import com.googlecode.lanterna.TextColor;
 import com.t09g01.projeto.gui.GUI;
-import com.t09g01.projeto.model.Position;
-import com.t09g01.projeto.model.gameover.GameOver;
+import com.t09g01.projeto.model.screens.GameOver;
 import com.t09g01.projeto.model.menu.Entry;
-import com.t09g01.projeto.view.Viewer;
-import com.t09g01.projeto.view.game.ScreenViewer;
 import com.t09g01.projeto.model.menu.Menu;
 import com.t09g01.projeto.view.text.TextViewer;
 import com.t09g01.projeto.view.text.ViewerProvider;
@@ -34,8 +31,7 @@ public class GameOverViewer<T extends Menu> extends ScreenViewer<GameOver> {
     public void draw(GUI gui) throws IOException {
         gui.clear();
         drawBackground(gui, backgroundColor);
-        textViewer.draw("GAME", 130, 30, titleColor, gui);
-        textViewer.draw("OVER", 148, 30, titleColor, gui);
+        textViewer.draw("GAME OVER", 145, 60, titleColor, gui);
 
         drawEntries(gui, getModel().getEntries());
         gui.refresh();

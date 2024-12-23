@@ -7,7 +7,6 @@ import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.BasicTextImage;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.graphics.TextImage;
-import com.googlecode.lanterna.input.KeyStroke;
 import com.googlecode.lanterna.screen.Screen;
 import com.googlecode.lanterna.screen.TerminalScreen;
 import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
@@ -15,7 +14,6 @@ import com.googlecode.lanterna.terminal.Terminal;
 import com.googlecode.lanterna.terminal.swing.AWTTerminalFontConfiguration;
 import com.googlecode.lanterna.terminal.swing.AWTTerminalFrame;
 import com.t09g01.projeto.model.Position;
-import org.w3c.dom.Text;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
@@ -64,9 +62,6 @@ public class LanternaGUI implements GUI {
                 ACTION action = getActionFromKeyCode(event.getKeyCode());
                 if (action != ACTION.NONE) {
                     currentActions.add(action);
-                    System.out.println("key pressed:");
-                    System.out.println(action);
-
                 }
             }
             @Override
@@ -75,9 +70,12 @@ public class LanternaGUI implements GUI {
                 if (action != ACTION.NONE) {
                     currentActions.remove(action);
                 }
+<<<<<<< HEAD
                 System.out.println("key released:");
                 System.out.println();
                 System.out.println(action);
+=======
+>>>>>>> develop
             }
         });
 
@@ -123,13 +121,6 @@ public class LanternaGUI implements GUI {
         TextGraphics graphics = screen.newTextGraphics();
         graphics.setBackgroundColor(color);
         graphics.putString(x, y, " ");
-    }
-
-    @Override
-    public void drawText(Position position, String text, String color) {
-        TextGraphics graphics = screen.newTextGraphics();
-        graphics.setForegroundColor(TextColor.Factory.fromString(color));
-        graphics.putString((int)position.getX(), (int)position.getY(), text);
     }
 
     @Override
@@ -205,4 +196,8 @@ public class LanternaGUI implements GUI {
     public void close() throws IOException {
         screen.close();
     }
+<<<<<<< HEAD
+=======
+
+>>>>>>> develop
 }

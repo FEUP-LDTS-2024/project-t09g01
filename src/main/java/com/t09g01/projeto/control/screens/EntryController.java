@@ -22,7 +22,7 @@ public class EntryController extends Controller<Menu>{
     public void step(Game game, Set<ACTION> currentActions, long time) throws IOException, URISyntaxException, FontFormatException {
         for (ACTION action : currentActions){
             switch(getModel().getCurrentEntry().getType()) {
-                case PLAY:
+                case PLAY, RETRY:
                     if(action == ACTION.SELECT) {
                         game.setState( new GameState(new TempleBuilder(1).createTemple(), game.getImageLoader() ));
                     }
@@ -31,11 +31,6 @@ public class EntryController extends Controller<Menu>{
                 case EXIT:
                     if(action==ACTION.SELECT) {
                         game.setState(null);
-                    }
-                    break;
-                case RETRY:
-                    if(action == ACTION.SELECT) {
-                        game.setState( new GameState(new TempleBuilder(1).createTemple(), game.getImageLoader() ));
                     }
                     break;
                 case RETURN_MENU:

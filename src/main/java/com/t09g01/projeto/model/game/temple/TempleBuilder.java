@@ -1,7 +1,12 @@
 package com.t09g01.projeto.model.game.temple;
 
-import com.t09g01.projeto.model.game.elements.*;
-import com.t09g01.projeto.view.elements.RedDiamondViewer;
+import com.t09g01.projeto.model.game.elements.blocks.*;
+import com.t09g01.projeto.model.game.elements.diamonds.BlueDiamond;
+import com.t09g01.projeto.model.game.elements.diamonds.RedDiamond;
+import com.t09g01.projeto.model.game.elements.doors.BlueDoor;
+import com.t09g01.projeto.model.game.elements.doors.RedDoor;
+import com.t09g01.projeto.model.game.elements.players.Fireboy;
+import com.t09g01.projeto.model.game.elements.players.Watergirl;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -14,12 +19,13 @@ public class TempleBuilder {
 
     private final List<String> lines;
     private final int level;
+    List<Block> blocks = new ArrayList<>();
 
     public TempleBuilder(int level) throws IOException {
         this.level = level;
         URL resource = TempleBuilder.class.getResource("/levels/level" + level + ".lvl");
         if (resource == null) {
-            throw new IOException("Level file not found: /levels/level1.lvl");
+            throw new IOException("Level file not found: /levels/level" + level + ".lvl");
         }
         try (BufferedReader br = new BufferedReader(new InputStreamReader(resource.openStream()))) {
             lines = readLines(br);
@@ -33,12 +39,13 @@ public class TempleBuilder {
         temple.setRedDiamonds(createRedDiamonds());
         temple.setFireboy(createFireboy(temple));
         temple.setWatergirl(createWatergirl(temple));
-        temple.setBlocks(createBlocks());
+        temple.setBricks(createBricks());
         temple.setLava(createLava());
         temple.setWater(createWater());
         temple.setGoo(createGoo());
         temple.setRedDoor(createRedDoor());
         temple.setBlueDoor(createBlueDoor());
+        temple.setBlocks(blocks);
 
         return temple;
     }
@@ -52,7 +59,7 @@ public class TempleBuilder {
     }
 
     private int getWidth() {
-        return lines.get(0).length();
+        return lines.getFirst().length();
     }
 
     private int getHeight() {
@@ -95,56 +102,64 @@ public class TempleBuilder {
         throw new IllegalStateException("Watergirl position not found in level file!");
     }
 
-    private List<Block> createBlocks() {
-        List<Block> blocks = new ArrayList<>();
+    private List<Brick> createBricks() {
+        List<Brick> bricks = new ArrayList<>();
         for (int y = 0; y < lines.size(); y++) {
             String line = lines.get(y);
             for (int x = 0; x < line.length(); x++) { // Fixed inner loop increment
                 if (line.charAt(x) == '#') {
-                    blocks.add(new Block(x*8, y*8));
+                    Brick brick = new Brick(x*8, y*8);
+                    bricks.add(brick);
+                    blocks.add(brick);
                 }
             }
         }
-        return blocks;
+        return bricks;
     }
 
     private List<Lava> createLava() {
-        List<Lava> lava = new ArrayList<>();
+        List<Lava> lavas = new ArrayList<>();
         for (int y = 0; y < lines.size(); y++) {
             String line = lines.get(y);
             for (int x = 0; x < line.length(); x++) {
                 if (line.charAt(x) == 'L') {
-                    lava.add(new Lava(x*8, y*8));
+                    Lava lava = new Lava(x*8, y*8);
+                    lavas.add(lava);
+                    blocks.add(lava);
                 }
             }
         }
-        return lava;
+        return lavas;
     }
 
     private List<Water> createWater() {
-        List<Water> water = new ArrayList<>();
+        List<Water> waters = new ArrayList<>();
         for (int y = 0; y < lines.size(); y++) {
             String line = lines.get(y);
             for (int x = 0; x < line.length(); x++) {
                 if (line.charAt(x) == 'A') {
-                    water.add(new Water(x*8, y*8));
+                    Water water = new Water(x*8, y*8);
+                    waters.add(water);
+                    blocks.add(water);
                 }
             }
         }
-        return water;
+        return waters;
     }
 
     private List<Goo> createGoo() {
-        List<Goo> goo = new ArrayList<>();
+        List<Goo> goos = new ArrayList<>();
         for (int y = 0; y < lines.size(); y++) {
             String line = lines.get(y);
             for (int x = 0; x < line.length(); x++) {
                 if (line.charAt(x) == 'G') {
-                    goo.add(new Goo(x*8, y*8));
+                    Goo goo = new Goo(x*8, y*8);
+                    goos.add(goo);
+                    blocks.add(goo);
                 }
             }
         }
-        return goo;
+        return goos;
     }
 
     private List<BlueDiamond> createBlueDiamonds() {

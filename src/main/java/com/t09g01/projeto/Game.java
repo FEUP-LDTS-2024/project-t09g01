@@ -2,15 +2,11 @@ package com.t09g01.projeto;
 
 import com.t09g01.projeto.gui.GUI;
 import com.t09g01.projeto.gui.LanternaGUI;
-import com.t09g01.projeto.model.game.temple.Temple;
-import com.t09g01.projeto.model.game.temple.TempleBuilder;
 import com.t09g01.projeto.model.menu.MainMenu;
-import com.t09g01.projeto.model.menu.Menu;
-import com.t09g01.projeto.states.GameState;
 import com.t09g01.projeto.states.MainMenuState;
 import com.t09g01.projeto.states.State;
-import com.t09g01.projeto.view.GameImageLoader;
-import com.t09g01.projeto.view.ImageLoader;
+import com.t09g01.projeto.view.image.GameImageLoader;
+import com.t09g01.projeto.view.image.ImageLoader;
 
 import java.awt.*;
 import java.io.IOException;
@@ -20,6 +16,7 @@ public class Game {
     private final LanternaGUI gui;
     private State state;
     private final ImageLoader imageLoader;
+
     public int getNumberOfLevels() {
         return 3;
     }

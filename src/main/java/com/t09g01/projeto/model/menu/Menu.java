@@ -1,7 +1,6 @@
 package com.t09g01.projeto.model.menu;
 
 import java.util.List;
-import java.util.Arrays;
 
 public abstract class Menu {
     private final List<Entry> entries;
@@ -13,10 +12,6 @@ public abstract class Menu {
 
     public List<Entry> getEntries() {
         return entries;
-    }
-
-    public int getNumberEntries() {
-        return this.entries.size();
     }
 
     public void nextEntry(){

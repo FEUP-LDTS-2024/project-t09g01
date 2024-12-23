@@ -1,13 +1,10 @@
 package com.t09g01.projeto.control.game;
 
 import com.t09g01.projeto.Game;
-import com.t09g01.projeto.control.game.WatergirlController;
 import com.t09g01.projeto.gui.ACTION;
 import com.t09g01.projeto.model.Position;
-import com.t09g01.projeto.model.game.elements.Block;
-import com.t09g01.projeto.model.game.elements.Fireboy;
-import com.t09g01.projeto.model.game.elements.Water;
-import com.t09g01.projeto.model.game.elements.Watergirl;
+import com.t09g01.projeto.model.game.elements.blocks.Block;
+import com.t09g01.projeto.model.game.elements.players.Watergirl;
 import com.t09g01.projeto.model.game.temple.Temple;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
