@@ -68,13 +68,6 @@ public class LanternaGUI implements GUI {
                     System.out.println(action);
 
                 }
-//                switch (event.getKeyCode()) {
-//                    case VK_LEFT, VK_RIGHT -> arrowKeyPressed = event;
-//                    case VK_D, VK_A -> WADKeyPressed = event;
-//                    default -> primaryKeyPressed = event;
-//                }
-//                System.out.println(arrowKeyPressed);
-//                System.out.println(WADKeyPressed);
             }
             @Override
             public void keyReleased(KeyEvent event) {
@@ -85,11 +78,6 @@ public class LanternaGUI implements GUI {
                 System.out.println("key released:");
                 System.out.println();
                 System.out.println(action);
-//                switch (event.getKeyCode()) {
-//                    case VK_LEFT, VK_RIGHT -> arrowKeyPressed = null;
-//                    case VK_D, VK_A -> WADKeyPressed = null;
-//                    default -> primaryKeyPressed = null;
-//                }
             }
         });
 
@@ -109,7 +97,7 @@ public class LanternaGUI implements GUI {
     @Override
     public Screen getScreen() {return screen;}
 
-    private ACTION getActionFromKeyCode(int keyCode) {
+    public ACTION getActionFromKeyCode(int keyCode) {
         return switch (keyCode) {
             case VK_UP -> ACTION.FIREBOY_UP;
             case VK_W -> ACTION.WATERGIRL_UP;
@@ -217,11 +205,4 @@ public class LanternaGUI implements GUI {
     public void close() throws IOException {
         screen.close();
     }
-
-//    public void setKeySpam(boolean keySpam) {
-//        if (!keySpam)
-//            priorityKeyPressed = null;
-//        this.keySpam = keySpam;
-//    }
-
 }

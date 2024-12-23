@@ -30,7 +30,6 @@ public class BlockViewer implements ElementViewer<Block> {
     public void draw(Block block, GUI gui, BasicTextImage background) {
         textImage = viewer.convertTextImage(gui, bufferedImage);
         gui.drawStatic(block.getPosition(), textImage);
-        //gui.drawTextImage(block.getPosition(), bufferedImage, background);
     }
 
 }

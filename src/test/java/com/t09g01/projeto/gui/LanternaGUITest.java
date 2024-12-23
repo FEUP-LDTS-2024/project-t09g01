@@ -1,104 +1,228 @@
 package com.t09g01.projeto.gui;
 
+import com.googlecode.lanterna.TerminalPosition;
+import com.googlecode.lanterna.TerminalSize;
+import com.googlecode.lanterna.TextCharacter;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
+import com.googlecode.lanterna.graphics.TextImage;
 import com.googlecode.lanterna.input.KeyStroke;
 import com.googlecode.lanterna.input.KeyType;
 import com.googlecode.lanterna.screen.Screen;
+import com.googlecode.lanterna.terminal.Terminal;
+import com.t09g01.projeto.model.Position;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.awt.*;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.net.URISyntaxException;
+import java.util.Set;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 public class LanternaGUITest {
     private Screen screen;
     private LanternaGUI gui;
+    private TextGraphics textGraphics;
+    private Terminal terminal;
+
 
     @BeforeEach
-    public void setUp() {
-        screen = mock(Screen.class);
-        gui = new LanternaGUI(screen);
+    public void setUp() throws IOException {
+        this.screen = mock(Screen.class);
+        this.textGraphics = mock(TextGraphics.class);
+        this.terminal = mock(Terminal.class);
+        this.gui = new LanternaGUI(screen);
+
+
+        when(screen.newTextGraphics()).thenReturn(textGraphics);
+        when(terminal.newTextGraphics()).thenReturn(mock(TextGraphics.class));
+        when(terminal.getTerminalSize()).thenReturn(new TerminalSize(10, 10));
     }
 
-    // getNextAction
     @Test
-    public void testArrowKeys() throws IOException {
-        KeyStroke upKey = new KeyStroke(KeyType.ArrowUp);
-        KeyStroke downKey = new KeyStroke(KeyType.ArrowDown);
-        KeyStroke leftKey = new KeyStroke(KeyType.ArrowLeft);
-        KeyStroke rightKey = new KeyStroke(KeyType.ArrowRight);
-
-        when(screen.pollInput()).thenReturn(upKey, downKey, leftKey, rightKey);
-
-//        assertEquals(ACTION.FIREBOY_UP, gui.getNextAction());
-//        assertEquals(ACTION.FIREBOY_DOWN, gui.getNextAction());
-//        assertEquals(ACTION.FIREBOY_LEFT, gui.getNextAction());
-//        assertEquals(ACTION.FIREBOY_RIGHT, gui.getNextAction());
-  }
-
-    @Test
-    public void testCharacterKeys() throws IOException {
-        KeyStroke wKey = new KeyStroke('w', false, false);
-        KeyStroke sKey = new KeyStroke('s', false, false);
-        KeyStroke aKey = new KeyStroke('a', false, false);
-        KeyStroke dKey = new KeyStroke('d', false, false);
-
-        when(screen.pollInput()).thenReturn(wKey, sKey, aKey, dKey);
-
-//        assertEquals(ACTION.FIREBOY_UP, gui.getNextAction());
-//        assertEquals(ACTION.FIREBOY_DOWN, gui.getNextAction());
-//        assertEquals(ACTION.FIREBOY_LEFT, gui.getNextAction());
-//        assertEquals(ACTION.FIREBOY_RIGHT, gui.getNextAction());
-   }
-
-    @Test
-    public void testEofAndOtherKeys() throws IOException {
-        KeyStroke eofKey = new KeyStroke(KeyType.EOF);
-        KeyStroke unmappedKey = new KeyStroke(KeyType.Enter);
-
-        when(screen.pollInput()).thenReturn(eofKey, unmappedKey);
-
-//        assertEquals(ACTION.QUIT, gui.getNextAction());
-//        assertEquals(ACTION.NONE, gui.getNextAction());
+    public void testCreatesScreen() throws IOException, URISyntaxException, FontFormatException {
+        this.gui = new LanternaGUI(10, 10);
+        assertNotNull(gui.getScreen());
     }
 
-    // drawPixel
+
+    @Test
+    public void testGetScreen() {
+        assertEquals(screen, gui.getScreen());
+    }
+
+    @Test
+    public void testGetCurrentActions() {
+        Set<ACTION> actions = gui.getCurrentActions();
+
+        actions.add(ACTION.FIREBOY_LEFT);
+        actions.add(ACTION.WATERGIRL_RIGHT);
+
+        assertTrue(actions.contains(ACTION.FIREBOY_LEFT));
+        assertTrue(actions.contains(ACTION.WATERGIRL_RIGHT));
+    }
+
     @Test
     public void testDrawPixel() {
         TextGraphics textGraphics = mock(TextGraphics.class);
         when(screen.newTextGraphics()).thenReturn(textGraphics);
 
-        LanternaGUI gui = new LanternaGUI(screen);
-        TextColor.RGB color = new TextColor.RGB(255, 0, 0);
+        gui.drawPixel(5, 10, new TextColor.RGB(255, 0, 0));
 
-        gui.drawPixel(5, 10, color);
-
-        verify(textGraphics, times(1)).setBackgroundColor(color);
-        verify(textGraphics, times(1)).putString(5, 10, " ");
+        verify(textGraphics).setBackgroundColor(new TextColor.RGB(255, 0, 0));
+        verify(textGraphics).putString(5, 10, " ");
     }
 
-    // clear
+    @Test
+    public void testDrawText() {
+        TextGraphics textGraphics = mock(TextGraphics.class);
+        when(screen.newTextGraphics()).thenReturn(textGraphics);
+
+        String text = "Hello";
+        String color = "#FFFFFF";
+        Position position = new Position(10, 15);
+
+        gui.drawText(position, text, color);
+
+        verify(textGraphics).setForegroundColor(TextColor.Factory.fromString(color));
+        verify(textGraphics).putString(10, 15, text);
+    }
+
+    @Test
+    public void testDrawRectangle() {
+        TextGraphics textGraphics = mock(TextGraphics.class);
+        when(screen.newTextGraphics()).thenReturn(textGraphics);
+
+        gui.drawRectangle(10, 10, 5, 5, TextColor.ANSI.RED);
+
+        verify(textGraphics).setBackgroundColor(TextColor.ANSI.RED);
+        verify(textGraphics).fillRectangle(new TerminalPosition(10, 10), new TerminalSize(5, 5), ' ');
+    }
+
+    @Test
+    public void testDrawStatic() {
+        TextImage textImage = mock(TextImage.class);
+        TextGraphics textGraphics = mock(TextGraphics.class);
+        when(screen.newTextGraphics()).thenReturn(textGraphics);
+
+        Position position = new Position(10, 10);
+
+        gui.drawStatic(position, textImage);
+
+        verify(textGraphics).drawImage(new TerminalPosition(10, 10), textImage);
+    }
+
+    @Test
+    public void testDrawMoving() {
+        BufferedImage bufferedImage = mock(BufferedImage.class);
+        when(bufferedImage.getWidth()).thenReturn(5);
+        when(bufferedImage.getHeight()).thenReturn(5);
+
+        when(bufferedImage.getRGB(0, 0)).thenReturn(0xFFFFFFFF);
+
+        Position position = new Position(10, 10);
+
+        gui.drawMoving(position, bufferedImage);
+
+        verify(textGraphics).setCharacter(10, 10, new TextCharacter(' ', new TextColor.RGB(255, 255, 255), new TextColor.RGB(255, 255, 255)));
+    }
+
+    @Test
+    public void testCreateTextImage() {
+        TextImage textImage = gui.createTextImage(10, 10);
+        assertNotNull(textImage);
+    }
+
     @Test
     public void testClear() {
         gui.clear();
-        verify(screen, times(1)).clear();
+        verify(screen).clear();
     }
 
-    // refresh
     @Test
     public void testRefresh() throws IOException {
         gui.refresh();
-        verify(screen, times(1)).refresh();
+        verify(screen).refresh();
     }
 
-    // close
     @Test
     public void testClose() throws IOException {
         gui.close();
-        verify(screen, times(1)).close();
+        verify(screen).close();
+    }
+
+    //getActionFromKeyCode
+    @Test
+    public void testVK_UP() {
+        ACTION action = gui.getActionFromKeyCode(KeyEvent.VK_UP);
+        assertEquals(ACTION.FIREBOY_UP, action);
+    }
+
+    @Test
+    public void testVK_W() {
+        ACTION action = gui.getActionFromKeyCode(KeyEvent.VK_W);
+        assertEquals(ACTION.WATERGIRL_UP, action);
+    }
+
+    @Test
+    public void testVK_DOWN() {
+        ACTION action = gui.getActionFromKeyCode(KeyEvent.VK_DOWN);
+        assertEquals(ACTION.FIREBOY_DOWN, action);
+    }
+
+    @Test
+    public void testVK_S() {
+        ACTION action = gui.getActionFromKeyCode(KeyEvent.VK_S);
+        assertEquals(ACTION.WATERGIRL_DOWN, action);
+    }
+
+    @Test
+    public void testVK_LEFT() {
+        ACTION action = gui.getActionFromKeyCode(KeyEvent.VK_LEFT);
+        assertEquals(ACTION.FIREBOY_LEFT, action);
+    }
+
+    @Test
+    public void testVK_A() {
+        ACTION action = gui.getActionFromKeyCode(KeyEvent.VK_A);
+        assertEquals(ACTION.WATERGIRL_LEFT, action);
+    }
+
+    @Test
+    public void testVK_RIGHT() {
+        ACTION action = gui.getActionFromKeyCode(KeyEvent.VK_RIGHT);
+        assertEquals(ACTION.FIREBOY_RIGHT, action);
+    }
+
+    @Test
+    public void testVK_D() {
+        ACTION action = gui.getActionFromKeyCode(KeyEvent.VK_D);
+        assertEquals(ACTION.WATERGIRL_RIGHT, action);
+    }
+
+    @Test
+    public void testVK_ESCAPE() {
+        ACTION action = gui.getActionFromKeyCode(KeyEvent.VK_ESCAPE);
+        assertEquals(ACTION.QUIT, action);
+    }
+
+    @Test
+    public void testVK_ENTER() {
+        ACTION action = gui.getActionFromKeyCode(KeyEvent.VK_ENTER);
+        assertEquals(ACTION.SELECT, action);
+    }
+
+    @Test
+    public void testDefault() {
+        ACTION action = gui.getActionFromKeyCode(9999);  // Non-existent key code
+        assertEquals(ACTION.NONE, action);
     }
 
 }
