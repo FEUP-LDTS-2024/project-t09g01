@@ -17,7 +17,7 @@ import java.util.List;
 
 public class TempleBuilder {
 
-    private final List<String> lines;
+    List<String> lines;
     private final int level;
     List<Block> blocks = new ArrayList<>();
 
@@ -66,7 +66,7 @@ public class TempleBuilder {
         return lines.size();
     }
 
-    private void validateLevel() {
+    void validateLevel() {
         if (lines.isEmpty()) {
             throw new IllegalStateException("Level file is empty!");
         }
@@ -78,7 +78,7 @@ public class TempleBuilder {
         }
     }
 
-    private Fireboy createFireboy(Temple temple) {
+    Fireboy createFireboy(Temple temple) {
         for (int y = 0; y < lines.size(); y++) {
             String line = lines.get(y);
             for (int x = 0; x < line.length(); x++) {
@@ -90,7 +90,7 @@ public class TempleBuilder {
         throw new IllegalStateException("Fireboy position not found in level file!");
     }
 
-    private Watergirl createWatergirl(Temple temple) {
+    Watergirl createWatergirl(Temple temple) {
         for (int y = 0; y < lines.size(); y++) {
             String line = lines.get(y);
             for (int x = 0; x < line.length(); x++) {
@@ -188,7 +188,7 @@ public class TempleBuilder {
         return redDiamonds;
     }
 
-    private BlueDoor createBlueDoor() {
+    BlueDoor createBlueDoor() {
         for (int y = 0; y < lines.size(); y++) {
             String line = lines.get(y);
             for (int x = 0; x < line.length(); x++) {
@@ -201,7 +201,7 @@ public class TempleBuilder {
     }
 
 
-    private RedDoor createRedDoor() {
+    RedDoor createRedDoor() {
         for (int y = 0; y < lines.size(); y++) {
             String line = lines.get(y);
             for (int x = 0; x < line.length(); x++) {

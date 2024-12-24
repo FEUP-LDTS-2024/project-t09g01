@@ -80,7 +80,7 @@ public class Temple {
     public int getLevel() {return level;}
 
 
-    private boolean checkCollision(Position topLeft, Position bottomRight, List<Block> blocks) {
+    boolean checkCollision(Position topLeft, Position bottomRight, List<Block> blocks) {
         for (Block block : blocks) {
             // get the block's bounding box
             double blockLeft = block.getPosition().getX();
@@ -231,5 +231,5 @@ public class Temple {
     public boolean allDiamondsCollected(){
         return blueDiamonds.isEmpty() && redDiamonds.isEmpty();
     }
-    
+
 }

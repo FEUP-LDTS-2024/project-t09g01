@@ -1,6 +1,8 @@
 package com.t09g01.projeto.view.game;
 
+import com.googlecode.lanterna.graphics.BasicTextImage;
 import com.t09g01.projeto.gui.GUI;
+import com.t09g01.projeto.model.Position;
 import com.t09g01.projeto.model.game.elements.Element;
 import com.t09g01.projeto.model.game.elements.blocks.*;
 import com.t09g01.projeto.model.game.elements.diamonds.BlueDiamond;
@@ -11,6 +13,16 @@ import com.t09g01.projeto.model.game.elements.players.Fireboy;
 import com.t09g01.projeto.model.game.elements.players.Watergirl;
 import com.t09g01.projeto.model.game.temple.Temple;
 import com.t09g01.projeto.view.elements.ElementViewer;
+import com.t09g01.projeto.view.elements.blocks.BrickViewer;
+import com.t09g01.projeto.view.elements.blocks.GooViewer;
+import com.t09g01.projeto.view.elements.blocks.LavaViewer;
+import com.t09g01.projeto.view.elements.blocks.WaterViewer;
+import com.t09g01.projeto.view.elements.diamonds.BlueDiamondViewer;
+import com.t09g01.projeto.view.elements.diamonds.RedDiamondViewer;
+import com.t09g01.projeto.view.elements.doors.BlueDoorViewer;
+import com.t09g01.projeto.view.elements.doors.RedDoorViewer;
+import com.t09g01.projeto.view.elements.players.FireboyViewer;
+import com.t09g01.projeto.view.elements.players.WatergirlViewer;
 import com.t09g01.projeto.view.text.ViewerProvider;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -27,6 +39,16 @@ public class GameViewerTest {
     private GUI gui;
     private Temple temple;
     private ViewerProvider viewerProvider;
+//    private BlueDiamondViewer blueDiamondViewer;
+//    private RedDiamondViewer redDiamondViewer;
+//    private WatergirlViewer watergirlViewer;
+//    private FireboyViewer fireboyViewer;
+//    private BrickViewer brickViewer;
+//    private LavaViewer lavaViewer;
+//    private WaterViewer waterViewer;
+//    private GooViewer gooViewer;
+//    private BlueDoorViewer blueDoorViewer;
+//    private RedDoorViewer redDoorViewer;
 
     @BeforeEach
     void setUp() {
@@ -34,6 +56,17 @@ public class GameViewerTest {
         temple = mock(Temple.class);
         viewerProvider = mock(ViewerProvider.class);
         gameViewer = new GameViewer(temple, viewerProvider);
+//
+//        blueDiamondViewer = mock(BlueDiamondViewer.class);
+//        redDiamondViewer = mock(RedDiamondViewer.class);
+//        watergirlViewer = mock(WatergirlViewer.class);
+//        fireboyViewer = mock(FireboyViewer.class);
+//        brickViewer = mock(BrickViewer.class);
+//        lavaViewer = mock(LavaViewer.class);
+//        waterViewer = mock(WaterViewer.class);
+//        gooViewer = mock(GooViewer.class);
+//        blueDoorViewer = mock(BlueDoorViewer.class);
+//        redDoorViewer = mock(RedDoorViewer.class);
     }
 
     @Test
