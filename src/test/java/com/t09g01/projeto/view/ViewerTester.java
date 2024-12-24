@@ -51,6 +51,20 @@ public class ViewerTester {
     }
 
     @Test
+    void testMissingResource() {
+        Exception exception = assertThrows(Exception.class, () -> new Viewer("nonexistent.png"));
+        assertEquals("Resource not found: nonexistent.png", exception.getMessage());
+    }
+
+    @Test
+    void testLoadImageFileNotFound() {
+        Exception exception = assertThrows(IllegalArgumentException.class, () -> Viewer.loadImage("nonexistent.png"));
+        assertEquals("Resource not found: nonexistent.png", exception.getMessage());
+    }
+
+
+
+    @Test
     void testConvertTextImage() {
         TextImage textImage = viewer.convertTextImage(gui, image);
         assertNotNull(textImage);

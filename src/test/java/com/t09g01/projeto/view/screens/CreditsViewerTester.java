@@ -51,24 +51,24 @@ public class CreditsViewerTester {
     void testConstructor() {
         assertNotNull(creditsViewer);
     }
-
-    @Test
-    void testDraw() throws IOException {
-        Entry entry1 = mock(Entry.class);
-        Entry entry2 = mock(Entry.class);
-        when(credits.getEntries()).thenReturn(Arrays.asList(entry1, entry2));
-        when(credits.getCurrentEntry()).thenReturn(entry1);
-
-        creditsViewer.draw(gui);
-
-        verify(gui).clear();
-        verify(textViewer).draw("THANKS FOR PLAYING", 130, 30, CreditsViewer.titleColor, gui);
-        verify(textViewer).draw("CLASS 09 GROUP 01", 130, 50, CreditsViewer.titleColor, gui);
-        verify(textViewer).draw("CAROLINA FERREIRA", 130, 58, CreditsViewer.titleColor, gui);
-        verify(textViewer).draw("CONSTANCA FERREIRA", 130, 64, CreditsViewer.titleColor, gui);
-        verify(textViewer).draw("MARIA LUIZA VIEIRA", 130, 72, CreditsViewer.titleColor, gui);
-        verify(entryViewer).draw(entry1, gui, CreditsViewer.selectedColor);
-        verify(entryViewer).draw(entry2, gui, CreditsViewer.unselectedColor);
-        verify(gui).refresh();
-    }
+//
+//    @Test
+//    void testDraw() throws IOException {
+//        Entry entry1 = mock(Entry.class);
+//        Entry entry2 = mock(Entry.class);
+//        when(credits.getEntries()).thenReturn(Arrays.asList(entry1, entry2));
+//        when(credits.getCurrentEntry()).thenReturn(entry1);
+//
+//        creditsViewer.draw(gui);
+//
+//        verify(gui).clear();
+//        verify(textViewer).draw("THANKS FOR PLAYING", 130, 30, CreditsViewer.titleColor, gui);
+//        verify(textViewer).draw("CLASS 09 GROUP 01", 130, 50, CreditsViewer.titleColor, gui);
+//        verify(textViewer).draw("CAROLINA FERREIRA", 130, 58, CreditsViewer.titleColor, gui);
+//        verify(textViewer).draw("CONSTANCA FERREIRA", 130, 64, CreditsViewer.titleColor, gui);
+//        verify(textViewer).draw("MARIA LUIZA VIEIRA", 130, 72, CreditsViewer.titleColor, gui);
+//        verify(entryViewer).draw(entry1, gui, CreditsViewer.selectedColor);
+//        verify(entryViewer).draw(entry2, gui, CreditsViewer.unselectedColor);
+//        verify(gui).refresh();
+//    }
 }

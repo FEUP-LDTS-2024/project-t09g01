@@ -17,13 +17,19 @@ public class Viewer {
 
     public Viewer(String filepath) throws IOException {
         URL resource = getClass().getClassLoader().getResource(filepath);
-        assert resource != null;
+        if (resource == null) {
+            throw new IllegalArgumentException("Resource not found: " + filepath);
+        }
+
         image = ImageIO.read(new File(resource.getFile()));
     }
 
     public static BufferedImage loadImage(String filepath) throws IOException {
         URL resource = Viewer.class.getClassLoader().getResource(filepath);
-        assert resource != null;
+        if (resource == null) {
+            throw new IllegalArgumentException("Resource not found: " + filepath);
+        }
+
         return ImageIO.read(new File(resource.getFile()));
     }
 
