@@ -41,6 +41,11 @@ The implementation of this pattern can be found inside the folders:
 -[View](src/main/java/com.t09g01.projeto/view)
 -[Control](src/main/java/com.t09g01.projeto/control)
 
+An explanation can be seen in the following diagram:
+<p align="center">
+  <img src="resources/images/UML/gameLoop.png"/>
+</p>
+
 #### Consequences:
 These design patterns allow:
 - The different states representing various menus to be explicitly defined in the code;
@@ -123,6 +128,6 @@ This design pattern:
 
 ## Self-evaluation
 The work was divided in equal parts and we all gave our best.
-- Carolina Ferreira - 33%
-- Constança Ferreira - 33%
-- Maria Luiza Vieira - 33%
+- Carolina Ferreira - 33.3%
+- Constança Ferreira - 33.3%
+- Maria Luiza Vieira - 33.3%
