@@ -1,7 +1,10 @@
 package com.t09g01.projeto.states;
 
+import com.t09g01.projeto.Game;
 import com.t09g01.projeto.control.Controller;
 import com.t09g01.projeto.control.screens.MainMenuController;
+import com.t09g01.projeto.gui.ACTION;
+import com.t09g01.projeto.gui.GUI;
 import com.t09g01.projeto.model.menu.MainMenu;
 import com.t09g01.projeto.view.image.ImageLoader;
 import com.t09g01.projeto.view.screens.ScreenViewer;
@@ -11,11 +14,16 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
+import java.awt.*;
 import java.io.IOException;
+import java.net.URISyntaxException;
+import java.util.Collections;
+import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.mockito.Mockito.mock;
+import static org.mockito.ArgumentMatchers.eq;
+import static org.mockito.Mockito.*;
 
 public class MainMenuStateTest {
     private MainMenu mainMenu;
@@ -28,7 +36,6 @@ public class MainMenuStateTest {
         this.mainMenu = Mockito.mock(MainMenu.class);
         this.imageLoader = Mockito.mock(ImageLoader.class);
         this.viewerProvider = Mockito.mock(ViewerProvider.class);
-
         mainMenuState = new MainMenuState(mainMenu, imageLoader);
     }
 
