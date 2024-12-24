@@ -9,7 +9,7 @@ import java.util.List;
 public class Credits extends Menu {
     @Override
     protected List<Entry> createEntries() {
-        Position returnPosition = new Position(153, 130);
+        Position returnPosition = new Position(132, 130);
 
         Entry returning = new Entry(returnPosition, Entry.TYPE.RETURN_MENU);
 

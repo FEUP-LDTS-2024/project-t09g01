@@ -18,7 +18,7 @@ public class GameOverViewer<T extends Menu> extends ScreenViewer<GameOver> {
 
     public static final TextColor unselectedColor = new TextColor.RGB(255, 255, 255);
     public static final TextColor selectedColor = new TextColor.RGB(255, 195, 0);
-    public static final TextColor backgroundColor = new TextColor.RGB(0, 10, 32);
+    public static final TextColor backgroundColor = new TextColor.RGB(0, 0, 0);
     public static final TextColor titleColor = new TextColor.RGB(209, 41, 29);
 
     public GameOverViewer(GameOver gameOver, ViewerProvider viewerProvider) {

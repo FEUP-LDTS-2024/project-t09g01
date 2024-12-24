@@ -31,11 +31,11 @@ public class CreditsViewer<T extends Menu> extends ScreenViewer<Credits> {
     public void draw(GUI gui) throws IOException {
         gui.clear();
         drawBackground(gui, backgroundColor);
-        textViewer.draw("THANKS FOR PLAYING", 130, 30, titleColor, gui);
-        textViewer.draw("CLASS 09 GROUP 01", 130, 50, titleColor, gui);
-        textViewer.draw("CAROLINA FERREIRA", 130, 58, titleColor, gui);
-        textViewer.draw("CONSTANCA FERREIRA", 130, 64, titleColor, gui);
-        textViewer.draw("MARIA LUIZA VIEIRA", 130, 72, titleColor, gui);
+        textViewer.draw("THANKS FOR PLAYING", 127, 30, titleColor, gui);
+        textViewer.draw("CLASS 09 GROUP 01", 128, 50, titleColor, gui);
+        textViewer.draw("CAROLINA FERREIRA", 128, 58, titleColor, gui);
+        textViewer.draw("CONSTANCA FERREIRA", 128, 64, titleColor, gui);
+        textViewer.draw("MARIA LUIZA VIEIRA", 128, 70, titleColor, gui);
         drawEntries(gui, getModel().getEntries());
         gui.refresh();
     }
