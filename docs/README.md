@@ -3,7 +3,7 @@
 ## Game Description
 Fireboy and Watergirl is a cooperative two-player game where the objective is to navigate both characters through a temple with several levels. Each character has unique abilities: Fireboy can walk through fire but must avoid water, while Watergirl can traverse water but must steer clear of fire, both can't touch the green goo. In order to complete a level, each player has to collect all the diamonds of their respective color, Fireboy must collect all red diamonds and Watergirl must collect all the blue diamonds. The game can be played by two people, which requires teamwork, or solo, promoting coordination.
 
-This project was developed by Carolina Ferreira (up2023), Constança Ferreira (up202306850) and Maria Luiza Vieira (up202304306).
+This project was developed by Carolina Ferreira (up202303547), Constança Ferreira (up202306850) and Maria Luiza Vieira (up202304306).
 
 ## Implemented features
 - **Main Menu Screen** - When the game runs it shows a menu screen with the options to play or to exit.
@@ -36,24 +36,28 @@ These classes interact with one another in the following way:
 Model contains the game data and logic and provides that data to the Controller and View. View is then responsible for rendering the game and receives data from the Model and updates the display. Controller handles and processes user input, updates the Model and triggers View updates.
 That is allowed though Game which coordinates the flow between Model, View, and Controller by managing the overall game state and transitions.
 
-The implementation of this pattern can be found inside the folders:
+The implementation of the MVC pattern can be found inside the folders:
 -[Model](src/main/java/com.t09g01.projeto/model)
 -[View](src/main/java/com.t09g01.projeto/view)
 -[Control](src/main/java/com.t09g01.projeto/control)
 
-An explanation can be seen in the following diagram:
+The implementation of the States pattern can be found inside the folder:
+-[States](src/main/java/com.t09g01.projeto/states)
+
+An explanation can be seen in the following diagrams:
 <p align="center">
-  <img src="resources/images/UML/gameLoop.png"/>
+  <img src="docs/images/UML/MVC.png" alt="MVC"/>
+</p>
+<p align="center">
+  <b><i>Fig 1. MVC </i></b>
 </p>
 
 #### Consequences:
 These design patterns allow:
-- The different states representing various menus to be explicitly defined in the code;
+- The different states representing various menus to be explicitly defined in the code.
 - Better code organization.
 - Adding new features during the development process in a simpler way.
 
-
-### Game States
 
 ### Game Loop
 
@@ -67,9 +71,21 @@ We also introduced a target FPS value, which specifies how many times the screen
 This ensures that the game runs consistently and smoothly for users on different systems.
 
 #### Implementation
+<p align="center">
+  <img src="docs/images/UML/states.png" alt="States"/>
+</p>
+<p align="center">
+  <b><i>Fig 2. States </i></b>
+</p>
 
+<br>
 
-
+<p align="center">
+  <img src="docs/images/UML/gameLoop.png" alt="Game Loop"/>
+</p>
+<p align="center">
+  <b><i>Fig 3. Game Loop </i></b>
+</p>
 
 #### Consequences
 This design pattern allows:
@@ -109,8 +125,6 @@ This means that directly using the raw library would link our game with a low-le
 #### The Pattern:
 As a solution, we applied the **Adapter** design pattern, given that it acts as a bridge between incompatible interfaces, allowing our game to utilize the Lanterna library while ensuring it meets the specific requirements of our system. This pattern provides the necessary abstraction to ensure that our high-level module does not directly depend on low-level modules and allows each class in our application to interact with a more user-friendly GUI interface while still utilizing Lanterna's functionalities through the LanternaGUI adapter.
 
-#### Implementation
-
 #### Consequences:
 This design pattern:
 - Ensures, by tailoring the interface to the system’s needs, that only the relevant functionality is exposed, reducing complexity and avoiding unused features.
@@ -119,12 +133,33 @@ This design pattern:
 
 
 ## Known-code smells
+- warning: [DefaultCharset] Implicit use of the platform default charset, which can result in differing behaviour between JVM executions or incorrect behavior if the encoding of the data source doesn't match expectations.
+This warning indicates that the code is using the platform's default character set implicitly. This can lead to inconsistent behavior across different JVM executions or incorrect behavior if the data source's encoding does not match the platform's default encoding. To avoid this issue, always specify the character set explicitly when performing encoding or decoding operations.
+
+- warning: [EmptyCatch] Caught exceptions should not be ignored
+  This warning highlights that an exception is being caught but not handled. Ignoring exceptions can lead to hidden bugs and make debugging difficult. It is important to handle exceptions appropriately, either by logging them, rethrowing them, or taking corrective actions.
+
+- warning: [MissingCasesInEnumSwitch] Non-exhaustive switch; either add a default or handle the remaining cases: WATERGIRL_UP, WATERGIRL_DOWN, WATERGIRL_LEFT, and 4 others
+  This warning indicates that a switch statement on an enum type does not handle all possible enum values. This can lead to unexpected behavior if an unhandled enum value is encountered. To resolve this, either add cases for all enum values or include a default case to handle any remaining values.
+
 
 ## Testing
 
 ### Screenshot of coverage report
+<p align="center">
+  <img src="docs/images/tests/coverageReport.png" alt="Coverage Report"/>
+</p>
+<p align="center">
+  <b><i>Fig 4. Coverage Report </i></b>
+</p>
 
 ### Link to mutation testing report
+<p align="center">
+  <img src="docs/images/tests/pitestReport.png" alt="Pitest Report"/>
+</p>
+<p align="center">
+  <b><i>Fig 5. Pitest Report </i></b>
+</p>
 
 ## Self-evaluation
 The work was divided in equal parts and we all gave our best.
