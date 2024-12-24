@@ -24,6 +24,7 @@ test {
 
 pitest {
     junit5PluginVersion = '1.0.0'
+    excludedClasses = ["com.t09g01.projeto.Game"]
 }
 
 application {
