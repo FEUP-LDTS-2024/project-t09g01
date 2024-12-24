@@ -40,7 +40,7 @@ public class CreditsViewer<T extends Menu> extends ScreenViewer<Credits> {
         gui.refresh();
     }
 
-    private void drawEntries(GUI gui, List<Entry> entries) {
+    protected void drawEntries(GUI gui, List<Entry> entries) {
         for(Entry entry : entries)
             entryViewer.draw(entry, gui, getModel().getCurrentEntry() == entry ? selectedColor : unselectedColor);
     }

@@ -4,9 +4,13 @@ import com.googlecode.lanterna.TextColor;
 import com.t09g01.projeto.gui.GUI;
 import com.t09g01.projeto.model.Position;
 import com.t09g01.projeto.model.menu.Entry;
+import com.t09g01.projeto.view.Viewer;
+import com.t09g01.projeto.view.image.ImageLoader;
 import com.t09g01.projeto.view.text.TextViewer;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import java.io.IOException;
 
 import static org.mockito.Mockito.*;
 
@@ -15,13 +19,28 @@ public class EntryViewerTester {
     private TextViewer textViewer;
     private GUI gui;
     private Entry entry;
+    private LogoViewer logoViewer;
+    private ImageLoader imageLoader;
+    private Viewer viewer;
 
     @BeforeEach
-    void setUp() {
+    void setUp() throws IOException {
         textViewer = mock(TextViewer.class);
         gui = mock(GUI.class);
         entry = mock(Entry.class);
         entryViewer = new EntryViewer(textViewer);
+
+        imageLoader = mock(ImageLoader.class);
+        viewer = mock(Viewer.class);
+        when(imageLoader.get("fonts/logo.png")).thenReturn(viewer);
+        logoViewer = new LogoViewer(imageLoader);
+
+    }
+
+    @Test
+    void testLogoViewerDraw() throws IOException {
+        logoViewer.draw(gui, 100, 200);
+        verify(viewer).draw(gui, 100, 200);
     }
 
     @Test
