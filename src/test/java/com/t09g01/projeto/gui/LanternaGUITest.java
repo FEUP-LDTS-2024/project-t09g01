@@ -80,21 +80,6 @@ public class LanternaGUITest {
         verify(textGraphics).putString(5, 10, " ");
     }
 
-//    @Test
-//    public void testDrawText() {
-//        TextGraphics textGraphics = mock(TextGraphics.class);
-//        when(screen.newTextGraphics()).thenReturn(textGraphics);
-//
-//        String text = "Hello";
-//        String color = "#FFFFFF";
-//        Position position = new Position(10, 15);
-//
-//        gui.drawText(position, text, color);
-//
-//        verify(textGraphics).setForegroundColor(TextColor.Factory.fromString(color));
-//        verify(textGraphics).putString(10, 15, text);
-//    }
-
     @Test
     public void testDrawRectangle() {
         TextGraphics textGraphics = mock(TextGraphics.class);
@@ -156,6 +141,21 @@ public class LanternaGUITest {
     public void testClose() throws IOException {
         gui.close();
         verify(screen).close();
+    }
+
+//    @Test
+//    public void testKeyPressed() {
+//        KeyEvent keyEvent = new KeyEvent(new Component() {}, KeyEvent.KEY_PRESSED, System.currentTimeMillis(), 0, KeyEvent.VK_UP, 'W');
+//        gui.getActionFromKeyCode(keyEvent.getKeyCode());
+//        gui.getCurrentActions().add(gui.getActionFromKeyCode(keyEvent.getKeyCode()));
+//        assertTrue(gui.getCurrentActions().contains(ACTION.FIREBOY_UP));
+//    }
+
+    @Test
+    public void testKeyReleased() {
+        KeyEvent keyEvent = new KeyEvent(new Component() {}, KeyEvent.KEY_RELEASED, System.currentTimeMillis(), 0, KeyEvent.VK_UP, 'W');
+        gui.getActionFromKeyCode(keyEvent.getKeyCode());
+        assertFalse(gui.getCurrentActions().contains(ACTION.FIREBOY_UP));
     }
 
     //getActionFromKeyCode

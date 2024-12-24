@@ -54,15 +54,19 @@ public class TempleTest {
     }
 
     @Test
-    void testFluids() {
+    void testBlocks2() {
+        Brick brick = new Brick (0, 0);
         Water water = new Water(10, 10);
         Lava lava = new Lava(20, 20);
         Goo goo = new Goo(30, 30);
 
+        List<Brick> bricks = Collections.singletonList(brick);
         List<Water> waters = Collections.singletonList(water);
         List<Lava> lavas = Collections.singletonList(lava);
         List<Goo> goos = Collections.singletonList(goo);
 
+        temple.setBricks(bricks);
+        assertEquals(bricks, temple.getBricks());
         temple.setWater(waters);
         assertEquals(waters, temple.getWater());
 
