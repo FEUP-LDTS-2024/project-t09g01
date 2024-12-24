@@ -1,33 +1,80 @@
-[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/rUa5vdmg)
-# FEATURES
+# LDTS_T09_G01 - Fireboy and Watergirl
 
-- Menu - When lauching the game, the menu screen allows the user to start the game (”start”), see game’s instructions (”tutorial”) or exit the game (”exit”)
-- Co-op Gameplay - Two characters (Fireboy and Watergirl) are controlled by two players at the same time.
-- Levels - The game has three different levels to play.
-- Player Movement - The characters are able to move left, right and jump. Fireboy’s movement is done pressing the arrow keys, while Watergirl’s uses “W”, “A”, “D”. Both character are animated to simulate their movement.
-- Player Collision - The game checks for collision with lava, water, goo and the diamonds.
-- Physics-based Gameplay - The characters have to press buttons and pulling levers to get through the levels.
-- Elemental Reaction - Fireboy can safely walk on lava but gets hurt by water, while Watergirl can walk on water but gets hurt by lava. Both players are hurt by the green goo. If any of the players is hurt, the game ends.
-- Collectible Diamonds - The characters need to collect the diamonds to be able to complete the level.
-- Game Over - If the player loses, there is a Game Over screen where the player can choose to either play again or exit the game.
+## Game Description
+Fireboy and Watergirl is a cooperative two-player game where the objective is to navigate both characters through a temple with several levels. Each character has unique abilities: Fireboy can walk through fire but must avoid water, while Watergirl can traverse water but must steer clear of fire, both can't touch the green goo. In order to complete a level, each player has to collect all the diamonds of their respective color, Fireboy must collect all red diamonds and Watergirl must collect all the blue diamonds. The game can be played by two people, which requires teamwork, or solo, promoting coordination.
 
-# DESCRIPTION
+This project was developed by Carolina Ferreira (up202303547), Constança Ferreira (up202306850) and Maria Luiza Vieira (up202304306).
 
-Our game is a two-player cooperative adventure inspired by the classic Fireboy and Watergirl series. Players control two characters—Fireboy and Watergirl—working together to complete three levels.
+## Features
+- **Main Menu Screen** - When the game runs it shows a menu screen with the options to play or to exit.
+- **Keyboard control** - The keyboard inputs are received and interpreted according to the current game state.
+- **Multiple Players Control** - Movement and actions of Fireboy and Watergirl are managed through the arrow keys and WASD keys respectively. They can move up, down, left and right.
+- **Collisions detection** - Collisions in the game environment between different elements are checked (e.g.: goo, fire, water, diamonds). Players can retrieve diamonds if the right collision between diamonds is verified.
+- **Players Death** - If the player touches a fluid that does not correspond to their own, it dies and returns to the Main Menu.
+- **Different levels** - 3 different levels with different complexities were implemented.
+- **Credits** - When the game has successfully ended, a screen is shown with the name of the creators and the option to return to Menu.
 
-Fireboy is controlled using the arrow keys, while Watergirl uses "W, A, D." The characters can move left, right, and jump, and their goal is to navigate obstacles, collect diamonds, and reach the exit door of each level. Each character interacts differently with the environment: Fireboy is immune to lava but can’t touch water, while Watergirl is safe in water but harmed by lava. Both must avoid green goo at all costs.
+## Screenshots
+The following screenshots demonstrate both the general look of our game and the divergent functionalities:
 
-The game starts with a menu where players can choose to play, view instructions, or exit. If a character touches an obstacle they can't survive, it’s Game Over, and players can choose to retry or quit.
+### Menus
+<p align="center">
+  <img src="docs/images/screenshots/mainMenu.png" alt="Main Menu"/>
+</p>
+<p align="center">
+  <b><i>Fig 1. Main Menu </i></b>
+</p>
 
-Teamwork is essential to press buttons, pull levers, and solve puzzles to advance through the levels. The game focuses on collaboration, problem-solving, and having fun!
+<!-- ![Image Preview (docs/images/screenshots/mainMenu.png)](images/screenshots/mainMenu.png) -->
+<!-- ![Main Menu](docs/images/screenshots/mainMenu.png) -->
 
-# Mockups
-![Image Preview (images/mockups/menu.png)](images/mockups/menu.png)
-![Image Preview (images/mockups/play.jpeg)](images/mockups/play.jpeg)
-![Image Preview (images/mockups/gameOver.png)](images/mockups/gameOver.png)
+<br>
+<br />
 
-# UML MODEL
+<p align="center">
+  <img src="docs/images/screenshots/gameOver.png" alt="Game Over"/>
+</p>
+<p align="center">
+  <b><i>Fig 2. Game Over </i></b>
+</p>  
 
-![Image Preview (images/uml/UML.drawio.png)](images/uml/UML.drawio.png)
+<br>
+<br />
 
+<p align="center">
+  <img src="docs/images/screenshots/credits.png" style="display: block; margin: 0 auto;"/>
+</p>
+<p align="center">
+  <b><i>Fig 3. Credits </i></b>
+</p>   
 
+<br>
+<br />
+
+### Levels
+<p align="center">
+  <img src="docs/images/screenshots/level1.png" style="display: block; margin: 0 auto;"/>
+</p>
+<p align="center">
+  <b><i>Fig 4. Level 1 </i></b>
+</p>  
+
+<br>
+<br />
+
+<p align="center">
+  <img src="docs/images/screenshots/level2.png" style="display: block; margin: 0 auto;"/>
+</p>
+<p align="center">
+  <b><i>Fig 5. Level 2 </i></b>
+</p>  
+
+<br>
+<br />
+
+<p align="center">
+  <img src="docs/images/screenshots/level3.png" style="display: block; margin: 0 auto;"/>
+</p>
+<p align="center">
+  <b><i>Fig 6. Level 3 </i></b>
+</p>

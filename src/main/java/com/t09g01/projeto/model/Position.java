@@ -1,5 +1,7 @@
 package com.t09g01.projeto.model;
 
+import java.util.Objects;
+
 public class Position {
     private double x;
     private double y;
@@ -35,5 +37,10 @@ public class Position {
         if (o == null || getClass() != o.getClass()) return false;
         Position position = (Position) o;
         return x == position.x && y == position.y;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(x, y);
     }
 }
