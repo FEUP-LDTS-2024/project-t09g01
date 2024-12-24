@@ -36,4 +36,18 @@ public class GameImageLoaderTester {
         verify(spy(gameImageLoader), never()).get(filepath);
     }
 
+    @Test
+    void testGetImageWhenNotCached() throws IOException {
+        String filepath = "fonts/font1.png";
+
+        gameImageLoader.imageMap.clear();
+        Viewer result = gameImageLoader.get(filepath);
+
+        assertNotNull(result);
+        assertTrue(gameImageLoader.imageMap.containsKey(filepath));
+        assertNotNull(gameImageLoader.imageMap.get(filepath));
+    }
+
+
+
 }
