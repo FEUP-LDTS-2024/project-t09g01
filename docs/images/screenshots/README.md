@@ -6,21 +6,24 @@ Fireboy and Watergirl is a cooperative two-player game where the objective is to
 This project was developed by Carolina Ferreira, Constança Ferreira and Maria Luísa Vieira.
 
 ## Screenshots
-The following screenshots ilustrate the general look of our game, as well as the divergent functionalities:
+The following screenshots demonstrate both the general look of our game and the divergent functionalities:
 
 ### Menus
 <p align="center">
-  <img src="docs/images/screenshots/mainMenu.png" style="display: block; margin: 0 auto;"/>
+  <img src="docs/images/screenshots/mainMenu.png" alt="Main Menu"/>
 </p>
 <p align="center">
   <b><i>Fig 1. Main Menu </i></b>
-</p>  
+</p>
+
+<!-- ![Image Preview (docs/images/screenshots/mainMenu.png)](images/screenshots/mainMenu.png) -->
+<!-- ![Main Menu](docs/images/screenshots/mainMenu.png) -->
 
 <br>
 <br />
 
 <p align="center">
-  <img src="docs/images/screenshots/gameOver.png" style="display: block; margin: 0 auto;"/>
+  <img src="docs/images/screenshots/gameOver.png" alt="Game Over"/>
 </p>
 <p align="center">
   <b><i>Fig 2. Game Over </i></b>
@@ -65,25 +68,4 @@ The following screenshots ilustrate the general look of our game, as well as the
 </p>
 <p align="center">
   <b><i>Fig 6. Level 3 </i></b>
-</p>  
-
-
-
-### End Game
-
-<p align="center" justify="center">
-  <img src="docs/images/screenshots/YOUWON.png"/>
-</p>
-<p align="center">
-  <b><i>Fig 8. Won message</i></b>
-</p>
-
-<br>
-<br />
-
-<p align="center" justify="center">
-  <img src="docs/images/screenshots/YOULOST.png"/>
-</p>
-<p align="center">
-  <b><i>Fig 9. Lost message</i></b>
 </p>
