@@ -8,6 +8,7 @@ import com.t09g01.projeto.model.game.elements.doors.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -117,7 +118,7 @@ public class TempleTest {
         temple.setGoo(Collections.singletonList(goo));
 
         Position watergirlPosition = watergirl.getPosition();
-        assertTrue(temple.gooCollision(watergirlPosition), "Watergirl should collide with goo");
+        assertTrue(temple.gooCollision(watergirlPosition));
     }
 
     @Test
@@ -126,7 +127,7 @@ public class TempleTest {
         temple.setGoo(Collections.singletonList(goo));
 
         Position watergirlPosition = watergirl.getPosition();
-        assertFalse(temple.gooCollision(watergirlPosition), "Watergirl should not collide with goo");
+        assertFalse(temple.gooCollision(watergirlPosition));
     }
 
     @Test
@@ -135,7 +136,7 @@ public class TempleTest {
         temple.setLava(Collections.singletonList(lava));
 
         Position watergirlPosition = watergirl.getPosition();
-        assertTrue(temple.lavaCollision(watergirlPosition), "Watergirl should collide with lava");
+        assertTrue(temple.lavaCollision(watergirlPosition));
     }
 
     @Test
@@ -144,7 +145,7 @@ public class TempleTest {
         temple.setLava(Collections.singletonList(lava));
 
         Position watergirlPosition = watergirl.getPosition();
-        assertFalse(temple.lavaCollision(watergirlPosition), "Watergirl should not collide with lava");
+        assertFalse(temple.lavaCollision(watergirlPosition));
     }
 
     @Test
@@ -153,7 +154,7 @@ public class TempleTest {
         temple.setWater(Collections.singletonList(water));
 
         Position fireboyPosition = fireboy.getPosition();
-        assertTrue(temple.waterCollision(fireboyPosition), "Fireboy should collide with water");
+        assertTrue(temple.waterCollision(fireboyPosition));
     }
 
     @Test
@@ -162,7 +163,7 @@ public class TempleTest {
         temple.setWater(Collections.singletonList(water));
 
         Position fireboyPosition = fireboy.getPosition();
-        assertFalse(temple.waterCollision(fireboyPosition), "Fireboy should not collide with water");
+        assertFalse(temple.waterCollision(fireboyPosition));
     }
 
     @Test
@@ -178,14 +179,14 @@ public class TempleTest {
         watergirl.setPosition(new Position(10, 28));
         temple.retrieveBlueDiamonds(watergirl.getPosition());
 
-        assertTrue(temple.getBlueDiamond().size() == 1, "One blue diamond should be removed after retrieval");
+        assertTrue(temple.getBlueDiamond().size() == 1);
 
         watergirl.setPosition(new Position(20, 28));
         temple.retrieveBlueDiamonds(watergirl.getPosition());
 
-        assertTrue(temple.getBlueDiamond().isEmpty(), "Second blue diamond should be removed after retrieval");
+        assertTrue(temple.getBlueDiamond().isEmpty());
 
-        assertTrue(temple.getBlueDiamond().isEmpty(), "Blue diamonds should be empty after both retrieved");
+        assertTrue(temple.getBlueDiamond().isEmpty());
     }
 
     @Test
@@ -201,14 +202,14 @@ public class TempleTest {
         fireboy.setPosition(new Position(10, 28));
         temple.retrieveRedDiamonds(fireboy.getPosition());
 
-        assertTrue(temple.getRedDiamond().size() == 1, "One red diamond should be removed after retrieval");
+        assertTrue(temple.getRedDiamond().size() == 1);
 
         fireboy.setPosition(new Position(20, 28));
         temple.retrieveRedDiamonds(fireboy.getPosition());
 
-        assertTrue(temple.getRedDiamond().isEmpty(), "Second red diamond should be removed after retrieval");
+        assertTrue(temple.getRedDiamond().isEmpty());
 
-        assertTrue(temple.getRedDiamond().isEmpty(), "Red diamonds should be empty after both retrieved");
+        assertTrue(temple.getRedDiamond().isEmpty());
     }
 
 
@@ -218,13 +219,13 @@ public class TempleTest {
         temple.setBlueDoor(blueDoor);
 
         Position insidePosition = new Position(blueDoor.getPosition().getX() + 1, blueDoor.getPosition().getY() + 1);
-        assertTrue(temple.blueDoorCollision(insidePosition), "Position should collide with the blue door");
+        assertTrue(temple.blueDoorCollision(insidePosition));
 
         Position outsidePosition = new Position(blueDoor.getPosition().getX() - 10, blueDoor.getPosition().getY() - 10);
-        assertFalse(temple.blueDoorCollision(outsidePosition), "Position should not collide with the blue door");
+        assertFalse(temple.blueDoorCollision(outsidePosition));
 
         Position edgePosition = new Position(blueDoor.getPosition().getX() + 7, blueDoor.getPosition().getY() + 7);
-        assertTrue(temple.blueDoorCollision(edgePosition), "Position on the edge should collide with the blue door");
+        assertTrue(temple.blueDoorCollision(edgePosition));
     }
 
     @Test
@@ -233,13 +234,13 @@ public class TempleTest {
         temple.setRedDoor(redDoor);
 
         Position insidePosition = new Position(redDoor.getPosition().getX() + 1, redDoor.getPosition().getY() + 1);
-        assertTrue(temple.redDoorCollision(insidePosition), "Position should collide with the red door");
+        assertTrue(temple.redDoorCollision(insidePosition));
 
         Position outsidePosition = new Position(redDoor.getPosition().getX() - 10, redDoor.getPosition().getY() - 10);
-        assertFalse(temple.redDoorCollision(outsidePosition), "Position should not collide with the red door");
+        assertFalse(temple.redDoorCollision(outsidePosition));
 
         Position edgePosition = new Position(redDoor.getPosition().getX() + 7, redDoor.getPosition().getY() + 7);
-        assertTrue(temple.redDoorCollision(edgePosition), "Position on the edge should collide with the red door");
+        assertTrue(temple.redDoorCollision(edgePosition));
     }
 
 
@@ -247,21 +248,21 @@ public class TempleTest {
     void testAllDiamondsCollected() {
         temple.setBlueDiamonds(Collections.emptyList());
         temple.setRedDiamonds(Collections.emptyList());
-        assertTrue(temple.allDiamondsCollected(), "All diamonds should be collected");
+        assertTrue(temple.allDiamondsCollected());
 
         BlueDiamond blueDiamond = new BlueDiamond(10, 28);
         temple.setBlueDiamonds(Collections.singletonList(blueDiamond));
         temple.setRedDiamonds(Collections.emptyList());
-        assertFalse(temple.allDiamondsCollected(), "Not all diamonds should be collected");
+        assertFalse(temple.allDiamondsCollected());
 
         RedDiamond redDiamond = new RedDiamond(20, 28);
         temple.setBlueDiamonds(Collections.emptyList());
         temple.setRedDiamonds(Collections.singletonList(redDiamond));
-        assertFalse(temple.allDiamondsCollected(), "Not all diamonds should be collected");
+        assertFalse(temple.allDiamondsCollected());
 
         temple.setBlueDiamonds(Collections.singletonList(blueDiamond));
         temple.setRedDiamonds(Collections.singletonList(redDiamond));
-        assertFalse(temple.allDiamondsCollected(), "Not all diamonds should be collected");
+        assertFalse(temple.allDiamondsCollected());
     }
 
 
@@ -305,6 +306,9 @@ public class TempleTest {
     }
 
 
-
+    @Test
+    void testTempleBuilderIOException() {
+        assertThrows(IOException.class, () -> {new TempleBuilder(999);});
+    }
 
 }

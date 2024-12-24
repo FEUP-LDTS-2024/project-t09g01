@@ -55,49 +55,90 @@ public class TempleControllerTest {
         Mockito.verifyNoInteractions(fireboyController, watergirlController);
     }
 
-//    @Test
-//    void testFireboyDead() throws IOException {
-//        Mockito.when(fireboy.isDead()).thenReturn(true);
-//        Mockito.when(watergirl.isDead()).thenReturn(false);
-//
-//        templeController.step(game, Set.of(), System.currentTimeMillis());
-//
-//        Mockito.verify(game, times(1)).setState(Mockito.any(GameOverState.class));
-//    }
-//
-//    @Test
-//    void testWatergirlDead() throws IOException {
-//        when(fireboy.isDead()).thenReturn(false);
-//        when(watergirl.isDead()).thenReturn(true);
-//
-//        templeController.step(game, Set.of(), System.currentTimeMillis());
-//
-//        verify(game).setState(any(GameOverState.class));
-//    }
-//
-//    @Test
-//    void testNextLevel() throws IOException {
-//        when(fireboy.isOnDoor()).thenReturn(true);
-//        when(watergirl.isOnDoor()).thenReturn(true);
-//        when(temple.allDiamondsCollected()).thenReturn(true);
-//        when(temple.getLevel()).thenReturn(1);
-//        when(game.getNumberOfLevels()).thenReturn(3);
-//
-//        templeController.step(game, Set.of(), System.currentTimeMillis());
-//
-//        verify(game).setState(any(GameState.class));
-//    }
-//
-//    @Test
-//    void testCredits() throws IOException {
-//        when(fireboy.isOnDoor()).thenReturn(true);
-//        when(watergirl.isOnDoor()).thenReturn(true);
-//        when(temple.allDiamondsCollected()).thenReturn(true);
-//        when(temple.getLevel()).thenReturn(3);
-//        when(game.getNumberOfLevels()).thenReturn(3);
-//
-//        templeController.step(game, Set.of(), System.currentTimeMillis());
-//
-//        verify(game).setState(any(CreditsState.class));
-//    }
+    @Test
+    void testFireboyDead() throws IOException {
+        when(fireboy.isDead()).thenReturn(true);
+        when(watergirl.isDead()).thenReturn(false);
+
+        Set<ACTION> actions = Set.of(ACTION.NONE);
+
+        templeController.step(game, actions, 0);
+
+        verify(game).setState(any(GameOverState.class));
+    }
+
+    @Test
+    void testWatergirlDead() throws IOException {
+        when(fireboy.isDead()).thenReturn(false);
+        when(watergirl.isDead()).thenReturn(true);
+
+        Set<ACTION> actions = Set.of(ACTION.NONE);
+
+        templeController.step(game, actions, 0);
+
+        verify(game).setState(any(GameOverState.class));
+    }
+
+    @Test
+    void testNextLevel() throws IOException {
+        when(fireboy.isOnDoor()).thenReturn(true);
+        when(watergirl.isOnDoor()).thenReturn(true);
+        when(temple.allDiamondsCollected()).thenReturn(true);
+        when(temple.getLevel()).thenReturn(1);
+        when(game.getNumberOfLevels()).thenReturn(3);
+
+        Set<ACTION> actions = Set.of(ACTION.NONE);
+
+        templeController.step(game, actions, 0);
+
+        verify(game).setState(any(GameState.class));
+    }
+
+    @Test
+    void testMissingDiamonds() throws IOException {
+        when(fireboy.isOnDoor()).thenReturn(true);
+        when(watergirl.isOnDoor()).thenReturn(true);
+        when(temple.allDiamondsCollected()).thenReturn(false);
+        when(temple.getLevel()).thenReturn(1);
+        when(game.getNumberOfLevels()).thenReturn(3);
+
+        Set<ACTION> actions = Set.of(ACTION.NONE);
+
+        templeController.step(game, actions, 0);
+
+        verify(game, never()).setState(any(GameState.class));
+        verify(game, never()).setState(any(CreditsState.class));
+    }
+
+    @Test
+    void testNoOnDoor() throws IOException {
+        when(fireboy.isOnDoor()).thenReturn(false);
+        when(watergirl.isOnDoor()).thenReturn(true);
+        when(temple.allDiamondsCollected()).thenReturn(true);
+        when(temple.getLevel()).thenReturn(1);
+        when(game.getNumberOfLevels()).thenReturn(3);
+
+        Set<ACTION> actions = Set.of(ACTION.NONE);
+
+        templeController.step(game, actions, 0);
+
+        verify(game, never()).setState(any(GameState.class));
+        verify(game, never()).setState(any(CreditsState.class));
+    }
+
+
+    @Test
+    void testCredits() throws IOException {
+        when(fireboy.isOnDoor()).thenReturn(true);
+        when(watergirl.isOnDoor()).thenReturn(true);
+        when(temple.allDiamondsCollected()).thenReturn(true);
+        when(temple.getLevel()).thenReturn(3);
+        when(game.getNumberOfLevels()).thenReturn(3);
+
+        Set<ACTION> actions = Set.of(ACTION.NONE);
+
+        templeController.step(game, actions, 0);
+
+        verify(game).setState(any(CreditsState.class));
+    }
 }
